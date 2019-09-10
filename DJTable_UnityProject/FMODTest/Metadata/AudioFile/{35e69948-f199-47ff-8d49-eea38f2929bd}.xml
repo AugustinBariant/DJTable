@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{35e69948-f199-47ff-8d49-eea38f2929bd}">
+		<property name="assetPath">
+			<value>Daniel Bortz, Sascha Sibler  - If Not Tomorrow Maybe Someday (Original Mix).mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>506.06400000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d69d3baf-c150-44cc-acbb-9ef91fe882f5}</destination>
+		</relationship>
+	</object>
+</objects>

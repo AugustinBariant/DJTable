@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{c604e4b7-f90b-42cf-b0e6-7f6bd3ff72be}">
+		<property name="name">
+			<value>Flute</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9b4aac0c-a79e-4713-92c1-c2eb26bd6713}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{9dc68398-cc3f-44c8-96b4-b775efac081e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{9dc68398-cc3f-44c8-96b4-b775efac081e}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>No Flute</value>
+			<value>Flute 1</value>
+			<value>Flute 2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

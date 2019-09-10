@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{462c0c86-28d6-4dc4-9956-6293cadaa6a1}">
+		<property name="name">
+			<value>DistortionSnare</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6a97c129-6e87-49a1-820e-91c6567a14ef}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6a97c129-6e87-49a1-820e-91c6567a14ef}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

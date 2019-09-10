@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPresetFolder" id="{a3523183-571c-4355-b389-1e7323c06645}">
+		<property name="name">
+			<value>Distortion</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+		</relationship>
+	</object>
+</objects>
