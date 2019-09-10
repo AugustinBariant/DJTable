@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{81ba3124-16ba-4047-a4cc-1dee5505eba3}">
+		<property name="name">
+			<value>DistortionKick</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{605cf2e1-ed86-4ff6-ae2b-16a873b6b8f4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{605cf2e1-ed86-4ff6-ae2b-16a873b6b8f4}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

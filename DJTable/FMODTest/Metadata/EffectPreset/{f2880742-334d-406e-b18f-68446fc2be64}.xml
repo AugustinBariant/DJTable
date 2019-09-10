@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EffectPreset" id="{f2880742-334d-406e-b18f-68446fc2be64}">
+		<property name="name">
+			<value>FMOD Distortion</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1751dcea-75ba-4cf1-8825-8dc834ae9065}</destination>
+		</relationship>
+		<relationship name="effect">
+			<destination>{9735419e-7052-4d8a-a2e6-43f97f8cd16c}</destination>
+		</relationship>
+	</object>
+	<object class="DistortionEffect" id="{9735419e-7052-4d8a-a2e6-43f97f8cd16c}" />
+</objects>

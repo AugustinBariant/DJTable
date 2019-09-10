@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{e8349e05-b2f9-4ebf-9bf5-bb6f8d0fb3a3}">
+		<property name="name">
+			<value>DistortionFlute</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e6625a3a-d14a-4bec-a705-bc045a3e6206}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e6625a3a-d14a-4bec-a705-bc045a3e6206}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
