@@ -16,7 +16,6 @@ public class Mix_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         eventDescription = FMODUnity.RuntimeManager.GetEventDescription(selectEvent);
         SetEventInstance();
         activationState = 0;

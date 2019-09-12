@@ -7,7 +7,8 @@ using UnityEngine;
 public class EventListener : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    //visual effects
+    //public GameObject myPrefab;
     public string selectEvent = "event:/Kick Snare";
     private Dictionary<int, string> parameterNames;
 
@@ -54,6 +55,7 @@ public class EventListener : MonoBehaviour
         }
         for (int i = 0; i < parameterNames.Count; i++)
         {
+            //Instantiate(myPrefab);
             UpdateTrackValue(i, instrumentCurrentObjects[i]);
             UpdateAudioEffects(i, instrumentCurrentObjects[i]);
         }
