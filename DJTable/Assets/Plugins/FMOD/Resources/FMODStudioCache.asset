@@ -360,6 +360,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7499181625463123364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-7304203041163727207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +652,40 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-6439069914564913956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-6412278614723383602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6409764432841962115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,6 +703,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-6383003425566527457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Vol
+  m_EditorClassIdentifier: 
+  Name: Vol
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6307542573184515020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,6 +737,31 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6209241300471122247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kick
+  m_EditorClassIdentifier: 
+  Path: event:/Kick
+  guid: bfc210318faf294f802d5491da212eb8
+  Banks:
+  - {fileID: 8946996332156770354}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3863506577451151525}
+  - {fileID: -6439069914564913956}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &-6132729687157246324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +1000,26 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-4835478320547108713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Augustin Bariant/Documents/KTH 2019-2020/Advanced Graphics and Interaction/Github/DJTable/DJTable/FMODTest/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637037112505002728
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1362
+  Exists: 1
 --- !u!114 &-4824465809475780910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,6 +1224,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-4275513699504206316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-4187642438146165001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,6 +1339,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/Kick
   m_EditorClassIdentifier: 
   Name: Kick
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-3478714278741597850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
   Min: 0
   Max: 3
   Default: 0
@@ -1573,6 +1720,32 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-1964907918029309533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Snare
+  m_EditorClassIdentifier: 
+  Path: event:/Snare
+  guid: 309fae4ca952354984d0cd504d862f49
+  Banks:
+  - {fileID: 8946996332156770354}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 3925245627543602512}
+  - {fileID: -6383003425566527457}
+  - {fileID: -6412278614723383602}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &-1927920751700754829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,6 +1950,38 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-1197073944113540365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Kick Snare
+  m_EditorClassIdentifier: 
+  Path: event:/Kick Snare
+  guid: 103f512555e411498c754bd71ebc93bf
+  Banks:
+  - {fileID: 8946996332156770354}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3478714278741597850}
+  - {fileID: -162054354763694667}
+  - {fileID: 3830039612103151840}
+  - {fileID: 4350235121504402103}
+  - {fileID: -7499181625463123364}
+  - {fileID: 4057899828395151382}
+  - {fileID: 859357289703619368}
+  - {fileID: 523123678111015720}
+  - {fileID: -4275513699504206316}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-1162973819545873352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,6 +2187,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-162054354763694667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-12443118852472245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,19 +2251,19 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -6661094105917737023}
-  - {fileID: -417577263354729228}
+  - {fileID: -4835478320547108713}
+  - {fileID: 8946996332156770354}
   EditorEvents:
-  - {fileID: -443070678759497040}
-  - {fileID: 3995430426768930636}
-  - {fileID: 2985317163737493905}
-  - {fileID: -7061604252890717642}
-  - {fileID: -6481077341433156444}
+  - {fileID: -1197073944113540365}
+  - {fileID: -1964907918029309533}
+  - {fileID: 4779799420945861169}
+  - {fileID: -6209241300471122247}
+  - {fileID: 6432024122364526685}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -417577263354729228}
+  - {fileID: 8946996332156770354}
   StringsBanks:
-  - {fileID: -6661094105917737023}
+  - {fileID: -4835478320547108713}
   stringsBankWriteTime: 637037112505002728
   cacheVersion: 3
 --- !u!114 &85729372088446431
@@ -2159,6 +2381,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/Kick
   m_EditorClassIdentifier: 
   Name: Kick
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &523123678111015720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Hihats
+  m_EditorClassIdentifier: 
+  Name: Hihats
   Min: 0
   Max: 3
   Default: 0
@@ -2282,6 +2521,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &859357289703619368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &884870646837318742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3308,6 +3564,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3830039612103151840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionHihats
+  m_EditorClassIdentifier: 
+  Name: DistortionHihats
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &3833776785741753142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3340,6 +3613,23 @@ MonoBehaviour:
   Name: DistortionKick
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &3863506577451151525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 3
   Default: 0
   Exists: 1
 --- !u!114 &3869348499924580761
@@ -3376,6 +3666,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &3925245627543602512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &3925609974477255175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3433,6 +3740,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &4057899828395151382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 3
+  Default: 0
+  Exists: 1
 --- !u!114 &4098314933341917724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3499,6 +3823,23 @@ MonoBehaviour:
   Name: Snare
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &4350235121504402103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &4494782540321854826
@@ -3586,6 +3927,29 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &4779799420945861169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/H\xF6rf\xF6rst\xE5else s. 120"
+  m_EditorClassIdentifier: 
+  Path: "event:/H\xF6rf\xF6rst\xE5else s. 120"
+  guid: 91146fb83e76ec469a5f01064749ddcf
+  Banks:
+  - {fileID: 8946996332156770354}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 151510
 --- !u!114 &4818269333235239020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3892,6 +4256,29 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &6432024122364526685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Test
+  m_EditorClassIdentifier: 
+  Path: event:/Test
+  guid: d030f8f8d0b8cc45931b274dd91057fc
+  Banks:
+  - {fileID: 8946996332156770354}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 506064
 --- !u!114 &6472823819020146750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4265,6 +4652,26 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  Exists: 1
+--- !u!114 &8946996332156770354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Augustin Bariant/Documents/KTH 2019-2020/Advanced Graphics and Interaction/Github/DJTable/DJTable/FMODTest/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637037112504922937
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 14689920
   Exists: 1
 --- !u!114 &8959231463163198047
 MonoBehaviour:
