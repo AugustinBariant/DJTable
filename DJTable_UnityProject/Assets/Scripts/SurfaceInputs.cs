@@ -196,14 +196,22 @@ public class SurfaceInputs : MonoBehaviour
         if (packetQueue.Count > 0) {
             lock (packetQueue) {
                 foreach (OSCBundle packet in packetQueue) {
-                    foreach (OSCMessage msg in packet.Values) {
-                        if (msg.Address.Equals("/tuio/2Dobj")) {
-                            ProcessObjectMessage(msg);
-                        } else if (msg.Address.Equals("/tuio/2Dcur")) {
-                            ProcessCursorMessage(msg);
+                    if (packet != null)
+                    {
+                        foreach (OSCMessage msg in packet.Values)
+                        {
+                            if (msg.Address.Equals("/tuio/2Dobj"))
+                            {
+                                ProcessObjectMessage(msg);
+                            }
+                            else if (msg.Address.Equals("/tuio/2Dcur"))
+                            {
+                                ProcessCursorMessage(msg);
+                            }
+                            // there's also /tuio/2Dblb
+                            // but we don't really need it
+
                         }
-                        // there's also /tuio/2Dblb
-                        // but we don't really need it
                     }
                 }
                 packetQueue.Clear();    

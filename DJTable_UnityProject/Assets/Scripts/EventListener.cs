@@ -55,7 +55,7 @@ public class EventListener : MonoBehaviour
         foreach (KeyValuePair<int, ObjectInput> entry in surfaceObjects)
         {
             //
-            Debug.Log(entry.Value.orientation);
+            //Debug.Log(entry.Value.orientation);
             instrumentCurrentObjects[entry.Value.tagValue] = entry.Value;
             
         }
