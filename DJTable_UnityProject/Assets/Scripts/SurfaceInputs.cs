@@ -16,6 +16,8 @@ public class SurfaceInputs : MonoBehaviour
 
     public static SurfaceInputs Instance { get { return _instance; }}
 
+    public bool dummyMode = false;
+
     private void Awake() {
         if (_instance != null && _instance != this)
         {
@@ -193,31 +195,53 @@ public class SurfaceInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (packetQueue.Count > 0) {
-            lock (packetQueue) {
-                foreach (OSCBundle packet in packetQueue) {
-                    if (packet != null)
+        if (dummyMode)
+        {
+            sendDummyData();
+        } else
+        {
+            if (packetQueue.Count > 0)
+            {
+                lock (packetQueue)
+                {
+                    foreach (OSCBundle packet in packetQueue)
                     {
-                        foreach (OSCMessage msg in packet.Values)
+                        if (packet != null)
                         {
-                            if (msg.Address.Equals("/tuio/2Dobj"))
+                            foreach (OSCMessage msg in packet.Values)
                             {
-                                ProcessObjectMessage(msg);
-                            }
-                            else if (msg.Address.Equals("/tuio/2Dcur"))
-                            {
-                                ProcessCursorMessage(msg);
-                            }
-                            // there's also /tuio/2Dblb
-                            // but we don't really need it
+                                if (msg.Address.Equals("/tuio/2Dobj"))
+                                {
+                                    ProcessObjectMessage(msg);
+                                }
+                                else if (msg.Address.Equals("/tuio/2Dcur"))
+                                {
+                                    ProcessCursorMessage(msg);
+                                }
+                                // there's also /tuio/2Dblb
+                                // but we don't really need it
 
+                            }
                         }
                     }
+                    packetQueue.Clear();
                 }
-                packetQueue.Clear();    
+                OnTouch(surfaceFingers, surfaceObjects);
+                // LogState();
             }
-            OnTouch(surfaceFingers, surfaceObjects);
-            // LogState();
         }
+        
+    }
+
+    void sendDummyData()
+    {
+        if (surfaceObjects.Count == 0)
+        {
+            surfaceObjects.Add(0, new ObjectInput(0, 0, new Vector2(0.4f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(1, new ObjectInput(1, 1, new Vector2(0.6f, 0.25f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(2, new ObjectInput(2, 2, new Vector2(0.4f, 0.8f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(3, new ObjectInput(3, 3, new Vector2(0.8f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+        }
+        OnTouch(surfaceFingers, surfaceObjects);
     }
 }

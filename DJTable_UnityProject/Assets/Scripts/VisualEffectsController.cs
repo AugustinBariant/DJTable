@@ -5,14 +5,15 @@ using UnityEditor;
 
 public class VisualEffectsController : MonoBehaviour
 {
+    public GameObject[] prefabs = new GameObject[4];
+
     private Camera mainCamera;
 
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
 
-
-    Dictionary<int, FingerInput> surfaceFingers = new Dictionary<int,FingerInput>();
-    Dictionary<int, ObjectInput> surfaceObjects = new Dictionary<int,ObjectInput>();
+    private Dictionary<int, FingerInput> surfaceFingers = new Dictionary<int,FingerInput>();
+    private Dictionary<int, ObjectInput> surfaceObjects = new Dictionary<int,ObjectInput>();
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +21,17 @@ public class VisualEffectsController : MonoBehaviour
         mainCamera = Camera.main;
         SurfaceInputs.Instance.OnTouch += ProcessObjects;
 
-        GameObject prefab1 = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fire/Fire.prefab", typeof(GameObject));
-        GameObject prefab2 = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Ripple/Big-small-big.prefab", typeof(GameObject));
-
         objectPrefabs = new Dictionary<int, GameObject>();
         effectInstances = new Dictionary<int, GameObject>();
 
-        objectPrefabs.Add(0, prefab1);
-        objectPrefabs.Add(1, prefab2);
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            if (prefabs[i] != null)
+            {
+                objectPrefabs.Add(i, prefabs[i]);
+            }
+        }
+
     }
 
     void ProcessObjects(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
