@@ -77,8 +77,10 @@
 				fixed4 c;
 				float extrudeProportion = clamp((i.worldPos.z - 5.0) / (-1.0), 0.0, 1.0);
 
-				if (frac(i.worldPos.x / _LineGap) < 0.05f || frac(i.worldPos.y / _LineGap) < 0.05f) {
-					c = ((1.f - extrudeProportion) * fixed4(0, 0.7, 0.7, 1)) + (extrudeProportion * fixed4(1, 0, 0.82, 1));
+				float xFrac = frac(i.worldPos.x / _LineGap);
+				float yFrac = frac(i.worldPos.y / _LineGap);
+				if (xFrac < 0.05f || yFrac < 0.05f) {
+					c = ((1.f - extrudeProportion) * fixed4(0, 0.5, 0.5, 1)) + (extrudeProportion * fixed4(1, 0, 0.82, 1));
 				}
 				else {
 					c = fixed4(0, 0, 0, 0) + (0.1 * extrudeProportion * fixed4(1, 0, 0.82, 1));
