@@ -12,8 +12,10 @@ public class ObjectInput
     // The actual marker id
     public int tagValue { get; }
 
+    // Absolute position
     public Vector2 position { get; private set; }
 
+    public Vector2 posRelative { get; private set; }
     public float orientation { get; private set; }
     public Vector2 velocity { get; private set; }
     public float acceleration { get; private set; }
@@ -22,11 +24,12 @@ public class ObjectInput
 
     public float angularAcceleration { get; private set; }
 
-    public ObjectInput(int id, int tagValue, Vector2 position, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration)
+    public ObjectInput(int id, int tagValue, Vector2 position, Vector2 posRelative, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration)
     {
         this.id = id;
         this.tagValue = tagValue;
         this.position = position;
+        this.posRelative = posRelative;
         this.orientation = orientation;
         this.velocity = velocity;
         this.acceleration = acceleration;
@@ -34,8 +37,9 @@ public class ObjectInput
         this.angularAcceleration = angularAcceleration;
     }
 
-    public void UpdateProps(Vector2 position, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration) {
+    public void UpdateProps(Vector2 position, Vector2 posRelative, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration) {
         this.position = position;
+        this.posRelative = posRelative;
         this.orientation = orientation;
         this.velocity = velocity;
         this.acceleration = acceleration;

@@ -7,8 +7,6 @@ public class VisualEffectsController : MonoBehaviour
 {
     public GameObject[] prefabs = new GameObject[4];
 
-    private Camera mainCamera;
-
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
 
@@ -18,7 +16,6 @@ public class VisualEffectsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = Camera.main;
         SurfaceInputs.Instance.OnTouch += ProcessObjects;
 
         objectPrefabs = new Dictionary<int, GameObject>();
@@ -48,17 +45,11 @@ public class VisualEffectsController : MonoBehaviour
         {
             int tagValue = entry.Value.tagValue;
             existantIds.Add(tagValue);
-            //Debug.Log("Checking for " + tagValue);
 
             GameObject prefab;
             if (objectPrefabs.TryGetValue(tagValue, out prefab))
             {
-                //Debug.Log("Instantiate!!!");
-                Vector2 screenPos = entry.Value.position;
-                Vector3 position = new Vector3((float)screenPos.x * Screen.width, Screen.height - (float)screenPos.y * Screen.height, mainCamera.nearClipPlane);
-                position = mainCamera.ScreenToWorldPoint(position);
-                Debug.Log(position.ToString());
-
+                Vector2 position = entry.Value.position;
                 GameObject instance;
                 if (effectInstances.TryGetValue(tagValue, out instance))
                 {
@@ -72,19 +63,6 @@ public class VisualEffectsController : MonoBehaviour
                 }
 
             }
-
-            //Debug.Log(Screen.width);
-            //Debug.Log(Screen.height);
-            //if (!isThereAnObject)
-            //{
-            //    Vector2 viewportSize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-            //    Clone = Instantiate(Prefabs, new Vector2(viewportSize.x * entry.Value.position.x, viewportSize.y * entry.Value.position.y), Quaternion.identity);
-
-            //    //Clone = Instantiate(Prefabs, new Vector2(16* entry.Value.position.x, 9* entry.Value.position.y), Quaternion.identity);
-            //    isThereAnObject = true;
-            //}
-
-            // Delete stuff that isn' t there
         }
 
         for (int i = 0; i < objectPrefabs.Count; i++)

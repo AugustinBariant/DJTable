@@ -44,10 +44,14 @@ public class SurfaceInputs : MonoBehaviour
     private Queue<OSCBundle> packetQueue = new Queue<OSCBundle>();
     private object queueLock = new object();
 
+    private Camera mainCamera;
+
     void Start()
     {
         surfaceFingers = new Dictionary<int, FingerInput>();
         surfaceObjects = new Dictionary<int, ObjectInput>();
+
+        mainCamera = Camera.main;
         
         // We will be listening to the Surface on localhost
         remoteEndpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3333);
@@ -122,8 +126,9 @@ public class SurfaceInputs : MonoBehaviour
                 int id = (int)msg.Values[1];
 
                 float x = (float)msg.Values[2];
-                float y = (float)msg.Values[3];
-                Vector2 position = new Vector2(x, y);
+                float y = 1f - (float)msg.Values[3];
+                Vector2 posRelative = new Vector2(x, y);
+                Vector2 position = ComputeWorldPosition(x, y);
 
                 float xVel = (float)msg.Values[4];
                 float yVel = (float)msg.Values[5];
@@ -133,9 +138,9 @@ public class SurfaceInputs : MonoBehaviour
 
                 FingerInput surfaceFinger;
                 if (surfaceFingers.TryGetValue(id, out surfaceFinger)) {
-                    surfaceFinger.UpdateProps(position, velocity, acc);
+                    surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
                 } else {
-                    surfaceFinger = new FingerInput(id, position, velocity, acc);
+                    surfaceFinger = new FingerInput(id, position, posRelative, velocity, acc);
                     surfaceFingers.Add(id, surfaceFinger);
                 }
                 break;
@@ -161,8 +166,10 @@ public class SurfaceInputs : MonoBehaviour
                 int tagValue = (int)msg.Values[2];
 
                 float x = (float)msg.Values[3];
-                float y = (float)msg.Values[4];
-                Vector2 position = new Vector2(x, y);
+                float y = 1f - (float)msg.Values[4];
+
+                Vector2 posRelative = new Vector2(x, y);
+                Vector2 position = ComputeWorldPosition(x, y);
 
                 float orientation = (float)msg.Values[5];
 
@@ -176,14 +183,20 @@ public class SurfaceInputs : MonoBehaviour
 
                 ObjectInput surfaceObject;
                 if (surfaceObjects.TryGetValue(id, out surfaceObject)) {
-                    surfaceObject.UpdateProps(position, orientation, velocity, acc, angularVel, angularAcc);
+                    surfaceObject.UpdateProps(position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
                 } else {
-                    surfaceObject = new ObjectInput(id, tagValue, position, orientation, velocity, acc, angularVel, angularAcc);
+                    surfaceObject = new ObjectInput(id, tagValue, position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
                     surfaceObjects.Add(id, surfaceObject);
                 }
                 break;
             }
         }
+    }
+
+    Vector3 ComputeWorldPosition(float x, float y)
+    {
+        Vector3 position = new Vector3((float)x * Screen.width, (float)y * Screen.height, mainCamera.nearClipPlane);
+        return mainCamera.ScreenToWorldPoint(position);
     }
 
 
@@ -237,11 +250,29 @@ public class SurfaceInputs : MonoBehaviour
     {
         if (surfaceObjects.Count == 0)
         {
-            surfaceObjects.Add(0, new ObjectInput(0, 0, new Vector2(0.4f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(1, new ObjectInput(1, 1, new Vector2(0.6f, 0.25f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(2, new ObjectInput(2, 2, new Vector2(0.4f, 0.8f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(3, new ObjectInput(3, 3, new Vector2(0.8f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
         }
+
+
+        // moving object
+        ObjectInput obj = surfaceObjects[1];
+        float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
+        float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
+        if (x >= 1.0f)
+        {
+            x = 0.0f;
+        }
+        if (y <= 0f)
+        {
+            y = 1.0f;
+        }
+        Vector2 position = ComputeWorldPosition(x, y);
+        Vector2 posRelative = new Vector2(x, y);
+        obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+
         OnTouch(surfaceFingers, surfaceObjects);
     }
 }

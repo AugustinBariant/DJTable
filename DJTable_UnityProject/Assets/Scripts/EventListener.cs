@@ -77,8 +77,8 @@ public class EventListener : MonoBehaviour
     private void UpdateAudioEffects(int parameterTag, ObjectInput objectInput)
     {
         //Reverb
-        float reverbValue = objectInput.position.x < 0.5 ? 1 - objectInput.position.x : 0;
-        float distortionValue = objectInput.position.x > 0.5 ? objectInput.position.x : 0;
+        float reverbValue = objectInput.posRelative.x < 0.5 ? 1 - objectInput.posRelative.x : 0;
+        float distortionValue = objectInput.posRelative.x > 0.5 ? objectInput.posRelative.x : 0;
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
     }
 
