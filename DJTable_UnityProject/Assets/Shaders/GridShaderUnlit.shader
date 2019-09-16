@@ -39,7 +39,8 @@
 			float _LineGap;
 
 			int _NumObjects = 0;
-			float4 _ObjectPositions[20];
+            float4x4 _ObjectPositions1;
+            float4x4 _ObjectPositions2;
 
             v2f vert (appdata v)
             {
@@ -49,7 +50,12 @@
 				float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
 
 				for (int i = 0; i < _NumObjects; i++) {
-					float3 dif = _ObjectPositions[i].xyz - worldPos;
+					float3 dif;
+                    if (i < 4) {
+                        dif = _ObjectPositions1[i].xyz - worldPos;
+                    } else {
+                        dif = _ObjectPositions2[i - 4].xyz - worldPos;
+                    }
 					float dist = sqrt((dif.x * dif.x) + (dif.y * dif.y));
 
 					if (dist < 3.5) {

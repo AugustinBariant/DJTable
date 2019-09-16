@@ -117,6 +117,7 @@ public class GridRenderer : MonoBehaviour
         Vector3[] vertices = (Vector3[])baseVertices.Clone();
 
         List<Vector4> objectPositions = new List<Vector4>();
+        
         foreach (KeyValuePair<int, ObjectInput> obj in surfaceObjects)
         {
             Vector2 absPosition = obj.Value.position;
@@ -144,8 +145,20 @@ public class GridRenderer : MonoBehaviour
 
         if (objectPositions.Count > 0)
         {
-            renderer.material.SetVectorArray("_ObjectPositions", objectPositions);
-            renderer.material.SetInt("_NumObjects", objectPositions.Count);
+            Matrix4x4 objectPositions1 = new Matrix4x4();
+            Matrix4x4 objectPositions2 = new Matrix4x4();
+
+            for (int i = 0; i < objectPositions.Count; i++) {
+                if (i < 4) {
+                    objectPositions1.SetRow(i, objectPositions[i]);
+                } else {
+                    objectPositions2.SetRow(i - 4, objectPositions[i]);
+                }
+            }
+            renderer.material.SetMatrix("_ObjectPositions1", objectPositions1);
+            renderer.material.SetMatrix("_ObjectPositions2", objectPositions2);
+            // renderer.material.SetVectorArray("_ObjectPositions", objectPositions);
         }
+        renderer.material.SetInt("_NumObjects", objectPositions.Count);
     }
 }
