@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{e56b166f-7122-400b-a84e-759c5de906dd}">
+		<property name="name">
+			<value>Percu</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9b4aac0c-a79e-4713-92c1-c2eb26bd6713}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5d151b11-0fa4-4514-8e27-a0070ba3c8e0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5d151b11-0fa4-4514-8e27-a0070ba3c8e0}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>No Percu</value>
+			<value>Percu 1</value>
+			<value>Percu 2</value>
+			<value>Percu 3</value>
+			<value>Percu 4</value>
+			<value>Percu 5</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

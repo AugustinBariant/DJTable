@@ -16,12 +16,15 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>3</value>
+			<value>6</value>
 		</property>
 		<property name="enumerationLabels">
 			<value>No Bass</value>
 			<value>Bass 1</value>
 			<value>Bass 2</value>
+			<value>Bass 3</value>
+			<value>Bass 4</value>
+			<value>Bass 5</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>

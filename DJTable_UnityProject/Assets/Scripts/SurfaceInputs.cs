@@ -18,6 +18,15 @@ public class SurfaceInputs : MonoBehaviour
 
     public bool dummyMode = false;
 
+    public float a=0f;
+    public float b = 0f;
+    public float c = 0f;
+    public float d = 0f;
+    public float e = 0f;
+    public float f = 0f;
+    public float g = 0f;
+    public float h = 0f;
+
     private void Awake() {
         if (_instance != null && _instance != this)
         {
@@ -250,10 +259,15 @@ public class SurfaceInputs : MonoBehaviour
     {
         if (surfaceObjects.Count == 0)
         {
-            surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), a, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), b, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), c, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), d, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), e, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), g, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), h, new Vector2(0, 0), 0f, 0f, 0f));
+
         }
 
 
@@ -271,7 +285,7 @@ public class SurfaceInputs : MonoBehaviour
         }
         Vector2 position = ComputeWorldPosition(x, y);
         Vector2 posRelative = new Vector2(x, y);
-        obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+        //obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
 
         OnTouch(surfaceFingers, surfaceObjects);
     }

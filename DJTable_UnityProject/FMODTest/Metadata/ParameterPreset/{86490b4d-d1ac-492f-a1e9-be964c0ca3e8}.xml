@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{86490b4d-d1ac-492f-a1e9-be964c0ca3e8}">
+		<property name="name">
+			<value>DistortionWind</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{50482749-ef63-4d6c-b9d1-deb8d44efed7}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{50482749-ef63-4d6c-b9d1-deb8d44efed7}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

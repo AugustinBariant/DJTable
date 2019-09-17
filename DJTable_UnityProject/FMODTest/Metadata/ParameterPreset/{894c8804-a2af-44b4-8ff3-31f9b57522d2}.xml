@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.00.00">
 	<object class="ParameterPreset" id="{894c8804-a2af-44b4-8ff3-31f9b57522d2}">
 		<property name="name">
-			<value>DistortionHihats</value>
+			<value>DistortionHihat</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>

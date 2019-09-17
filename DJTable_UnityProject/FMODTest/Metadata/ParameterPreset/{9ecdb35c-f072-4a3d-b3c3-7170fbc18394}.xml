@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.00.00">
 	<object class="ParameterPreset" id="{9ecdb35c-f072-4a3d-b3c3-7170fbc18394}">
 		<property name="name">
-			<value>Hihats</value>
+			<value>Hihat</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9b4aac0c-a79e-4713-92c1-c2eb26bd6713}</destination>
@@ -16,12 +16,15 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>3</value>
+			<value>6</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>No Hihats</value>
-			<value>Hihats 1</value>
-			<value>Hihats 2</value>
+			<value>No Hihat</value>
+			<value>Hihat 1</value>
+			<value>Hihat 2</value>
+			<value>Hihat 3</value>
+			<value>Hihat 4</value>
+			<value>Hihat 5</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>

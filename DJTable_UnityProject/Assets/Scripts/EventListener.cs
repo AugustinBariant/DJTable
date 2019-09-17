@@ -32,10 +32,14 @@ public class EventListener : MonoBehaviour
     {
         instrumentStates = new Dictionary<int, int>();
         parameterNames = new Dictionary<int, string>();
-        parameterNames.Add(0, "Bass");
+        parameterNames.Add(0, "Kick");
         parameterNames.Add(1, "Snare");
-        parameterNames.Add(2, "Kick");
-        parameterNames.Add(3, "Hihats");
+        parameterNames.Add(2, "Bass");
+        parameterNames.Add(3, "Hihat");
+        parameterNames.Add(4, "Percu");
+        parameterNames.Add(5, "Lead");
+        parameterNames.Add(6, "Strings");
+        parameterNames.Add(7, "Wind");
         foreach (int i in parameterNames.Keys)
         {
             instrumentStates.Add(i, 0);
@@ -80,24 +84,19 @@ public class EventListener : MonoBehaviour
         float reverbValue = objectInput.posRelative.x < 0.5 ? 1 - objectInput.posRelative.x : 0;
         float distortionValue = objectInput.posRelative.x > 0.5 ? objectInput.posRelative.x : 0;
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
+        eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], distortionValue);
     }
 
     // This method compute the value of the track played of a specific instrument according to its position, to its rotation etc...
+    // TO Be changed
     private int ComputeTrackValue(ObjectInput objectInput)
     {
-        
-        if(objectInput==null)
-        {
+
+        if (objectInput == null)
             return 0;
-        }
-        else if (objectInput.orientation < 0.5)
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
+
+        int or = (int)objectInput.orientation;
+        return or<=5 && or>=1 ?or:1;
     }
 
     // Update the corresponding parameter

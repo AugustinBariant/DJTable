@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{67f81b61-2ab4-4b82-8604-1dcfd31773df}">
+		<property name="name">
+			<value>DistortionLead</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a3523183-571c-4355-b389-1e7323c06645}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{80ac4387-1615-468b-8fe6-9c76e9b86a20}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{80ac4387-1615-468b-8fe6-9c76e9b86a20}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

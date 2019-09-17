@@ -16,12 +16,15 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>3</value>
+			<value>6</value>
 		</property>
 		<property name="enumerationLabels">
 			<value>No Snare</value>
 			<value>Snare 1</value>
 			<value>Snare 2</value>
+			<value>Snare 3</value>
+			<value>Snare 4</value>
+			<value>Snare 5</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>
