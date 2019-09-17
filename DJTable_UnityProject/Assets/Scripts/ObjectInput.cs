@@ -12,10 +12,19 @@ public class ObjectInput
     // The actual marker id
     public int tagValue { get; }
 
-    // Absolute position
+    /// <summary>
+    /// Absolute pixel space position
+    /// </summary> 
     public Vector2 position { get; private set; }
 
+    /// <summary>
+    /// Relative screen position in range [0,1]
+    /// </summary> 
     public Vector2 posRelative { get; private set; }
+
+    /// <summary>
+    /// Orientation in radians
+    /// </summary> 
     public float orientation { get; private set; }
     public Vector2 velocity { get; private set; }
     public float acceleration { get; private set; }

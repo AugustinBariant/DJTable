@@ -6,9 +6,14 @@ using UnityEngine;
 public class FingerInput {
     public int id { get; }
 
-    // Absolute position
+    /// <summary>
+    /// Absolute pixel space position
+    /// </summary> 
     public Vector2 position { get; private set; }
 
+    /// <summary>
+    /// Relative screen position in range [0,1]
+    /// </summary> 
     public Vector2 posRelative { get; private set; }
 
     public Vector2 velocity { get; private set; }

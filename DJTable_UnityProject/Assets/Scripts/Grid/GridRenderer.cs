@@ -21,9 +21,6 @@ public class GridRenderer : MonoBehaviour
 
     private Vector3[] baseVertices;
 
-    private Dictionary<int, FingerInput> surfaceFingers = new Dictionary<int, FingerInput>();
-    private Dictionary<int, ObjectInput> surfaceObjects = new Dictionary<int, ObjectInput>();
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +29,6 @@ public class GridRenderer : MonoBehaviour
         absWidth = screenSize.x;
         absHeight = screenSize.y;
 
-        SurfaceInputs.Instance.OnTouch += ProcessObjects;
-
         renderer = GetComponent<MeshRenderer>();
         renderer.material.SetFloat("_LineGap", lineGap);
         //renderer.material.SetVectorArray("_ObjectPositions", new List<Vector4>());
@@ -41,12 +36,6 @@ public class GridRenderer : MonoBehaviour
 
         GenerateMesh();
         transform.Translate(new Vector3(0, 0, 5));
-    }
-
-    void ProcessObjects(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
-    {
-        this.surfaceFingers = surfaceFingers;
-        this.surfaceObjects = surfaceObjects;
     }
 
     private void GenerateMesh()
@@ -118,7 +107,7 @@ public class GridRenderer : MonoBehaviour
 
         List<Vector4> objectPositions = new List<Vector4>();
         
-        foreach (KeyValuePair<int, ObjectInput> obj in surfaceObjects)
+        foreach (KeyValuePair<int, ObjectInput> obj in SurfaceInputs.Instance.surfaceObjects)
         {
             Vector2 absPosition = obj.Value.position;
             objectPositions.Add(absPosition);
