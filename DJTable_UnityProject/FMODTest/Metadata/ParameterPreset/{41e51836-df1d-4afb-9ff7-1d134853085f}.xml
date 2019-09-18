@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{41e51836-df1d-4afb-9ff7-1d134853085f}">
+		<property name="name">
+			<value>FilterWind</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1c66c4c9-9444-4598-bb81-70678e449465}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{28405bd7-b5f3-4d60-9931-7a5dda10e4fe}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{28405bd7-b5f3-4d60-9931-7a5dda10e4fe}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

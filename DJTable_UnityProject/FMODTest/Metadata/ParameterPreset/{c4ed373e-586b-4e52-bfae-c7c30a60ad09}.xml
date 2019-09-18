@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{c4ed373e-586b-4e52-bfae-c7c30a60ad09}">
+		<property name="name">
+			<value>FlangerHihat</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9b2878da-0fd3-44a7-9aeb-93ba2e7e3fe9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{daacd718-9ca8-4fa6-98db-6ac99eb17545}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{daacd718-9ca8-4fa6-98db-6ac99eb17545}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

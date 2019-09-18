@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{dd1a7585-ca8a-4087-a78c-a82073cc1ea5}">
+		<property name="name">
+			<value>FlangerWind</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9b2878da-0fd3-44a7-9aeb-93ba2e7e3fe9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e77fbd2d-65cf-4bed-a75c-64bd45b3556b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e77fbd2d-65cf-4bed-a75c-64bd45b3556b}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

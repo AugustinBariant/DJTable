@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{bf7e0d00-a631-4497-9981-e2ccd773d71c}">
+		<property name="name">
+			<value>FlangerPercu</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9b2878da-0fd3-44a7-9aeb-93ba2e7e3fe9}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{84770476-4838-4162-8c00-beb865f9b73f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{84770476-4838-4162-8c00-beb865f9b73f}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

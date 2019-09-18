@@ -9,6 +9,14 @@ public class EventListener : MonoBehaviour
     // Start is called before the first frame update
 
     public string selectEvent = "event:/Kick Snare";
+    [Range(0.1f, 0.5f)]
+    public float reverbXMax = 0.5f;
+    [Range(0.5f, 0.9f)]
+    public float flangerXMin = 0.5f;
+    [Range(0.1f, 0.5f)]
+    public float distortionYMax = 0.5f;
+    [Range(0.5f, 0.9f)]
+    public float filterYMin = 0.5f;
     private Dictionary<int, string> parameterNames;
 
     private Dictionary<int, int> instrumentStates;
@@ -61,18 +69,18 @@ public class EventListener : MonoBehaviour
             //
             //Debug.Log(entry.Value.orientation);
             instrumentCurrentObjects[entry.Value.tagValue] = entry.Value;
-            
+
         }
         for (int i = 0; i < parameterNames.Count; i++)
         {
             //instrumentCurrentObjects[i] can be null
             UpdateTrackValue(i, instrumentCurrentObjects[i]);
-            
-            if(instrumentCurrentObjects[i]!=null)
+
+            if (instrumentCurrentObjects[i] != null)
             {
                 UpdateAudioEffects(i, instrumentCurrentObjects[i]);
             }
-            
+
         }
 
 
@@ -81,10 +89,18 @@ public class EventListener : MonoBehaviour
     private void UpdateAudioEffects(int parameterTag, ObjectInput objectInput)
     {
         //Reverb
-        float reverbValue = objectInput.posRelative.x < 0.5 ? 1 - objectInput.posRelative.x : 0;
-        float distortionValue = objectInput.posRelative.x > 0.5 ? objectInput.posRelative.x : 0;
+        float x = objectInput.posRelative.x;
+        float y = objectInput.posRelative.y;
+
+        float reverbValue = x < reverbXMax ? (reverbXMax - x) / reverbXMax : 0;
+        float flangerValue = x > flangerXMin ? x / flangerXMin : 0;
+        float distortionValue = y < distortionYMax ? (distortionYMax - y) / distortionYMax : 0;
+        float filterValue = y > filterYMin ? (y - filterYMin) / (1 - filterYMin) : 0;
+
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
-        eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], distortionValue);
+        eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], reverbValue);
+        eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
+        eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);
     }
 
     // This method compute the value of the track played of a specific instrument according to its position, to its rotation etc...
@@ -96,7 +112,7 @@ public class EventListener : MonoBehaviour
             return 0;
 
         int or = (int)objectInput.orientation;
-        return or<=5 && or>=1 ?or:1;
+        return or <= 5 && or >= 1 ? or : 1;
     }
 
     // Update the corresponding parameter

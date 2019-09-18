@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{0e4411fa-43c4-4de3-891f-c9aa758c36af}">
+		<property name="name">
+			<value>FilterHihat</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1c66c4c9-9444-4598-bb81-70678e449465}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{828c7a8a-b09c-4a6f-a564-2e4444b4b74c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{828c7a8a-b09c-4a6f-a564-2e4444b4b74c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

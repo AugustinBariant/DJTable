@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{16324659-911f-4c47-8f98-2069d878395a}">
+		<property name="name">
+			<value>FilterKick</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1c66c4c9-9444-4598-bb81-70678e449465}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{1756b275-bce9-402d-a64c-65ffab908e30}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{1756b275-bce9-402d-a64c-65ffab908e30}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
