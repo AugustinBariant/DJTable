@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9158273932582721913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-9134140137530827791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-9126087696358339314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +173,23 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1530
   Exists: 1
+--- !u!114 &-8816204620823306594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-8779638327606661616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +207,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-8734137501203140257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-8730981104132579628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Lead
+  m_EditorClassIdentifier: 
+  Name: Lead
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-8699832124563947588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +397,23 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 0
+--- !u!114 &-8468550390423131909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbWind
+  m_EditorClassIdentifier: 
+  Name: ReverbWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-8464817711994902244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +427,23 @@ MonoBehaviour:
   m_Name: parameter:/Snare/Vol
   m_EditorClassIdentifier: 
   Name: Vol
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-8463912196634684932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
   Min: 0
   Max: 1
   Default: 0
@@ -420,6 +539,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-8374170494143798103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-8353800125012206354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +573,40 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-8301785097322315687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-8283293871009793467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-8261617134151706029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +658,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-8217555888471833670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-8196590838029135629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +745,40 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1434
+  Exists: 1
+--- !u!114 &-8088648224337353500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-8079292832439676184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
   Exists: 1
 --- !u!114 &-8057016446524355337
 MonoBehaviour:
@@ -678,6 +899,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-7748284872728105384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-7695363458737622628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +1027,57 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7478507343571271500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-7368487688810908753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-7321860700762076238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-7304203041163727207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +1112,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-7178000192073182696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-7084562020908472102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +1228,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 151510
+--- !u!114 &-6903158660893999675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-6886517383268136015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,13 +1260,13 @@ MonoBehaviour:
   Path: event:/Kick
   guid: bfc210318faf294f802d5491da212eb8
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 4989356188388756636}
-  - {fileID: 4354826265574250271}
+  - {fileID: 9220899387222869957}
+  - {fileID: 56377625296892504}
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
@@ -998,6 +1321,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-6750870544943574452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6728503723311427439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1392,23 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1362
   Exists: 1
+--- !u!114 &-6660036612426380893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-6600787034760763307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,6 +1426,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-6595026036776860590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-6578236920668082998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1537,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-6413930528922032380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-6409764432841962115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1567,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/DistortionSnare
   m_EditorClassIdentifier: 
   Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-6372253958424389283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
   Min: 0
   Max: 1
   Default: 0
@@ -1212,6 +1620,23 @@ MonoBehaviour:
   Name: TestingStuff
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-6221585279807725014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 1
 --- !u!114 &-6154303359020523728
@@ -1265,6 +1690,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-6103857809299643087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &-6053160357989733250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-6018031509969157875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,6 +1826,23 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 0
+--- !u!114 &-5833477553845512583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionWind
+  m_EditorClassIdentifier: 
+  Name: DistortionWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5797044655776824258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1382,6 +1858,57 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 0
+--- !u!114 &-5796050401212947314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionPercu
+  m_EditorClassIdentifier: 
+  Name: DistortionPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-5778993822271099433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Strings
+  m_EditorClassIdentifier: 
+  Name: Strings
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &-5736041146116951621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &-5719934490896810925
@@ -1401,6 +1928,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-5687405289464366219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5679845968096957550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,6 +2013,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-5552634151573848940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Lead
+  m_EditorClassIdentifier: 
+  Name: Lead
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-5500226324119220490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,6 +2045,23 @@ MonoBehaviour:
   Name: Percu
   Min: 0
   Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &-5498986362710493878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbStrings
+  m_EditorClassIdentifier: 
+  Name: ReverbStrings
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &-5498045570586609866
@@ -1554,6 +2132,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-5379898675785897663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbWind
+  m_EditorClassIdentifier: 
+  Name: ReverbWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-5379325630605587963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,6 +2200,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-5282639030193938222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-5281785726744894079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,6 +2232,23 @@ MonoBehaviour:
   Name: DistortionKick
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-5270076188579519115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &-5225571757624850314
@@ -1641,6 +2270,23 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 2434112
+  Exists: 1
+--- !u!114 &-5190603023043363399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
 --- !u!114 &-5189673058494551156
 MonoBehaviour:
@@ -1676,6 +2322,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-5158961971443732085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Strings
+  m_EditorClassIdentifier: 
+  Name: Strings
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &-5152229146471644167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbLead
+  m_EditorClassIdentifier: 
+  Name: ReverbLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-5063764945808017133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1691,6 +2371,40 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 0
+--- !u!114 &-4979762397110152573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-4845863693241601297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 0
 --- !u!114 &-4824465809475780910
@@ -1742,6 +2456,23 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 0
+--- !u!114 &-4788377158853989220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 0
 --- !u!114 &-4685817461859803242
@@ -1810,36 +2541,36 @@ MonoBehaviour:
   Path: event:/Full tracks
   guid: 23dff3da44ea314f8494eb15d469d5ae
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -7670356462138019952}
-  - {fileID: 325679453399205385}
-  - {fileID: -5500226324119220490}
-  - {fileID: -3501008955260624572}
-  - {fileID: -8558911824884545482}
-  - {fileID: -7796592354904060362}
-  - {fileID: 4895287692505503552}
-  - {fileID: 7242357522420586049}
-  - {fileID: 4424968758598274279}
-  - {fileID: -8196590838029135629}
-  - {fileID: 833563892502103512}
-  - {fileID: -1822110030256806038}
-  - {fileID: 7501160371284787794}
-  - {fileID: -1412550118868604468}
-  - {fileID: -177332347484037564}
-  - {fileID: -2371209485645802763}
-  - {fileID: 7238395670582217746}
-  - {fileID: -8256962309199049507}
-  - {fileID: -5613332384212835667}
-  - {fileID: -6578236920668082998}
-  - {fileID: 3493119201592156848}
-  - {fileID: -4462107600710990048}
-  - {fileID: -2958081494898242247}
-  - {fileID: 525088727362900966}
-  - {fileID: -236055875851644213}
+  - {fileID: -4140669919493851024}
+  - {fileID: 2636410040484020265}
+  - {fileID: -2301123829672029049}
+  - {fileID: -5282639030193938222}
+  - {fileID: -5190603023043363399}
+  - {fileID: -5158961971443732085}
+  - {fileID: 3091250522918369530}
+  - {fileID: -2042665314344507679}
+  - {fileID: -3594307113533509668}
+  - {fileID: -2729344648604153890}
+  - {fileID: -4582947069264627536}
+  - {fileID: -7321860700762076238}
+  - {fileID: -3173149718667170839}
+  - {fileID: -4098588273976792556}
+  - {fileID: -8730981104132579628}
+  - {fileID: 699588654144999033}
+  - {fileID: -5498986362710493878}
+  - {fileID: -1683464972863589836}
+  - {fileID: 7205342920075174332}
+  - {fileID: 724511807408452062}
+  - {fileID: 85731095629584698}
+  - {fileID: 2693939447509125441}
+  - {fileID: -8301785097322315687}
+  - {fileID: 2995282828888474879}
+  - {fileID: 1162312252466478198}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -1886,6 +2617,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &-4582947069264627536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-4567924495982421605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,6 +2651,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-4565273103893126618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-4529191445812228173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,6 +2683,23 @@ MonoBehaviour:
   Name: DistortionBass
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-4516869480122960532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 1
 --- !u!114 &-4477998946882249736
@@ -2022,6 +2804,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-4326107908719960859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionWind
+  m_EditorClassIdentifier: 
+  Name: DistortionWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-4322094971564351518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2073,6 +2872,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-4261232623731354982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &-4237029277766490510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-4187642438146165001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,6 +2940,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-4140669919493851024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-4118448169772858660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,6 +2974,57 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-4118374017114034401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbStrings
+  m_EditorClassIdentifier: 
+  Name: ReverbStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-4111736696955101236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-4098588273976792556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-4053764910836830692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,6 +3038,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/ReverbKick
   m_EditorClassIdentifier: 
   Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-3974690414037259590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
   Min: 0
   Max: 1
   Default: 0
@@ -2158,6 +3076,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-3898635476646516789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionLead
+  m_EditorClassIdentifier: 
+  Name: DistortionLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3774379617358382655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2226,6 +3161,57 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 0
+--- !u!114 &-3617090764304611237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-3594307113533509668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-3581563067220600319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3556327955712420702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,7 +3244,7 @@ MonoBehaviour:
   Path: event:/Test
   guid: d030f8f8d0b8cc45931b274dd91057fc
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2266,6 +3252,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-3517162945376594942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-3501008955260624572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2283,6 +3286,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-3473420206448407814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Vol
+  m_EditorClassIdentifier: 
+  Name: Vol
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3464198241335466628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2300,6 +3320,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-3454145757792464375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionLead
+  m_EditorClassIdentifier: 
+  Name: DistortionLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3437874839500031208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2351,6 +3388,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-3308345542760287003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-3283068135611814631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,6 +3441,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/Kick
   m_EditorClassIdentifier: 
   Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &-3173149718667170839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
   Min: 0
   Max: 6
   Default: 0
@@ -2442,6 +3513,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-3046769989403595333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionStrings
+  m_EditorClassIdentifier: 
+  Name: DistortionStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-2972352108229850551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbLead
+  m_EditorClassIdentifier: 
+  Name: ReverbLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-2967922402362713235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,6 +3567,23 @@ MonoBehaviour:
   - Name: Desktop
     Value: 14948256
   Exists: 1
+--- !u!114 &-2961182689984858040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2958081494898242247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2479,6 +3601,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-2906565323933892898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-2896757191119002004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2513,6 +3652,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-2859842890864221410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-2840649583482590494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,6 +3703,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-2729344648604153890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionWind
+  m_EditorClassIdentifier: 
+  Name: DistortionWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2703038812717453667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,6 +3839,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-2406223043407889563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-2401372895340138370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2700,6 +3890,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-2322738326306267312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionPercu
+  m_EditorClassIdentifier: 
+  Name: DistortionPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-2309371268466297839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2715,6 +3922,23 @@ MonoBehaviour:
   Name: DistortionKick
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &-2301123829672029049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Percu
+  m_EditorClassIdentifier: 
+  Name: Percu
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 1
 --- !u!114 &-2257245259318171324
@@ -2793,6 +4017,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &-2052259176208325774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionStrings
+  m_EditorClassIdentifier: 
+  Name: DistortionStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-2042665314344507679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbWind
+  m_EditorClassIdentifier: 
+  Name: ReverbWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2011776034460518931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,6 +4068,40 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-2004061135672465060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &-1978042466259834814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Vol
+  m_EditorClassIdentifier: 
+  Name: Vol
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-1930046365960666062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2825,14 +4117,14 @@ MonoBehaviour:
   Path: event:/Snare
   guid: 309fae4ca952354984d0cd504d862f49
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -2485523181046863105}
-  - {fileID: -4311150255174691745}
-  - {fileID: -7776050940752089486}
+  - {fileID: 7763965958247645572}
+  - {fileID: 8430613143735863008}
+  - {fileID: 1188312762683170598}
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
@@ -2921,6 +4213,23 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 1
+--- !u!114 &-1730690798815917213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-1710227418633942658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,6 +4245,23 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &-1683464972863589836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionLead
+  m_EditorClassIdentifier: 
+  Name: DistortionLead
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &-1634046415272477075
@@ -2989,6 +4315,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &-1573207263836501826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-1496337892233693397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,6 +4347,23 @@ MonoBehaviour:
   Name: DistortionKick
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-1489683680606216807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &-1479482211750518076
@@ -3057,6 +4417,40 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 1
+--- !u!114 &-1380429354166466794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-1334593054781161465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-1313812859036216941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3108,6 +4502,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-991472632428991901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-902090972944180374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3142,6 +4553,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-857474157898279215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-821818195793783095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3210,6 +4638,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &-592429914108929530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbPercu
+  m_EditorClassIdentifier: 
+  Name: ReverbPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &-581683156995462196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,6 +4670,23 @@ MonoBehaviour:
   Name: Vol
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-570770793445807638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &-559015049425527763
@@ -3521,6 +4983,91 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 1
+--- !u!114 &-133963675668374912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-120140838508222977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Strings
+  m_EditorClassIdentifier: 
+  Name: Strings
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &-74385336483628798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Percu
+  m_EditorClassIdentifier: 
+  Name: Percu
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &-41004230829520179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &-29749524995571170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &-17625321772619306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,6 +5138,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-9327806792089742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Lead
+  m_EditorClassIdentifier: 
+  Name: Lead
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &-8790660257792724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3608,6 +5172,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &-2695861249014530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3621,8 +5202,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 7620523499588548859}
-  - {fileID: -5225571757624850314}
+  - {fileID: 1492638573594268493}
+  - {fileID: 3203395565460094218}
   EditorEvents:
   - {fileID: 686984924790314386}
   - {fileID: -4644033453553475714}
@@ -3632,11 +5213,62 @@ MonoBehaviour:
   - {fileID: -3524424114163963114}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   StringsBanks:
-  - {fileID: 7620523499588548859}
-  stringsBankWriteTime: 637043560778551722
+  - {fileID: 1492638573594268493}
+  stringsBankWriteTime: 637044203304352624
   cacheVersion: 3
+--- !u!114 &23134763146251256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &41424441346105438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &56377625296892504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &85729372088446431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3654,6 +5286,40 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &85731095629584698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &112405635433149472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &157645218816657552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3671,6 +5337,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &172323069419213811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &229484423206090522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,6 +5530,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &519635868871657543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &525088727362900966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3898,6 +5598,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &555634463761932738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &558391490965199594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3981,7 +5698,7 @@ MonoBehaviour:
   Path: "event:/H\xF6rf\xF6rst\xE5else s. 120"
   guid: 91146fb83e76ec469a5f01064749ddcf
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4021,27 +5738,78 @@ MonoBehaviour:
   Path: event:/Kick Snare
   guid: 103f512555e411498c754bd71ebc93bf
   Banks:
-  - {fileID: -5225571757624850314}
+  - {fileID: 3203395565460094218}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 6915164096352921419}
-  - {fileID: 4611189193246539266}
-  - {fileID: 4856767426082225818}
-  - {fileID: 9034150864517322047}
-  - {fileID: -7631678519409800401}
-  - {fileID: -5379325630605587963}
-  - {fileID: -4529191445812228173}
-  - {fileID: -6154303359020523728}
-  - {fileID: -3222226481548428859}
-  - {fileID: -8026364833921507161}
-  - {fileID: 6230090763281853629}
-  - {fileID: -459666624116335412}
-  - {fileID: -7061695800677877147}
+  - {fileID: 5509994006745280624}
+  - {fileID: -8079292832439676184}
+  - {fileID: -8374170494143798103}
+  - {fileID: -1334593054781161465}
+  - {fileID: -4565273103893126618}
+  - {fileID: 4032508393166628442}
+  - {fileID: 23134763146251256}
+  - {fileID: 1248714719809323926}
+  - {fileID: 3652260928285255859}
+  - {fileID: -4516869480122960532}
+  - {fileID: -6595026036776860590}
+  - {fileID: -8217555888471833670}
+  - {fileID: -2961182689984858040}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &699588654144999033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbLead
+  m_EditorClassIdentifier: 
+  Name: ReverbLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &724511807408452062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionStrings
+  m_EditorClassIdentifier: 
+  Name: DistortionStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &734799224428593654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbPercu
+  m_EditorClassIdentifier: 
+  Name: ReverbPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &754076936816348911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4280,6 +6048,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1162312252466478198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &1188312762683170598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &1191677257666147659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4297,6 +6099,57 @@ MonoBehaviour:
   Max: 6
   Default: 0
   Exists: 0
+--- !u!114 &1213443321341457955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &1236982523371585409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &1248714719809323926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &1260481953813858083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4310,6 +6163,23 @@ MonoBehaviour:
   m_Name: parameter:/Kick Snare/DistortionSnare
   m_EditorClassIdentifier: 
   Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &1273239213373666942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
   Min: 0
   Max: 1
   Default: 0
@@ -4382,6 +6252,26 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &1492638573594268493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/admin.SURFACE/Documents/DJTable/Project/DJTable_UnityProject/FMODTest/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637044203304352624
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 2034
+  Exists: 1
 --- !u!114 &1575453084913317693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4433,6 +6323,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1726795561770373128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionLead
+  m_EditorClassIdentifier: 
+  Name: DistortionLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &1739920257185584464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Hihat
+  m_EditorClassIdentifier: 
+  Name: Hihat
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &1816013986283629164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4465,6 +6389,23 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 0
+--- !u!114 &1825451786368022600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 0
 --- !u!114 &1899437911119828523
@@ -4765,6 +6706,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &2283862900470660374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &2309364863481353785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &2319150332145887331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4782,6 +6757,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &2323271864692002512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Wind
+  m_EditorClassIdentifier: 
+  Name: Wind
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &2323288905894611013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4816,6 +6808,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &2373235027004437907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &2391645239158262767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Percu
+  m_EditorClassIdentifier: 
+  Name: Percu
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &2461146769819297056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4918,6 +6944,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2636410040484020265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &2693939447509125441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2727136859520121635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4967,6 +7027,23 @@ MonoBehaviour:
   Name: DistortionKick
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &2765732469661852645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 1
 --- !u!114 &2770919122101649893
@@ -5028,6 +7105,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &2824956896702710110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &2828207642445158920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2858955889898262498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5043,6 +7154,23 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 0
+--- !u!114 &2869914898947231254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &2981375501280056990
@@ -5085,6 +7213,57 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 506064
+--- !u!114 &2992065590807328450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &2995282828888474879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbPercu
+  m_EditorClassIdentifier: 
+  Name: ReverbPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &3030193934793659601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &3042854539915391193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5119,6 +7298,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3091250522918369530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &3094408555064024618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &3130402101889492654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,6 +7403,26 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &3203395565460094218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/admin.SURFACE/Documents/DJTable/Project/DJTable_UnityProject/FMODTest/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637044203304292621
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 2436000
+  Exists: 1
 --- !u!114 &3208615548537440138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5292,6 +7525,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3312802182474732133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Bass
+  m_EditorClassIdentifier: 
+  Name: Bass
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &3313401355167315679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5309,6 +7559,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &3327131772632179556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &3411402787508602178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5377,6 +7644,57 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3531544467445190043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &3594357074056276236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbStrings
+  m_EditorClassIdentifier: 
+  Name: ReverbStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &3616655630529087735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &3617425333592761010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5411,6 +7729,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &3652260928285255859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &3666906321524287007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5462,6 +7797,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3687034097100237000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbBass
+  m_EditorClassIdentifier: 
+  Name: ReverbBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &3721353349064855218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5479,6 +7831,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &3736646073509061419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &3772841912723370235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5604,6 +7973,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 151510
+--- !u!114 &4032508393166628442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &4057225071357042035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5740,6 +8126,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &4424087728631607656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &4424968758598274279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5842,6 +8245,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &4525170663899133736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbKick
+  m_EditorClassIdentifier: 
+  Name: ReverbKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &4611189193246539266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5857,6 +8277,23 @@ MonoBehaviour:
   Name: Snare
   Min: 0
   Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &4683923704141045235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &4688268057271025569
@@ -6029,6 +8466,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &4918544426175225230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &4925030538307569663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6335,6 +8789,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &5509994006745280624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbSnare
+  m_EditorClassIdentifier: 
+  Name: ReverbSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &5591547516421997302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6437,6 +8908,23 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 0
+--- !u!114 &5735146057025743663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionWind
+  m_EditorClassIdentifier: 
+  Name: DistortionWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &5755732850948517672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6452,6 +8940,23 @@ MonoBehaviour:
   Name: DistortionSnare
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &5872210726308170700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &5989695128511617343
@@ -6471,6 +8976,74 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &6029779721623914202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &6043145955578877722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbPercu
+  m_EditorClassIdentifier: 
+  Name: ReverbPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &6082844190503442317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbStrings
+  m_EditorClassIdentifier: 
+  Name: ReverbStrings
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &6089701267272174707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &6110648846946582354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6556,6 +9129,57 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &6372574437922501181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &6401359734366834609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &6427427384631623088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Snare
+  m_EditorClassIdentifier: 
+  Name: Snare
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &6432240872699218777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6641,6 +9265,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &6644138776483366135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionHihat
+  m_EditorClassIdentifier: 
+  Name: DistortionHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &6737422247363083665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6673,6 +9314,40 @@ MonoBehaviour:
   Name: Distortion
   Min: 0
   Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &6827770552525700256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Percu
+  m_EditorClassIdentifier: 
+  Name: Percu
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &6834619901895957236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Strings
+  m_EditorClassIdentifier: 
+  Name: Strings
+  Min: 0
+  Max: 6
   Default: 0
   Exists: 0
 --- !u!114 &6880600622651888328
@@ -6726,6 +9401,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &6937114650634507481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/Lead
+  m_EditorClassIdentifier: 
+  Name: Lead
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &7024484040302950970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6737,6 +9429,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &7029599846394882101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/DistortionKick
   m_EditorClassIdentifier: 
   Name: DistortionKick
   Min: 0
@@ -6775,6 +9484,23 @@ MonoBehaviour:
   Name: Kick
   Min: 0
   Max: 3
+  Default: 0
+  Exists: 1
+--- !u!114 &7205342920075174332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionPercu
+  m_EditorClassIdentifier: 
+  Name: DistortionPercu
+  Min: 0
+  Max: 1
   Default: 0
   Exists: 1
 --- !u!114 &7238395670582217746
@@ -6868,6 +9594,23 @@ MonoBehaviour:
   - Name: Desktop
     Value: 14692384
   Exists: 1
+--- !u!114 &7317247094710957045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbLead
+  m_EditorClassIdentifier: 
+  Name: ReverbLead
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &7324688186541232475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6921,6 +9664,23 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1530
+  Exists: 1
+--- !u!114 &7460453169420108214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionStrings
+  m_EditorClassIdentifier: 
+  Name: DistortionStrings
+  Min: 0
+  Max: 1
+  Default: 0
   Exists: 1
 --- !u!114 &7501160371284787794
 MonoBehaviour:
@@ -7010,6 +9770,23 @@ MonoBehaviour:
   - Name: Desktop
     Value: 2034
   Exists: 1
+--- !u!114 &7763965958247645572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
 --- !u!114 &7792373094157653238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7063,6 +9840,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &7960921050596802420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionSnare
+  m_EditorClassIdentifier: 
+  Name: DistortionSnare
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &7968345369415451789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7080,6 +9874,40 @@ MonoBehaviour:
   Max: 3
   Default: 0
   Exists: 1
+--- !u!114 &8097040933469130367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/TestingStuff
+  m_EditorClassIdentifier: 
+  Name: TestingStuff
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &8097406471253786234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionBass
+  m_EditorClassIdentifier: 
+  Name: DistortionBass
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &8104118436956247274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7114,6 +9942,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 1
+--- !u!114 &8128037865656730414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/DistortionKick
+  m_EditorClassIdentifier: 
+  Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &8347681456331252903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7127,6 +9972,23 @@ MonoBehaviour:
   m_Name: parameter:/Snare/DistortionKick
   m_EditorClassIdentifier: 
   Name: DistortionKick
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &8430613143735863008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Vol
+  m_EditorClassIdentifier: 
+  Name: Vol
   Min: 0
   Max: 1
   Default: 0
@@ -7148,6 +10010,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &8675839153539227919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Snare/Vol
+  m_EditorClassIdentifier: 
+  Name: Vol
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8739234693553020383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7165,6 +10044,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &8763419139842847979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick Snare/ReverbHihat
+  m_EditorClassIdentifier: 
+  Name: ReverbHihat
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8781688336309983661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7256,6 +10152,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &8948223543894277112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/DistortionPercu
+  m_EditorClassIdentifier: 
+  Name: DistortionPercu
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
 --- !u!114 &8949392607122943075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7366,6 +10279,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &9143356257488607130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
+--- !u!114 &9196218290745977694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Full tracks/ReverbWind
+  m_EditorClassIdentifier: 
+  Name: ReverbWind
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &9197359003393403881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7383,3 +10330,20 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &9220899387222869957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Kick/Kick
+  m_EditorClassIdentifier: 
+  Name: Kick
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1

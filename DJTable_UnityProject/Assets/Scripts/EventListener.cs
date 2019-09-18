@@ -97,10 +97,12 @@ public class EventListener : MonoBehaviour
         float distortionValue = y < distortionYMax ? (distortionYMax - y) / distortionYMax : 0;
         float filterValue = y > filterYMin ? (y - filterYMin) / (1 - filterYMin) : 0;
 
+        Debug.Log(distortionValue);
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
+        
         eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], reverbValue);
-        eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
-        eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);
+        //eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
+        //eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);
     }
 
     // This method compute the value of the track played of a specific instrument according to its position, to its rotation etc...
@@ -121,8 +123,6 @@ public class EventListener : MonoBehaviour
         int trackValue = ComputeTrackValue(instrumentObject);
         if (trackValue != instrumentStates[instrumentTag])
         {
-            Debug.Log(parameterNames[instrumentTag]);
-            Debug.Log(trackValue);
             eventInstance.setParameterByName(parameterNames[instrumentTag], trackValue);
             instrumentStates[instrumentTag] = trackValue;
         }

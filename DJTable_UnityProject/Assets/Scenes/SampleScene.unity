@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c319d58c6d0a0f4886193027f31bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyMode: 1
+  dummyMode: 0
   rotations:
   - 0
   - 0
@@ -307,6 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectEvent: event:/Full Tracks
+  reverbXMax: 0.25
+  flangerXMin: 0.5
+  distortionYMax: 0.252
+  filterYMin: 0.5
 --- !u!4 &705358778
 Transform:
   m_ObjectHideFlags: 0
