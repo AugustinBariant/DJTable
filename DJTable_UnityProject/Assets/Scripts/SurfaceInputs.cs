@@ -51,6 +51,8 @@ public class SurfaceInputs : MonoBehaviour
     public event ObjectChangeHandler OnObjectRemove;
     public event ObjectChangeHandler OnObjectUpdate;
 
+    private Dictionary<int, float> removalTimes;
+
     private List<ObjectInput> lastAddedObjects;
     private List<ObjectInput> lastRemovedObjects;
     private List<ObjectInput> lastUpdatedObjects;
@@ -73,6 +75,8 @@ public class SurfaceInputs : MonoBehaviour
     {
         surfaceFingers = new Dictionary<int, FingerInput>();
         surfaceObjects = new Dictionary<int, ObjectInput>();
+
+        removalTimes = new Dictionary<int, float>();
 
         lastAddedObjects = new List<ObjectInput>();
         lastRemovedObjects = new List<ObjectInput>();
@@ -228,8 +232,9 @@ public class SurfaceInputs : MonoBehaviour
                     {
                         if (!msg.Values.Contains(id))
                         {
-                            lastRemovedObjects.Add(surfaceObjects[id]);
-                            surfaceObjects.Remove(id);
+                            removalTimes.Add(id, Time.time);
+                            // lastRemovedObjects.Add(surfaceObjects[id]);
+                            // surfaceObjects.Remove(id);
                         }
                     }
                     break;
@@ -267,6 +272,10 @@ public class SurfaceInputs : MonoBehaviour
                         {
                             surfaceObject.UpdateProps(position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
                             lastUpdatedObjects.Add(surfaceObject);
+                        }
+
+                        if (removalTimes.ContainsKey(id)) {
+                            removalTimes.Remove(id);
                         }
                     }
                     else
@@ -309,6 +318,8 @@ public class SurfaceInputs : MonoBehaviour
         }
         else
         {
+            ProcessRemovalTimers();
+
             // If there's an unprocessed packet waiting, lock it and process
             if (lastPacket != null)
             {
@@ -345,8 +356,20 @@ public class SurfaceInputs : MonoBehaviour
                 
                 // LogState();
             }
+            else if (lastRemovedObjects.Count > 0) {
+                OnObjectRemove(lastRemovedObjects);
+            }
         }
+    }
 
+    void ProcessRemovalTimers() 
+    {
+        foreach (KeyValuePair<int, float> entry in removalTimes) {
+            if (Time.time - entry.Value >= 0.2f) {
+                lastRemovedObjects.Add(surfaceObjects[entry.Key]);
+                surfaceObjects.Remove(entry.Key);
+            } 
+        }
     }
 
     void sendDummyData()
