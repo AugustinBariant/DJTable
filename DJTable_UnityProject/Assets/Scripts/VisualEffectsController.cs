@@ -10,14 +10,9 @@ public class VisualEffectsController : MonoBehaviour
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
 
-    private Dictionary<int, FingerInput> surfaceFingers = new Dictionary<int,FingerInput>();
-    private Dictionary<int, ObjectInput> surfaceObjects = new Dictionary<int,ObjectInput>();
-
     // Start is called before the first frame update
     void Start()
     {
-        SurfaceInputs.Instance.OnTouch += ProcessObjects;
-
         objectPrefabs = new Dictionary<int, GameObject>();
         effectInstances = new Dictionary<int, GameObject>();
 
@@ -29,54 +24,49 @@ public class VisualEffectsController : MonoBehaviour
             }
         }
 
+        SurfaceInputs.Instance.OnObjectAdd += AddNewObjects;
+        SurfaceInputs.Instance.OnObjectUpdate += UpdateObjects;
+        SurfaceInputs.Instance.OnObjectRemove += RemoveObjects;
     }
 
-    void ProcessObjects(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
+    void AddNewObjects(List<ObjectInput> addedObjects)
     {
-        this.surfaceFingers = surfaceFingers;
-        this.surfaceObjects = surfaceObjects;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        List<int> existantIds = new List<int>();
-        foreach (KeyValuePair<int, ObjectInput> entry in surfaceObjects)
+        foreach (ObjectInput addedObject in addedObjects)
         {
-            int tagValue = entry.Value.tagValue;
-            existantIds.Add(tagValue);
-
+            int tagValue = addedObject.tagValue;
             GameObject prefab;
-            if (objectPrefabs.TryGetValue(tagValue, out prefab))
+            if (objectPrefabs.TryGetValue(tagValue, out prefab) && !effectInstances.ContainsKey(tagValue))
             {
-                Vector2 position = entry.Value.position;
-                GameObject instance;
-                if (effectInstances.TryGetValue(tagValue, out instance))
-                {
-                    instance.transform.localPosition = position;
-                    //instance.transform.localRotation = Quaternion.Euler(0, 0, -entry.Value.orientation * Mathf.Rad2Deg);
-                }
-                else
-                {
-                    instance = Instantiate(prefab, position, Quaternion.identity);
-                    effectInstances.Add(tagValue, instance);
-                }
-
-            }
-        }
-
-        for (int i = 0; i < objectPrefabs.Count; i++)
-        {
-            if (!existantIds.Contains(i))
-            {
-                //Debug.Log("Destroy!");
-                GameObject instance;
-                if (effectInstances.TryGetValue(i, out instance))
-                {
-                    Destroy(instance);
-                    effectInstances.Remove(i);
-                }
+                GameObject instance = Instantiate(prefab, addedObject.position, Quaternion.identity);
+                effectInstances.Add(tagValue, instance);
             }
         }
     }
+
+    void UpdateObjects(List<ObjectInput> updatedObjects)
+    {
+        foreach (ObjectInput updatedObject in updatedObjects)
+        {
+            GameObject instance;
+            if (effectInstances.TryGetValue(updatedObject.tagValue, out instance))
+            {
+                instance.transform.localPosition = updatedObject.position;
+                //instance.transform.localRotation = Quaternion.Euler(0, 0, -entry.Value.orientation * Mathf.Rad2Deg);
+            }
+        }
+    }
+
+    void RemoveObjects(List<ObjectInput> removedObjects)
+    {
+        foreach (ObjectInput removedObject in removedObjects)
+        {
+            GameObject instance;
+            if (effectInstances.TryGetValue(removedObject.tagValue, out instance))
+            {
+                Destroy(instance);
+                effectInstances.Remove(removedObject.tagValue);
+            }
+        }
+    }
+
 }

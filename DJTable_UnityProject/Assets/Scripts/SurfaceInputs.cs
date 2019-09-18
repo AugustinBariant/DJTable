@@ -13,45 +13,61 @@ using OSC.NET;
 public class SurfaceInputs : MonoBehaviour
 {
     private static SurfaceInputs _instance;
-
-    public static SurfaceInputs Instance { get { return _instance; }}
+    public static SurfaceInputs Instance { get { return _instance; } }
 
     public bool dummyMode = false;
 
-    public float a=0f;
-    public float b = 0f;
-    public float c = 0f;
-    public float d = 0f;
-    public float e = 0f;
-    public float f = 0f;
-    public float g = 0f;
-    public float h = 0f;
+    //Publicly accessible dictionaries
+    //holding all objects and fingers that are currently on the surface
+    public Dictionary<int, FingerInput> surfaceFingers { get; private set; }
+    public Dictionary<int, ObjectInput> surfaceObjects { get; private set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
-        } else {
+        }
+        else
+        {
             _instance = this;
         }
     }
 
+    /**
+     * Deprecated
+     * remove this when no longer used.
+     * If the whole dicts of objects/fingers needed, use SurfaceInputs.Instance.surfaceObjects
+     * or SurfaceInputs.Instance.surfaceFingers respectively
+     */
     public delegate void TouchReceiveHandler(
         Dictionary<int, FingerInput> surfaceFingers,
         Dictionary<int, ObjectInput> surfaceObjects);
     public event TouchReceiveHandler OnTouch;
+
+    // The class publishes events when some object changes happen on the surface
+    public delegate void ObjectChangeHandler(List<ObjectInput> objects);
+    public event ObjectChangeHandler OnObjectAdd;
+    public event ObjectChangeHandler OnObjectRemove;
+    public event ObjectChangeHandler OnObjectUpdate;
+
+    private Dictionary<int, float> removalTimes;
+
+    private List<ObjectInput> lastAddedObjects;
+    private List<ObjectInput> lastRemovedObjects;
+    private List<ObjectInput> lastUpdatedObjects;
 
     private Thread listenerThread;
     private UdpClient client;
 
     private IPEndPoint remoteEndpoint;
 
-    private Dictionary<int, FingerInput> surfaceFingers;
-
-    private Dictionary<int, ObjectInput> surfaceObjects;
-
-    private Queue<OSCBundle> packetQueue = new Queue<OSCBundle>();
-    private object queueLock = new object();
+    // We are only interested in the last received packet, no need to queue them.
+    // Shared between the UDP client thread and the main thread,
+    // so we use a lock to avoid weird things happening when both try to 
+    // access and modify it.
+    private OSCBundle lastPacket = null;
+    private object packetLock = new object();
 
     private Camera mainCamera;
 
@@ -60,8 +76,14 @@ public class SurfaceInputs : MonoBehaviour
         surfaceFingers = new Dictionary<int, FingerInput>();
         surfaceObjects = new Dictionary<int, ObjectInput>();
 
+        removalTimes = new Dictionary<int, float>();
+
+        lastAddedObjects = new List<ObjectInput>();
+        lastRemovedObjects = new List<ObjectInput>();
+        lastUpdatedObjects = new List<ObjectInput>();
+
         mainCamera = Camera.main;
-        
+
         // We will be listening to the Surface on localhost
         remoteEndpoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3333);
         client = new UdpClient(remoteEndpoint);
@@ -82,126 +104,198 @@ public class SurfaceInputs : MonoBehaviour
     // but not sure if it's worth rewriting now. The amount of touch points at a time is relatively small
     // to cause any data processing bottleneck, so probably no.
 
-    private void Listen() {
+
+     //Run on a seperate thread,
+     //listens to incoming UDP messages from the Surface in a loop.
+     //When a packet is received, saves it as the last received packet.
+    private void Listen()
+    {
         Debug.Log("UDP Listener started...");
-        while (true) {
-            try {
+        while (true)
+        {
+            try
+            {
                 byte[] receivedBytes = client.Receive(ref remoteEndpoint);
-                
-                if (receivedBytes.Length > 0) {
-                    lock (queueLock) {
+
+                if (receivedBytes.Length > 0)
+                {
+                    lock (packetLock)
+                    {
                         OSCBundle packet = (OSCBundle)OSCPacket.Unpack(receivedBytes);
-                        packetQueue.Enqueue(packet);
+                        // We don't care if there's an unprocessed packet already, we care about the latest only.
+                        lastPacket = packet;
                     }
                 }
 
-            } catch (Exception error) {
+            }
+            catch (Exception error)
+            {
                 Debug.LogError(error.ToString());
             }
         }
     }
 
-    private void LogState() {
+    private void LogState()
+    {
         Debug.ClearDeveloperConsole();
-        if (surfaceFingers.Count > 0) { 
+        if (surfaceFingers.Count > 0)
+        {
             Debug.Log(surfaceFingers.Count + " fingers:");
-            foreach (KeyValuePair<int, FingerInput> entry in surfaceFingers) {
+            foreach (KeyValuePair<int, FingerInput> entry in surfaceFingers)
+            {
                 Debug.Log(entry.Key + " @ " + entry.Value.position.ToString());
             }
         }
 
-        if (surfaceObjects.Count > 0) {
+        if (surfaceObjects.Count > 0)
+        {
             Debug.Log(surfaceObjects.Count + " objects:");
-            foreach (KeyValuePair<int, ObjectInput> entry in surfaceObjects) {
+            foreach (KeyValuePair<int, ObjectInput> entry in surfaceObjects)
+            {
                 Debug.Log(entry.Key + ", tag: " + entry.Value.tagValue + " @ " + entry.Value.position.ToString());
             }
         }
     }
 
-    private void ProcessCursorMessage(OSCMessage msg) {
+    /// <summary>
+    /// Processes OSC messages of type "/tuio/2Dcur"
+    /// </summary>
+    private void ProcessCursorMessage(OSCMessage msg)
+    {
         string msgType = msg.Values[0].ToString(); //   source / alive / set / fseq
-        
-        switch (msgType) {
-            case "alive": {
-                List<int> ids = new List<int>(surfaceFingers.Keys);
-                foreach (int id in ids) {
-                    if (!msg.Values.Contains(id)) {
-                        surfaceFingers.Remove(id);
+
+        switch (msgType)
+        {
+            case "alive":
+                {
+                    //Alive message contains a list of finger IDs that are present on the table.
+                    //Use it to see which ones are no longer there.
+                    List<int> ids = new List<int>(surfaceFingers.Keys);
+                    foreach (int id in ids)
+                    {
+                        if (!msg.Values.Contains(id))
+                        {
+                            surfaceFingers.Remove(id);
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case "set": {
-                int id = (int)msg.Values[1];
+            case "set":
+                {
+                    // Set message contains the data for all fingers currently on the table.
+                    // Use it for update and new finger addition.
+                    int id = (int)msg.Values[1];
 
-                float x = (float)msg.Values[2];
-                float y = 1f - (float)msg.Values[3];
-                Vector2 posRelative = new Vector2(x, y);
-                Vector2 position = ComputeWorldPosition(x, y);
+                    float x = (float)msg.Values[2];
+                    float y = 1f - (float)msg.Values[3]; // y axis faces the opposite direction in Unity compared to what the Surface feeds
 
-                float xVel = (float)msg.Values[4];
-                float yVel = (float)msg.Values[5];
-                Vector2 velocity = new Vector2(xVel, yVel);
+                    Vector2 posRelative = new Vector2(x, y); // relative positions in [0, 1] range
+                    Vector2 position = ComputeWorldPosition(x, y); // absolute pixel positions
 
-                float acc = (float)msg.Values[6];
+                    float xVel = (float)msg.Values[4];
+                    float yVel = (float)msg.Values[5];
+                    Vector2 velocity = new Vector2(xVel, yVel);
 
-                FingerInput surfaceFinger;
-                if (surfaceFingers.TryGetValue(id, out surfaceFinger)) {
-                    surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
-                } else {
-                    surfaceFinger = new FingerInput(id, position, posRelative, velocity, acc);
-                    surfaceFingers.Add(id, surfaceFinger);
-                }
-                break;
-            }
-        }
-    } 
+                    float acc = (float)msg.Values[6];
 
-    private void ProcessObjectMessage(OSCMessage msg) {
-        string msgType = msg.Values[0].ToString(); //   source / alive / set / fseq
-        
-        switch (msgType) {
-            case "alive": {
-                List<int> ids = new List<int>(surfaceObjects.Keys);
-                foreach (int id in ids) {
-                    if (!msg.Values.Contains(id)) {
-                        surfaceObjects.Remove(id);
+                    FingerInput surfaceFinger;
+                    if (surfaceFingers.TryGetValue(id, out surfaceFinger))
+                    {
+                        surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
                     }
+                    else
+                    {
+                        surfaceFinger = new FingerInput(id, position, posRelative, velocity, acc);
+                        surfaceFingers.Add(id, surfaceFinger);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "set": {
-                int id = (int)msg.Values[1];
-                int tagValue = (int)msg.Values[2];
-
-                float x = (float)msg.Values[3];
-                float y = 1f - (float)msg.Values[4];
-
-                Vector2 posRelative = new Vector2(x, y);
-                Vector2 position = ComputeWorldPosition(x, y);
-
-                float orientation = (float)msg.Values[5];
-
-                float xVel = (float)msg.Values[6];
-                float yVel = (float)msg.Values[7];
-                Vector2 velocity = new Vector2(xVel, yVel);
-
-                float angularVel = (float)msg.Values[8];
-                float acc = (float)msg.Values[9];
-                float angularAcc = (float)msg.Values[10];
-
-                ObjectInput surfaceObject;
-                if (surfaceObjects.TryGetValue(id, out surfaceObject)) {
-                    surfaceObject.UpdateProps(position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
-                } else {
-                    surfaceObject = new ObjectInput(id, tagValue, position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
-                    surfaceObjects.Add(id, surfaceObject);
-                }
-                break;
-            }
         }
     }
 
+    /// <summary>
+    /// Processes OSC messages of type "/tuio/2Dobj"
+    /// </summary>
+    private void ProcessObjectMessage(OSCMessage msg)
+    {
+        string msgType = msg.Values[0].ToString(); //   source / alive / set / fseq
+
+        switch (msgType)
+        {
+            case "alive":
+                {
+                    // Alive message contains a list of object IDs that are present on the table.
+                    // Use it to see which ones are no longer there.
+                    // We also populate the lastRemovedObjects list here to be published in the OnObjectRemove event
+                    List<int> ids = new List<int>(surfaceObjects.Keys);
+                    foreach (int id in ids)
+                    {
+                        if (!msg.Values.Contains(id) && !removalTimes.ContainsKey(id))
+                        {
+                            removalTimes.Add(id, Time.time);
+                            // lastRemovedObjects.Add(surfaceObjects[id]);
+                            // surfaceObjects.Remove(id);
+                        }
+                    }
+                    break;
+                }
+            case "set":
+                {
+                    // Set message contains the data for all objects currently on the table.
+                    // Use it for update (if changed) and new finger addition.
+                    // We also populate the lastAddedObjects and lastUpdatedObjects here to be published
+                    // in the respective events.
+                    int id = (int)msg.Values[1];
+                    int tagValue = (int)msg.Values[2];
+
+                    float x = (float)msg.Values[3];
+                    float y = 1f - (float)msg.Values[4]; // y axis faces the opposite direction in Unity compared to what the Surface feeds
+
+                    Vector2 posRelative = new Vector2(x, y); // relative positions in [0, 1] range
+                    Vector2 position = ComputeWorldPosition(x, y); // absolute pixel positions
+
+                    float orientation = (float)msg.Values[5];
+
+                    float xVel = (float)msg.Values[6];
+                    float yVel = (float)msg.Values[7];
+                    Vector2 velocity = new Vector2(xVel, yVel);
+
+                    float angularVel = (float)msg.Values[8];
+                    float acc = (float)msg.Values[9];
+                    float angularAcc = (float)msg.Values[10];
+
+                    ObjectInput surfaceObject;
+                    if (surfaceObjects.TryGetValue(id, out surfaceObject))
+                    {
+                        // If object is already known (present in our dict), then we update it if its props has changed.
+                        if (surfaceObject.posRelative != posRelative || surfaceObject.orientation != orientation)
+                        {
+                            surfaceObject.UpdateProps(position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
+                            lastUpdatedObjects.Add(surfaceObject);
+                        }
+
+                        if (removalTimes.ContainsKey(id)) {
+                            removalTimes.Remove(id);
+                        }
+                    }
+                    else
+                    {
+                        // If it's unknown (not in the dict), it's a new object so we add it.
+                        surfaceObject = new ObjectInput(id, tagValue, position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
+                        surfaceObjects.Add(id, surfaceObject);
+                        lastAddedObjects.Add(surfaceObject);
+                    }
+                    break;
+                }
+        }
+    }
+
+    /// <summary>
+    /// Return pixel space coordinates, given [0,1] relative coordinates
+    /// </summary>
+    /// <param name="x">[0,1] x coordinate</param>
+    /// <param name="y">[0,1] y coordinate</param>
+    /// <returns>Pixel space coordinates</returns>
     Vector3 ComputeWorldPosition(float x, float y)
     {
         Vector3 position = new Vector3((float)x * Screen.width, (float)y * Screen.height, mainCamera.nearClipPlane);
@@ -209,7 +303,8 @@ public class SurfaceInputs : MonoBehaviour
     }
 
 
-    void OnApplicationQuit() {
+    void OnApplicationQuit()
+    {
         listenerThread.Abort();
         client.Close();
     }
@@ -220,54 +315,81 @@ public class SurfaceInputs : MonoBehaviour
         if (dummyMode)
         {
             sendDummyData();
-        } else
+        }
+        else
         {
-            if (packetQueue.Count > 0)
-            {
-                lock (packetQueue)
-                {
-                    foreach (OSCBundle packet in packetQueue)
-                    {
-                        if (packet != null)
-                        {
-                            foreach (OSCMessage msg in packet.Values)
-                            {
-                                if (msg.Address.Equals("/tuio/2Dobj"))
-                                {
-                                    ProcessObjectMessage(msg);
-                                }
-                                else if (msg.Address.Equals("/tuio/2Dcur"))
-                                {
-                                    ProcessCursorMessage(msg);
-                                }
-                                // there's also /tuio/2Dblb
-                                // but we don't really need it
+            ProcessRemovalTimers();
 
-                            }
+            // If there's an unprocessed packet waiting, lock it and process
+            if (lastPacket != null)
+            {
+                lock (packetLock)
+                {
+                    lastAddedObjects = new List<ObjectInput>();
+                    //lastRemovedObjects = new List<ObjectInput>();
+                    lastUpdatedObjects = new List<ObjectInput>();
+
+                    foreach (OSCMessage msg in lastPacket.Values)
+                    {
+                        if (msg.Address.Equals("/tuio/2Dobj"))
+                        {
+                            ProcessObjectMessage(msg);
                         }
+                        else if (msg.Address.Equals("/tuio/2Dcur"))
+                        {
+                            ProcessCursorMessage(msg);
+                        }
+                        // there's also /tuio/2Dblb
+                        // but we don't really need it
+
                     }
-                    packetQueue.Clear();
+                    lastPacket = null;
                 }
+                // Deprecated, remove when event no longer used
                 OnTouch(surfaceFingers, surfaceObjects);
+
+
+                // Publish the evens for added, removed and updated objects
+                OnObjectAdd(lastAddedObjects);
+                OnObjectRemove(lastRemovedObjects);
+                OnObjectUpdate(lastUpdatedObjects);
+
+                lastRemovedObjects.Clear();
+                
                 // LogState();
             }
+            else if (lastRemovedObjects.Count > 0) {
+                OnObjectRemove(lastRemovedObjects);
+                lastRemovedObjects.Clear();
+                
+                OnTouch(surfaceFingers, surfaceObjects); // temp
+            }
         }
-        
+    }
+
+    void ProcessRemovalTimers() 
+    {
+        List<int> ids = new List<int>(removalTimes.Keys);
+        foreach (int id in ids) {
+            if (Time.time - removalTimes[id] >= 0.2f) {
+                lastRemovedObjects.Add(surfaceObjects[id]);
+                surfaceObjects.Remove(id);
+                removalTimes.Remove(id);
+            } 
+        }
     }
 
     void sendDummyData()
     {
         if (surfaceObjects.Count == 0)
         {
-            surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), a, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), b, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), c, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), d, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), e, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), f, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), g, new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), h, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.8f), new Vector2(0.4f, 0.8f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.8f, 0.3f), new Vector2(0.8f, 0.3f), 1f, new Vector2(0, 0), 0f, 0f, 0f));
 
+            List<ObjectInput> added = new List<ObjectInput>(surfaceObjects.Values);
+            OnObjectAdd(added);
         }
 
 
@@ -285,7 +407,11 @@ public class SurfaceInputs : MonoBehaviour
         }
         Vector2 position = ComputeWorldPosition(x, y);
         Vector2 posRelative = new Vector2(x, y);
-        //obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+        obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+
+        List<ObjectInput> updated = new List<ObjectInput>();
+        updated.Add(obj);
+        OnObjectUpdate(updated);
 
         OnTouch(surfaceFingers, surfaceObjects);
     }

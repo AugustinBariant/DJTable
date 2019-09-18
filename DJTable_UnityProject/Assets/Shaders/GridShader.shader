@@ -53,9 +53,6 @@
 				// fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
 				fixed4 c;
-				float extrudeProportion = clamp((IN.worldPos.z - 5.0) / (-1.0), 0.0, 1.0);
-
-				if (frac(IN.worldPos.x / _LineGap) < 0.05f || frac(IN.worldPos.y / _LineGap) < 0.05f) {
 					c = ((1.f - extrudeProportion) * fixed4(0,0.7,0.7,1)) + (extrudeProportion * fixed4(1, 0, 0.82, 1));
 				}
 				else {
