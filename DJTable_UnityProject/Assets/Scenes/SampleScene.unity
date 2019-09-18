@@ -150,6 +150,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dummyMode: 1
+  rotations:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &432943770
 Transform:
   m_ObjectHideFlags: 0
@@ -297,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e379d1c398ec40c48b3b70df2f544289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectEvent: event:/Kick Snare
+  selectEvent: event:/Full Tracks
 --- !u!4 &705358778
 Transform:
   m_ObjectHideFlags: 0
