@@ -57,7 +57,7 @@ public class EventListener : MonoBehaviour
     // Function called each frame when there is a touch
     void OnTouchReceive(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
     {
-        Debug.ClearDeveloperConsole();
+        //Debug.ClearDeveloperConsole();
         ObjectInput[] instrumentCurrentObjects = new ObjectInput[parameterNames.Count];
         for (int i = 0; i < parameterNames.Count; i++)
         {
@@ -97,7 +97,7 @@ public class EventListener : MonoBehaviour
         float distortionValue = y < distortionYMax ? (distortionYMax - y) / distortionYMax : 0;
         float filterValue = y > filterYMin ? (y - filterYMin) / (1 - filterYMin) : 0;
 
-        Debug.Log(distortionValue);
+        //Debug.Log(distortionValue);
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
         
         eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], reverbValue);
@@ -110,11 +110,13 @@ public class EventListener : MonoBehaviour
     private int ComputeTrackValue(ObjectInput objectInput)
     {
 
-        if (objectInput == null)
-            return 0;
+        //if (objectInput == null)
+        //    return 0;
 
-        int or = (int)objectInput.orientation;
-        return or <= 5 && or >= 1 ? or : 1;
+        //int or = (int)objectInput.orientation;
+        //return or <= 5 && or >= 1 ? or : 1;
+        float orientation = objectInput.orientation;
+        return (int)(orientation / (Mathf.PI / 2f)) + 1;
     }
 
     // Update the corresponding parameter

@@ -33,13 +33,15 @@ public class ObjectInput
 
     public float angularAcceleration { get; private set; }
 
+    const float PI2 = 2 * Mathf.PI;
+
     public ObjectInput(int id, int tagValue, Vector2 position, Vector2 posRelative, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration)
     {
         this.id = id;
         this.tagValue = tagValue;
         this.position = position;
         this.posRelative = posRelative;
-        this.orientation = orientation;
+        this.orientation = NormalizeOrientation(orientation);
         this.velocity = velocity;
         this.acceleration = acceleration;
         this.angularVelocity = angularVelocity;
@@ -49,10 +51,34 @@ public class ObjectInput
     public void UpdateProps(Vector2 position, Vector2 posRelative, float orientation, Vector2 velocity, float acceleration, float angularVelocity, float angularAcceleration) {
         this.position = position;
         this.posRelative = posRelative;
-        this.orientation = orientation;
+        this.orientation = NormalizeOrientation(orientation);
         this.velocity = velocity;
         this.acceleration = acceleration;
         this.angularVelocity = angularVelocity;
         this.angularAcceleration = angularAcceleration;
+    }
+
+    /// <summary>
+    /// Use for development only
+    /// </summary>
+    /// <param name="orientation"></param>
+    public void UpdateOrientation(float orientation)
+    {
+        this.orientation = NormalizeOrientation(orientation);
+    }
+
+    /// <summary>
+    /// Normalizes orientation value to [0,2pi) range
+    /// </summary>
+    /// <param name="orientation"></param>
+    /// <returns></returns>
+    private float NormalizeOrientation(float orientation)
+    {
+        float normalized = orientation % PI2;
+        if (normalized < 0f)
+        {
+            normalized += PI2;
+        }
+        return normalized;
     }
 }

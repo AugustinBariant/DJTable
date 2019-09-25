@@ -16,6 +16,7 @@ public class SurfaceInputs : MonoBehaviour
     public static SurfaceInputs Instance { get { return _instance; } }
 
     public bool dummyMode = false;
+    [Range(0.0f, (2 * Mathf.PI) - 0.001f)]
     public float[] rotations = new float[8];
 
     //Publicly accessible dictionaries
@@ -395,6 +396,22 @@ public class SurfaceInputs : MonoBehaviour
 
             List<ObjectInput> added = new List<ObjectInput>(surfaceObjects.Values);
             OnObjectAdd(added);
+        } else
+        {
+            List<ObjectInput> updated = new List<ObjectInput>();
+            for (int i = 0; i < rotations.Length; i++)
+            {
+                if (rotations[i] != surfaceObjects[i].orientation)
+                {
+                    surfaceObjects[i].UpdateOrientation(rotations[i]);
+                    updated.Add(surfaceObjects[i]);
+                }
+            }
+            
+            if (updated.Count > 0)
+            {
+                OnObjectUpdate(updated);
+            }
         }
 
 

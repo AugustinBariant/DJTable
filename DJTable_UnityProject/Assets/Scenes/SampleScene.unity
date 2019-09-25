@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c319d58c6d0a0f4886193027f31bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyMode: 0
+  dummyMode: 1
   rotations:
   - 0
   - 0
@@ -549,10 +549,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 8984243253978500230, guid: 04db0a887aed79f4393d4b4305ed4794, type: 3}
   - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
-  - {fileID: 5847413934438762812, guid: c69e03ff328a83a4eb0ac1cfa31508c5, type: 3}
-  - {fileID: 728400276181700414, guid: e9a9393a405504ef0bf6da0daa4d6639, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  - {fileID: 479591850323056224, guid: 586be299f91f1ef43867e8b904984893, type: 3}
+  dialColors:
+  - {r: 0.45662355, g: 0, b: 1, a: 0}
+  - {r: 0, g: 0.24072933, b: 1, a: 0}
+  - {r: 1, g: 0.9940315, b: 0, a: 0}
+  - {r: 0, g: 1, b: 1, a: 0}
+  - {r: 0, g: 1, b: 0.00669384, a: 0}
+  - {r: 1, g: 0, b: 0.85180044, a: 0}
+  - {r: 1, g: 0.46619305, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  dialPrefab: {fileID: 3476215782423924782, guid: a4541d3d7c01b52458d787165e74dafd,
+    type: 3}
 --- !u!4 &2114290271
 Transform:
   m_ObjectHideFlags: 0
