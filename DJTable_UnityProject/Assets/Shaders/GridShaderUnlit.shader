@@ -59,9 +59,17 @@
 					float dist = sqrt((dif.x * dif.x) + (dif.y * dif.y));
 
 					if (dist < 3.5) {
-						float xDif = sign(dif.x) * clamp(sqrt(0.02 / dist) * sin(dist * 2), 0, 1.2);
-						float yDif = sign(dif.y) * clamp(sqrt(0.02 / dist) * sin(dist * 2), 0, 1.2);
+                        float sinValue = sin(1.79 * dist);
+						// float xDif = sign(dif.x) * clamp(sqrt(0.02 / dist) * sin(dist * 2), 0, 1.2);
+						// float yDif = sign(dif.y) * clamp(sqrt(0.02 / dist) * sin(dist * 2), 0, 1.2);
+                        float xDif = sign(dif.x) * 0.07 * sinValue;
+                        float yDif = sign(dif.y) * 0.07 * sinValue;
+
 						o.vertex.xy -= mul(unity_WorldToObject, float4(xDif, yDif, 0, 0)).xy;
+
+                        if (dist < 1.5) {
+                            worldPos.z -= sqrt(0.2 / dist);
+                        }
 					}
 					/*o.vertex.xy += mul(unity_WorldToObject, float4(sin(dif.x * 2.0) / 4.0, sin(dif.y * 2.0) / 4.0, 0, 0)).xy;*/
 					/*if (dist < 1.2) {
@@ -81,7 +89,7 @@
                 //fixed4 col = tex2D(_MainTex, i.uv);
 
 				fixed4 c;
-				float extrudeProportion = clamp((i.worldPos.z - 5.0) / (-1.0), 0.0, 1.0);
+				float extrudeProportion = 5.0 - clamp(i.worldPos.z, 4.0, 5.0);
 
 				float xFrac = frac(i.worldPos.x / _LineGap);
 				float yFrac = frac(i.worldPos.y / _LineGap);

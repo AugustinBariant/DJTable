@@ -407,33 +407,30 @@ public class SurfaceInputs : MonoBehaviour
                     updated.Add(surfaceObjects[i]);
                 }
             }
+
+            // moving object
+            ObjectInput obj = surfaceObjects[1];
+            float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
+            float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
+            if (x >= 1.0f)
+            {
+                x = 0.0f;
+            }
+            if (y <= 0f)
+            {
+                y = 1.0f;
+            }
+            Vector2 position = ComputeWorldPosition(x, y);
+            Vector2 posRelative = new Vector2(x, y);
+            obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+
+            updated.Add(obj);
             
             if (updated.Count > 0)
             {
                 OnObjectUpdate(updated);
             }
         }
-
-
-        // moving object
-        // ObjectInput obj = surfaceObjects[1];
-        // float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
-        // float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
-        // if (x >= 1.0f)
-        // {
-        //     x = 0.0f;
-        // }
-        // if (y <= 0f)
-        // {
-        //     y = 1.0f;
-        // }
-        // Vector2 position = ComputeWorldPosition(x, y);
-        // Vector2 posRelative = new Vector2(x, y);
-        // obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
-
-        // List<ObjectInput> updated = new List<ObjectInput>();
-        // updated.Add(obj);
-        // OnObjectUpdate(updated);
 
         OnTouch(surfaceFingers, surfaceObjects);
     }

@@ -8,16 +8,17 @@ public class GridRenderer : MonoBehaviour
 
     private Mesh gridMesh;
     private Renderer renderer;
-    private const int WIDTH = 49;
-    private const int HEIGHT = 28;
+    private const int WIDTH = 193;
+    private const int HEIGHT = 109;
 
     private float lineGap;
+    private float vertGap;
 
     private float absWidth;
     private float absHeight;
 
-    private float timeElapsed = 0f;
-    private int wavePos = 0;
+    private const int xMargin = 2;
+    private const int yMargin = 2;
 
     private Vector3[] baseVertices;
 
@@ -25,7 +26,10 @@ public class GridRenderer : MonoBehaviour
     void Start()
     {
         Vector3 screenSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.nearClipPlane));
-        lineGap = screenSize.x / (WIDTH - 1);
+        
+        vertGap = (screenSize.x * 1.2f) / (WIDTH - 1);
+        lineGap = 4 * vertGap;
+        
         absWidth = screenSize.x;
         absHeight = screenSize.y;
 
@@ -35,7 +39,7 @@ public class GridRenderer : MonoBehaviour
         renderer.material.SetInt("_NumObjects", 0);
 
         GenerateMesh();
-        transform.Translate(new Vector3(0, 0, 5));
+        transform.Translate(new Vector3(-xMargin * lineGap, -yMargin * lineGap, 5));
     }
 
     private void GenerateMesh()
@@ -52,7 +56,7 @@ public class GridRenderer : MonoBehaviour
             {
                 int idx = (y * WIDTH) + x;
 
-                vertices[idx] = new Vector3(x * lineGap, y * lineGap, 0);
+                vertices[idx] = new Vector3(x * vertGap, y * vertGap, 0);
                 uv[idx] = new Vector2((float)x / WIDTH, (float)y / HEIGHT);
             }
         }
@@ -85,18 +89,18 @@ public class GridRenderer : MonoBehaviour
     }
     private int GetVertexForCoords(int x, int y)
     {
-        return (y * WIDTH) + x;
+        return ((y + yMargin) * WIDTH) + x + xMargin;
     }
 
     private int GetVertexForCoords(Vector2 coords)
     {
-        return (int)((coords.y * WIDTH) + coords.x);
+        return (int)(((coords.y + yMargin) * WIDTH) + coords.x + xMargin);
     }
 
     private Vector2 RelativeToPixelCoords(Vector3 coords)
     {
-        int y = Mathf.Clamp((int)(coords.y * HEIGHT), 0, HEIGHT - 1);
-        int x = Mathf.Clamp((int)(coords.x * WIDTH), 0, WIDTH - 1);
+        int y = Mathf.Clamp((int)((coords.y + yMargin) * HEIGHT), 0, HEIGHT - 1);
+        int x = Mathf.Clamp((int)((coords.x + xMargin) * WIDTH), 0, WIDTH - 1);
         return new Vector2(x, y);
     }
 
@@ -106,31 +110,33 @@ public class GridRenderer : MonoBehaviour
         Vector3[] vertices = (Vector3[])baseVertices.Clone();
 
         List<Vector4> objectPositions = new List<Vector4>();
+
+        // Debug.Log(GetVertexForCoords(Input.mousePosition));
         
         foreach (KeyValuePair<int, ObjectInput> obj in SurfaceInputs.Instance.surfaceObjects)
         {
             Vector2 absPosition = obj.Value.position;
             objectPositions.Add(absPosition);
 
-            Vector2 coords = RelativeToPixelCoords(obj.Value.posRelative);
+            // Vector2 coords = RelativeToPixelCoords(obj.Value.posRelative);
 
-            for (int x = (int)coords.x - 2; x <= (int)coords.x + 2; x++)
-            {
-                for (int y = (int)coords.y - 2; y <= (int)coords.y + 2; y++)
-                {
-                    int i = GetVertexForCoords(x, y);
-                    if (i < 0 || i >= vertices.Length)
-                    {
-                        continue;
-                    }
-                    float dist = Vector2.Distance(absPosition, vertices[i]);
-                    vertices[i].z -= Mathf.Sqrt(0.5f / dist);
-                }
-            }
+            // for (int x = (int)coords.x - 2; x <= (int)coords.x + 2; x++)
+            // {
+            //     for (int y = (int)coords.y - 2; y <= (int)coords.y + 2; y++)
+            //     {
+            //         int i = GetVertexForCoords(x, y);
+            //         if (i < 0 || i >= vertices.Length)
+            //         {
+            //             continue;
+            //         }
+            //         float dist = Vector2.Distance(absPosition, vertices[i]);
+            //         vertices[i].z -= Mathf.Sqrt(0.5f / dist);
+            //     }
+            // }
 
         }
-        gridMesh.vertices = vertices;
-        gridMesh.RecalculateNormals();
+        // gridMesh.vertices = vertices;
+        // gridMesh.RecalculateNormals();
 
         if (objectPositions.Count > 0)
         {
