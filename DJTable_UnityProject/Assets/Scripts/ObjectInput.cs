@@ -74,7 +74,7 @@ public class ObjectInput
     /// <returns></returns>
     private float NormalizeOrientation(float orientation)
     {
-        float normalized = orientation % PI2;
+        float normalized = -orientation % PI2;
         if (normalized < 0f)
         {
             normalized += PI2;

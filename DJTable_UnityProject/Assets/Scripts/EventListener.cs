@@ -8,7 +8,8 @@ public class EventListener : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string selectEvent = "event:/Kick Snare";
+    public string selectEvent = "event:/Full Tracks";
+    public bool effectsOn = true;
     [Range(0.1f, 0.5f)]
     public float reverbXMax = 0.5f;
     [Range(0.5f, 0.9f)]
@@ -76,7 +77,7 @@ public class EventListener : MonoBehaviour
             //instrumentCurrentObjects[i] can be null
             UpdateTrackValue(i, instrumentCurrentObjects[i]);
 
-            if (instrumentCurrentObjects[i] != null)
+            if (effectsOn && instrumentCurrentObjects[i] != null)
             {
                 UpdateAudioEffects(i, instrumentCurrentObjects[i]);
             }
@@ -110,8 +111,8 @@ public class EventListener : MonoBehaviour
     private int ComputeTrackValue(ObjectInput objectInput)
     {
 
-        //if (objectInput == null)
-        //    return 0;
+        if (objectInput == null)
+            return 0;
 
         //int or = (int)objectInput.orientation;
         //return or <= 5 && or >= 1 ? or : 1;
@@ -163,7 +164,7 @@ public class EventListener : MonoBehaviour
     {
         if (!isPlaying && surfaceObjects.Count > 0)
         {
-            //eventDescription.createInstance(out eventInstance);
+            eventDescription.createInstance(out eventInstance);
             eventInstance.start();
             isPlaying = true;
         }
