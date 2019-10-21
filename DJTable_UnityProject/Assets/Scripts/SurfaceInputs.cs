@@ -338,7 +338,7 @@ public class SurfaceInputs : MonoBehaviour
     {
         // Manually limit input updates to at most 20fps
         lastUpdate += Time.deltaTime;
-        if (lastUpdate < 50) {
+        if (lastUpdate < 0.05f) {
             return;
         }
         lastUpdate = 0;
@@ -383,11 +383,14 @@ public class SurfaceInputs : MonoBehaviour
                 // Deprecated, remove when event no longer used
                 OnTouch(surfaceFingers, surfaceObjects);
 
-
                 // Publish the events for added, removed and updated objects
                 OnObjectAdd(lastAddedObjects);
                 OnObjectRemove(lastRemovedObjects);
                 OnObjectUpdate(lastUpdatedObjects);
+
+                OnFingerAdd(lastAddedFingers);
+                OnFingerRemove(lastRemovedFingers);
+                //OnFingerUpdate(lastUpdatedFingers);
 
                 lastRemovedObjects.Clear();
                 

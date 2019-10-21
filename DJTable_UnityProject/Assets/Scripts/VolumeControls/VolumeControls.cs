@@ -15,7 +15,7 @@ public class VolumeControls : MonoBehaviour
         fingersUsed = new Dictionary<int, int>();
 
         SurfaceInputs.Instance.OnFingerAdd += CheckNewFingers;
-        SurfaceInputs.Instance.OnFingerRemove = FreeObjectConstraints;
+        SurfaceInputs.Instance.OnFingerRemove += FreeObjectConstraints;
     }
 
     /// <summary>
@@ -29,6 +29,7 @@ public class VolumeControls : MonoBehaviour
 
         foreach (FingerInput finger in fingers)
         {
+            Debug.Log(finger.posRelative);
             foreach (ObjectInput obj in objects)
             {
                 if (controlledObjects.ContainsKey(obj.tagValue))
@@ -41,9 +42,11 @@ public class VolumeControls : MonoBehaviour
 
                 Vector2 diff = finger.posRelative - obj.posRelative;
                 float distance = diff.magnitude;
-                float angle = Vector2.SignedAngle(obj.posRelative, finger.posRelative); // deg: -180 to +180
+                float angle = Vector2.SignedAngle(Vector2.right, diff); // deg: -180 to +180
 
-                if ((angle > 90 || angle < -90) && distance > 100 && distance < 200) {
+                Debug.Log("DISTANCE: " + distance + " @ ANGLE: " + angle);
+
+                if ((angle > 90 || angle < -90) && distance > 0.045 && distance < 0.09) {
                     // In the volume control activation zone
                     Debug.Log("IN VOLUME CONTROL @ distance " + distance + " with angle " + angle);
 
