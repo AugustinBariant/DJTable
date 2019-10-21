@@ -59,6 +59,16 @@ public class SurfaceInputs : MonoBehaviour
     private List<ObjectInput> lastRemovedObjects;
     private List<ObjectInput> lastUpdatedObjects;
 
+
+    public delegate void FingerChangeHandler(List<FingerInput> fingers);
+    public event FingerChangeHandler OnFingerAdd;
+    public event FingerChangeHandler OnFingerRemove;
+    public event FingerChangeHandler OnFingerUpdate;
+
+    private List<FingerInput> lastAddedFingers;
+    private List<FingerInput> lastRemovedFingers;
+    private List<FingerInput> lastUpdatedFingers;
+
     private Thread listenerThread;
     private UdpClient client;
 
@@ -73,6 +83,8 @@ public class SurfaceInputs : MonoBehaviour
 
     private Camera mainCamera;
 
+    private float lastUpdate = 0;
+
     void Start()
     {
         surfaceFingers = new Dictionary<int, FingerInput>();
@@ -83,6 +95,10 @@ public class SurfaceInputs : MonoBehaviour
         lastAddedObjects = new List<ObjectInput>();
         lastRemovedObjects = new List<ObjectInput>();
         lastUpdatedObjects = new List<ObjectInput>();
+
+        lastAddedFingers = new List<FingerInput>();
+        lastRemovedFingers = new List<FingerInput>();
+        lastUpdatedFingers = new List<FingerInput>();
 
         mainCamera = Camera.main;
 
@@ -177,6 +193,7 @@ public class SurfaceInputs : MonoBehaviour
                     {
                         if (!msg.Values.Contains(id))
                         {
+                            lastRemovedFingers.Add(surfaceFingers[id]);
                             surfaceFingers.Remove(id);
                         }
                     }
@@ -203,12 +220,17 @@ public class SurfaceInputs : MonoBehaviour
                     FingerInput surfaceFinger;
                     if (surfaceFingers.TryGetValue(id, out surfaceFinger))
                     {
-                        surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
+                        if (surfaceFinger.posRelative != posRelative) 
+                        {
+                            surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
+                            lastUpdatedFingers.Add(surfaceFinger);
+                        }
                     }
                     else
                     {
                         surfaceFinger = new FingerInput(id, position, posRelative, velocity, acc);
                         surfaceFingers.Add(id, surfaceFinger);
+                        lastAddedFingers.Add(surfaceFinger);
                     }
                     break;
                 }
@@ -314,6 +336,13 @@ public class SurfaceInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Manually limit input updates to at most 20fps
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate < 50) {
+            return;
+        }
+        lastUpdate = 0;
+
         if (dummyMode)
         {
             sendDummyData();
@@ -327,9 +356,13 @@ public class SurfaceInputs : MonoBehaviour
             {
                 lock (packetLock)
                 {
-                    lastAddedObjects = new List<ObjectInput>();
-                    //lastRemovedObjects = new List<ObjectInput>();
-                    lastUpdatedObjects = new List<ObjectInput>();
+                    lastAddedObjects.Clear();
+                    //lastRemovedObjects.Clear();
+                    lastUpdatedObjects.Clear();
+
+                    lastAddedFingers.Clear();
+                    lastRemovedFingers.Clear();
+                    lastUpdatedFingers.Clear();
 
                     foreach (OSCMessage msg in lastPacket.Values)
                     {
@@ -351,7 +384,7 @@ public class SurfaceInputs : MonoBehaviour
                 OnTouch(surfaceFingers, surfaceObjects);
 
 
-                // Publish the evens for added, removed and updated objects
+                // Publish the events for added, removed and updated objects
                 OnObjectAdd(lastAddedObjects);
                 OnObjectRemove(lastRemovedObjects);
                 OnObjectUpdate(lastUpdatedObjects);
