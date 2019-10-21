@@ -19,6 +19,10 @@ public class EventListener : MonoBehaviour
     [Range(0.5f, 0.9f)]
     public float filterYMin = 0.5f;
 
+    // Individual volumes for all 8 tracks in [0,1] range
+    // Changed from VolumeControls
+    public float[] trackVolumes = new float[8]{1f,1f,1f,1f,1f,1f,1f,1f};
+
     private Dictionary<int, ObjectInstrument> instrumentStates;
     private FMOD.Studio.EventInstance eventInstance;
     private FMOD.Studio.EventDescription eventDescription;

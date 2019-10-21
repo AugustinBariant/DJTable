@@ -15,7 +15,6 @@ public class SurfaceInputs : MonoBehaviour
     private static SurfaceInputs _instance;
     public static SurfaceInputs Instance { get { return _instance; } }
 
-    
     [Range(0.0f, (2 * Mathf.PI) - 0.001f)]
     public float[] rotations = new float[8];
 
@@ -26,6 +25,7 @@ public class SurfaceInputs : MonoBehaviour
 
     //All this variables are for the dummy mode. In that case, one can control the object with numbers "1" to "8" on the keyboard.
     public bool dummyMode = false;
+    public bool mouseTouchInput = false;
     private int instrumentFocus = -1;
     private Dictionary<KeyCode, int> instrumentKeys = new Dictionary<KeyCode, int>();
 
@@ -66,6 +66,16 @@ public class SurfaceInputs : MonoBehaviour
     private List<ObjectInput> lastRemovedObjects;
     private List<ObjectInput> lastUpdatedObjects;
 
+
+    public delegate void FingerChangeHandler(List<FingerInput> fingers);
+    public event FingerChangeHandler OnFingerAdd;
+    public event FingerChangeHandler OnFingerRemove;
+    public event FingerChangeHandler OnFingerUpdate;
+
+    private List<FingerInput> lastAddedFingers;
+    private List<FingerInput> lastRemovedFingers;
+    private List<FingerInput> lastUpdatedFingers;
+
     private Thread listenerThread;
     private UdpClient client;
 
@@ -79,6 +89,8 @@ public class SurfaceInputs : MonoBehaviour
     private object packetLock = new object();
 
     private Camera mainCamera;
+
+    private float lastUpdate = 0;
 
     void Start()
     {
@@ -94,6 +106,10 @@ public class SurfaceInputs : MonoBehaviour
         instrumentKeys = InstantiateInstrumentKeys();
 
 
+
+        lastAddedFingers = new List<FingerInput>();
+        lastRemovedFingers = new List<FingerInput>();
+        lastUpdatedFingers = new List<FingerInput>();
 
         mainCamera = Camera.main;
 
@@ -189,6 +205,7 @@ public class SurfaceInputs : MonoBehaviour
                     {
                         if (!msg.Values.Contains(id))
                         {
+                            lastRemovedFingers.Add(surfaceFingers[id]);
                             surfaceFingers.Remove(id);
                         }
                     }
@@ -215,12 +232,17 @@ public class SurfaceInputs : MonoBehaviour
                     FingerInput surfaceFinger;
                     if (surfaceFingers.TryGetValue(id, out surfaceFinger))
                     {
-                        surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
+                        if (surfaceFinger.posRelative != posRelative) 
+                        {
+                            surfaceFinger.UpdateProps(position, posRelative, velocity, acc);
+                            lastUpdatedFingers.Add(surfaceFinger);
+                        }
                     }
                     else
                     {
                         surfaceFinger = new FingerInput(id, position, posRelative, velocity, acc);
                         surfaceFingers.Add(id, surfaceFinger);
+                        lastAddedFingers.Add(surfaceFinger);
                     }
                     break;
                 }
@@ -326,6 +348,19 @@ public class SurfaceInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (mouseTouchInput)
+        {
+            HandleMouseInput();
+        }
+
+        // Manually limit input updates to at most 20fps
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate < 0.05f) {
+            return;
+        }
+        lastUpdate = 0;
+
         if (dummyMode)
         {
             sendDummyData();
@@ -339,9 +374,13 @@ public class SurfaceInputs : MonoBehaviour
             {
                 lock (packetLock)
                 {
-                    lastAddedObjects = new List<ObjectInput>();
-                    //lastRemovedObjects = new List<ObjectInput>();
-                    lastUpdatedObjects = new List<ObjectInput>();
+                    lastAddedObjects.Clear();
+                    //lastRemovedObjects.Clear();
+                    lastUpdatedObjects.Clear();
+
+                    lastAddedFingers.Clear();
+                    lastRemovedFingers.Clear();
+                    lastUpdatedFingers.Clear();
 
                     foreach (OSCMessage msg in lastPacket.Values)
                     {
@@ -362,11 +401,14 @@ public class SurfaceInputs : MonoBehaviour
                 // Deprecated, remove when event no longer used
                 OnTouch(surfaceFingers, surfaceObjects);
 
-
-                // Publish the evens for added, removed and updated objects
+                // Publish the events for added, removed and updated objects
                 OnObjectAdd(lastAddedObjects);
                 OnObjectRemove(lastRemovedObjects);
                 OnObjectUpdate(lastUpdatedObjects);
+
+                OnFingerAdd(lastAddedFingers);
+                OnFingerRemove(lastRemovedFingers);
+                //OnFingerUpdate(lastUpdatedFingers);
 
                 lastRemovedObjects.Clear();
                 
@@ -393,7 +435,34 @@ public class SurfaceInputs : MonoBehaviour
         }
     }
 
+    private void HandleMouseInput()
+    {
+        Vector2 posRelative = new Vector2((float)Input.mousePosition.x / Screen.width, (float)Input.mousePosition.y / Screen.height);
+        Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
+        // On mouse primary button click
+        if (Input.GetMouseButtonDown(0))
+        {
+            FingerInput finger = new FingerInput(0, position, posRelative, new Vector2(0, 0), 0f);
+            surfaceFingers.Add(0, finger);
+            OnFingerAdd(new List<FingerInput>(surfaceFingers.Values));
+        } 
+        // On release
+        else if (Input.GetMouseButtonUp(0))
+        {
+            OnFingerRemove(new List<FingerInput>(surfaceFingers.Values));
+            surfaceFingers.Remove(0);
+        }
+        // If holding mouse button down, update position
+        else if (surfaceFingers.Count > 0)
+        {
+            List<FingerInput> updated = new List<FingerInput>();
+            FingerInput finger = surfaceFingers[0];
+            finger.UpdateProps(position, posRelative, new Vector2(0, 0), 0f);
+            updated.Add(finger);
+            OnFingerUpdate(updated);
+        }
+    }
 
     void sendDummyData()
     {
@@ -505,30 +574,30 @@ public class SurfaceInputs : MonoBehaviour
             List<ObjectInput> updated = new List<ObjectInput>();
             for (int i = 0; i < rotations.Length; i++)
             {
-                if (rotations[i] != surfaceObjects[i].orientation)
+                if (surfaceObjects.ContainsKey(i) && rotations[i] != surfaceObjects[i].orientation)
                 {
                     surfaceObjects[i].UpdateOrientation(rotations[i]);
                     updated.Add(surfaceObjects[i]);
                 }
             }
 
-            // moving object
-            ObjectInput obj = surfaceObjects[1];
-            float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
-            float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
-            if (x >= 1.0f)
-            {
-                x = 0.0f;
-            }
-            if (y <= 0f)
-            {
-                y = 1.0f;
-            }
-            Vector2 position = ComputeWorldPosition(x, y);
-            Vector2 posRelative = new Vector2(x, y);
-            obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+            // // moving object
+            // ObjectInput obj = surfaceObjects[1];
+            // float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
+            // float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
+            // if (x >= 1.0f)
+            // {
+            //     x = 0.0f;
+            // }
+            // if (y <= 0f)
+            // {
+            //     y = 1.0f;
+            // }
+            // Vector2 position = ComputeWorldPosition(x, y);
+            // Vector2 posRelative = new Vector2(x, y);
+            // obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
 
-            updated.Add(obj);
+            // updated.Add(obj);
             
             if (updated.Count > 0)
             {
