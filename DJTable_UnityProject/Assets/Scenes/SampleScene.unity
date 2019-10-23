@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c319d58c6d0a0f4886193027f31bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyMode: 0
+  dummyMode: 1
   rotations:
   - 0
   - 0
@@ -569,6 +569,9 @@ MonoBehaviour:
   - {r: 0.6698113, g: 0, b: 0, a: 0}
   dialPrefab: {fileID: 3476215782423924782, guid: a4541d3d7c01b52458d787165e74dafd,
     type: 3}
+  explosionPrefab: {fileID: 7758600710011130070, guid: 6e7ae052c6d748043acde7b7a31e0d2b,
+    type: 3}
+  line: {fileID: 7090826791965656281, guid: 22a52f3b53e671d4fbbca5cfaf554488, type: 3}
 --- !u!4 &2114290271
 Transform:
   m_ObjectHideFlags: 0
