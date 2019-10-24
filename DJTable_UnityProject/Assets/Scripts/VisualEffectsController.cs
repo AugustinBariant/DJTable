@@ -10,27 +10,13 @@ public class VisualEffectsController : MonoBehaviour
 
     public Color[] dialColors = new Color[8];
     public GameObject dialPrefab;
-    public GameObject explosionPrefab;
+    public GameObject expoldingPrefab;
 
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
     private Dictionary<int, GameObject> dialInstances;
 
     private const float halfPI = Mathf.PI / 2f;
-
-    private LineRenderer lineRenderer;
-
-    private readonly int pointsCount = 5;
-    private Vector3[] points;
-
-    private readonly int pointIndexA = 0;
-    private readonly int pointIndexB = 1;
-    private readonly int pointIndexC = 2;
-    private readonly int pointIndexD = 3;
-    private readonly int pointIndexE = 4;
-
-    private float timer;
-    private float timerTimeOut = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +36,6 @@ public class VisualEffectsController : MonoBehaviour
         SurfaceInputs.Instance.OnObjectAdd += AddNewObjects;
         SurfaceInputs.Instance.OnObjectUpdate += UpdateObjects;
         SurfaceInputs.Instance.OnObjectRemove += RemoveObjects;
-
-        lineRenderer = GetComponent<LineRenderer>();
-        points = new Vector3[pointsCount];
-        lineRenderer.positionCount = pointsCount;
     }
 
     void AddNewObjects(List<ObjectInput> addedObjects)
@@ -63,6 +45,26 @@ public class VisualEffectsController : MonoBehaviour
         {
             int tagValue = addedObject.tagValue;
             GameObject prefab;
+
+            var nearestDist = float.MaxValue;
+            ObjectInput nearestObj = null;
+
+            foreach (KeyValuePair<int, ObjectInput> otherObject in SurfaceInputs.Instance.surfaceObjects)
+            {
+                float distance = Vector3.Distance(addedObject.position, otherObject.Value.position);
+
+                if (addedObject.tagValue == otherObject.Value.tagValue)
+                {
+                    continue;
+                }
+                else if (distance < nearestDist )
+                {
+                    nearestDist = distance;
+                    nearestObj = otherObject.Value;
+                    Debug.Log("I am here!!!!!");
+                    GameObject distEffect = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.Value.position), Quaternion.identity);
+                }
+            }
 
             if (objectPrefabs.TryGetValue(tagValue, out prefab) && !effectInstances.ContainsKey(tagValue))
             {
@@ -94,41 +96,10 @@ public class VisualEffectsController : MonoBehaviour
             }
 
             //Adds the explosion prefab
-            if (Vector3.Distance(transform.position, addedObject.position) < 10)
-            {
-                GameObject instance = Instantiate(explosionPrefab, addedObject.position, Quaternion.identity);
-                effectInstances.Add(tagValue, instance);
-            }
-
-
-
-            //timer += Time.deltaTime;
-
-            //if (timer > timerTimeOut)
+            //if (Vector3.Distance(transform.position, addedObject.position) < 10)
             //{
-            //    timer = 0;
-
-            //    points[pointIndexA] = transform.position;
-            //    points[pointIndexE] = addedObject.position;
-            //    points[pointIndexC] = GetCenter(points[pointIndexA], points[pointIndexE]);
-            //    points[pointIndexB] = GetCenter(points[pointIndexA], points[pointIndexC]);
-            //    points[pointIndexD] = GetCenter(points[pointIndexC], points[pointIndexE]);
-
-            //    //distance = Vector3.Distance(start.position, end.position) / points.Length;
-
-            //    if ((Vector3.Distance(transform.position, addedObject.position) / points.Length) < 2)
-            //    {
-            //        lineRenderer.SetPositions(points);
-            //        lineRenderer.SetVertexCount(5);
-            //        Debug.Log("THE LINE!!!!!");
-            //    }
-            //    else
-            //    {
-            //        //Destroy(lineRenderer.gameObject, 5);
-            //        lineRenderer.SetVertexCount(0);
-            //        Debug.Log("DESTROYED");
-
-            //    }
+            //    GameObject instance = Instantiate(expoldingPrefab, addedObject.position, Quaternion.identity);
+            //    effectInstances.Add(tagValue, instance);
             //}
         }
     }
@@ -136,6 +107,29 @@ public class VisualEffectsController : MonoBehaviour
     {
         return (a + b) / 2;
     }
+    //void DistanceEffect(List<ObjectInput> addedObjects, Dictionary<int, ObjectInput> surfaceObjects)
+    //{
+    //    foreach (ObjectInput addedObject in addedObjects)
+    //    {
+    //        var nearestDist = float.MaxValue;
+    //        ObjectInput nearstObj = null;
+    //        foreach (KeyValuePair<int, ObjectInput> otherObject in SurfaceInputs.Instance.surfaceObjects)
+    //        {
+    //            if (addedObject.tagValue == otherObject.Value.tagValue)
+    //            {
+    //                // dont check against self, ignore
+    //                continue;
+    //            }
+
+    //            else if (Vector3.Distance(addedObject.position, otherObject.Value.position) < nearestDist)
+    //            {
+    //                nearestDist = Vector3.Distance(addedObject.position, otherObject.Value.position);
+    //                nearstObj = otherObject.Value;
+    //            }
+    //        }
+    //        GameObject instance = Instantiate(expoldingPrefab, addedObject.position, Quaternion.identity);
+    //    }
+    //}
 
     void UpdateObjects(List<ObjectInput> updatedObjects)
     {
