@@ -15,7 +15,7 @@ public class SurfaceInputs : MonoBehaviour
     private static SurfaceInputs _instance;
     public static SurfaceInputs Instance { get { return _instance; } }
 
-    public bool dummyMode = false;
+    
     [Range(0.0f, (2 * Mathf.PI) - 0.001f)]
     public float[] rotations = new float[8];
 
@@ -23,6 +23,13 @@ public class SurfaceInputs : MonoBehaviour
     //holding all objects and fingers that are currently on the surface
     public Dictionary<int, FingerInput> surfaceFingers { get; private set; }
     public Dictionary<int, ObjectInput> surfaceObjects { get; private set; }
+
+    //All this variables are for the dummy mode. In that case, one can control the object with numbers "1" to "8" on the keyboard.
+    public bool dummyMode = false;
+    private int instrumentFocus = -1;
+    private Dictionary<KeyCode, int> instrumentKeys = new Dictionary<KeyCode, int>();
+
+
 
     private void Awake()
     {
@@ -83,6 +90,10 @@ public class SurfaceInputs : MonoBehaviour
         lastAddedObjects = new List<ObjectInput>();
         lastRemovedObjects = new List<ObjectInput>();
         lastUpdatedObjects = new List<ObjectInput>();
+        //For DummyMode
+        instrumentKeys = InstantiateInstrumentKeys();
+
+
 
         mainCamera = Camera.main;
 
@@ -95,6 +106,7 @@ public class SurfaceInputs : MonoBehaviour
         listenerThread = new Thread(threadStarter);
         listenerThread.IsBackground = true;
         listenerThread.Start();
+        
     }
 
     // A few comments on the TUIO protocol:
@@ -381,9 +393,99 @@ public class SurfaceInputs : MonoBehaviour
         }
     }
 
+
+
     void sendDummyData()
     {
-        if (surfaceObjects.Count == 0)
+        foreach(KeyCode key in instrumentKeys.Keys)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                Debug.Log("Pressed " + key);
+                instrumentFocus = instrumentKeys[key];
+            }
+        }
+        //  If InstrumentFocus has been set, then we look for key pressed
+        if (instrumentFocus != -1)
+        {
+            lastAddedObjects = new List<ObjectInput>();
+            lastRemovedObjects = new List<ObjectInput>();
+            lastUpdatedObjects = new List<ObjectInput>();
+            bool deleted = false;
+            //space is pressed to activate/desactivate the selected instrument
+            if (Input.GetKeyDown("space"))
+            {
+                foreach(ObjectInput objectInput1 in surfaceObjects.Values)
+                {
+                    if (objectInput1.tagValue == instrumentFocus)
+                    {
+                        lastRemovedObjects.Add(objectInput1);
+                        surfaceObjects.Remove(objectInput1.id);
+                        OnObjectRemove(lastRemovedObjects);
+                        deleted = true;
+                        break;
+                    }
+                }
+                if (!deleted)
+                {
+                    ObjectInput objectInput1 = new ObjectInput(instrumentFocus, instrumentFocus, ComputeWorldPosition(0.5f, 0.5f), new Vector2(0.5f, 0.5f), 0, new Vector2(0, 0), 0f, 0f, 0f);
+                    surfaceObjects.Add(instrumentFocus, objectInput1);
+                    lastAddedObjects.Add(objectInput1);
+                    OnObjectAdd(lastAddedObjects);
+                }
+            }
+            // If the object is already on the table, we can look for other keys used to control the position of the instrument
+            if (surfaceObjects.TryGetValue(instrumentFocus, out ObjectInput objectInput))
+            {
+                bool modified = false;
+                //up,down,left,right control the position
+                if (Input.GetKey("up"))
+                {
+                    Vector2 newPos = objectInput.position + new Vector2(0, Time.deltaTime * 2f);
+                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (Input.GetKey("down"))
+                {
+                    Vector2 newPos = objectInput.position + new Vector2(0, -Time.deltaTime * 2f);
+                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (Input.GetKey("left"))
+                {
+                    Vector2 newPos = objectInput.position + new Vector2(-Time.deltaTime * 2f,0);
+                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (Input.GetKey("right"))
+                {
+                    Vector2 newPos = objectInput.position + new Vector2(Time.deltaTime * 2f,0);
+                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (Input.GetKey("a"))
+                {
+                    float newOrientation = -objectInput.orientation + Time.deltaTime * 2f;
+                    objectInput.UpdateProps(objectInput.position, objectInput.posRelative, newOrientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (Input.GetKey("z"))
+                {
+                    float newOrientation = -objectInput.orientation - Time.deltaTime * 2f;
+                    Debug.Log(objectInput.orientation);
+                    Debug.Log(newOrientation);
+                    objectInput.UpdateProps(objectInput.position, objectInput.posRelative, newOrientation, objectInput.velocity, 0f, 0f, 0f);
+                    modified = true;
+                }
+                if (modified)
+                {
+                    lastUpdatedObjects.Add(objectInput);
+                    OnObjectUpdate(lastUpdatedObjects);
+                }
+            }
+        }
+
+        /*if (surfaceObjects.Count == 0)
         {
             surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), rotations[0], new Vector2(0, 0), 0f, 0f, 0f));
             surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), rotations[1], new Vector2(0, 0), 0f, 0f, 0f));
@@ -431,7 +533,22 @@ public class SurfaceInputs : MonoBehaviour
                 OnObjectUpdate(updated);
             }
         }
+        */
 
         OnTouch(surfaceFingers, surfaceObjects);
     }
+    Dictionary<KeyCode, int> InstantiateInstrumentKeys()
+    {
+        Dictionary<KeyCode, int> instrumentKeys = new Dictionary<KeyCode, int>();
+        instrumentKeys.Add(KeyCode.Alpha1, 0);
+        instrumentKeys.Add(KeyCode.Alpha2, 1);
+        instrumentKeys.Add(KeyCode.Alpha3, 2);
+        instrumentKeys.Add(KeyCode.Alpha4, 3);
+        instrumentKeys.Add(KeyCode.Alpha5, 4);
+        instrumentKeys.Add(KeyCode.Alpha6, 5);
+        instrumentKeys.Add(KeyCode.Alpha7, 6);
+        instrumentKeys.Add(KeyCode.Alpha8, 7);
+        return instrumentKeys;
+    }
 }
+    
