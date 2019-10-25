@@ -8,7 +8,7 @@ public class EventListener : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string selectEvent = "event:/Full Tracks";
+    public string selectEvent = "event:/Full tracks";
     public bool effectsOn = true;
     [Range(0.1f, 0.5f)]
     public float reverbXMax = 0.5f;
@@ -76,10 +76,11 @@ public class EventListener : MonoBehaviour
         {
             //instrumentCurrentObjects[i] can be null
             UpdateTrackValue(i, instrumentCurrentObjects[i]);
-
+            
             if (effectsOn && instrumentCurrentObjects[i] != null)
             {
                 UpdateAudioEffects(i, instrumentCurrentObjects[i]);
+                Debug.Log("Audio Effect Updated");
             }
 
         }
@@ -100,7 +101,7 @@ public class EventListener : MonoBehaviour
 
         //Debug.Log(distortionValue);
         eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
-        
+        Debug.Log(y);
         eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], reverbValue);
         //eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
         //eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);

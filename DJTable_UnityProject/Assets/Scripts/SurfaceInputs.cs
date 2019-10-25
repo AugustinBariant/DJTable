@@ -441,26 +441,30 @@ public class SurfaceInputs : MonoBehaviour
                 //up,down,left,right control the position
                 if (Input.GetKey("up"))
                 {
-                    Vector2 newPos = objectInput.position + new Vector2(0, Time.deltaTime * 2f);
-                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    Vector2 newPosRel = objectInput.posRelative + new Vector2(0, Time.deltaTime * 0.5f);
+                    Vector2 newPos = ComputeWorldPosition(newPosRel.x,newPosRel.y);
+                    objectInput.UpdateProps(newPos, newPosRel, -objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
                     modified = true;
                 }
                 if (Input.GetKey("down"))
                 {
-                    Vector2 newPos = objectInput.position + new Vector2(0, -Time.deltaTime * 2f);
-                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    Vector2 newPosRel = objectInput.posRelative + new Vector2(0, -Time.deltaTime * 0.5f);
+                    Vector2 newPos = ComputeWorldPosition(newPosRel.x, newPosRel.y);
+                    objectInput.UpdateProps(newPos, newPosRel, -objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
                     modified = true;
                 }
                 if (Input.GetKey("left"))
                 {
-                    Vector2 newPos = objectInput.position + new Vector2(-Time.deltaTime * 2f,0);
-                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    Vector2 newPosRel = objectInput.posRelative + new Vector2(-Time.deltaTime * 0.5f,0);
+                    Vector2 newPos = ComputeWorldPosition(newPosRel.x, newPosRel.y);
+                    objectInput.UpdateProps(newPos, newPosRel, -objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
                     modified = true;
                 }
                 if (Input.GetKey("right"))
                 {
-                    Vector2 newPos = objectInput.position + new Vector2(Time.deltaTime * 2f,0);
-                    objectInput.UpdateProps(newPos, objectInput.posRelative, objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
+                    Vector2 newPosRel = objectInput.posRelative + new Vector2(Time.deltaTime * 0.5f,0);
+                    Vector2 newPos = ComputeWorldPosition(newPosRel.x, newPosRel.y);
+                    objectInput.UpdateProps(newPos, newPosRel, -objectInput.orientation, objectInput.velocity, 0f, 0f, 0f);
                     modified = true;
                 }
                 if (Input.GetKey("a"))
@@ -472,8 +476,6 @@ public class SurfaceInputs : MonoBehaviour
                 if (Input.GetKey("z"))
                 {
                     float newOrientation = -objectInput.orientation - Time.deltaTime * 2f;
-                    Debug.Log(objectInput.orientation);
-                    Debug.Log(newOrientation);
                     objectInput.UpdateProps(objectInput.position, objectInput.posRelative, newOrientation, objectInput.velocity, 0f, 0f, 0f);
                     modified = true;
                 }
@@ -482,6 +484,7 @@ public class SurfaceInputs : MonoBehaviour
                     lastUpdatedObjects.Add(objectInput);
                     OnObjectUpdate(lastUpdatedObjects);
                 }
+                
             }
         }
 
