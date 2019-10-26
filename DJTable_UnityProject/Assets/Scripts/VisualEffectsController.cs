@@ -10,7 +10,6 @@ public class VisualEffectsController : MonoBehaviour
 
     public Color[] dialColors = new Color[8];
     public GameObject dialPrefab;
-    public GameObject expoldingPrefab;
 
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
@@ -40,31 +39,10 @@ public class VisualEffectsController : MonoBehaviour
 
     void AddNewObjects(List<ObjectInput> addedObjects)
     {
-
         foreach (ObjectInput addedObject in addedObjects)
         {
             int tagValue = addedObject.tagValue;
             GameObject prefab;
-
-            var nearestDist = float.MaxValue;
-            ObjectInput nearestObj = null;
-
-            foreach (KeyValuePair<int, ObjectInput> otherObject in SurfaceInputs.Instance.surfaceObjects)
-            {
-                float distance = Vector3.Distance(addedObject.position, otherObject.Value.position);
-
-                if (addedObject.tagValue == otherObject.Value.tagValue)
-                {
-                    continue;
-                }
-                else if (distance < nearestDist )
-                {
-                    nearestDist = distance;
-                    nearestObj = otherObject.Value;
-                    Debug.Log("I am here!!!!!");
-                    GameObject distEffect = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.Value.position), Quaternion.identity);
-                }
-            }
 
             if (objectPrefabs.TryGetValue(tagValue, out prefab) && !effectInstances.ContainsKey(tagValue))
             {
@@ -94,42 +72,9 @@ public class VisualEffectsController : MonoBehaviour
 
                 dialInstances.Add(tagValue, instance);
             }
-
-            //Adds the explosion prefab
-            //if (Vector3.Distance(transform.position, addedObject.position) < 10)
-            //{
-            //    GameObject instance = Instantiate(expoldingPrefab, addedObject.position, Quaternion.identity);
-            //    effectInstances.Add(tagValue, instance);
-            //}
         }
     }
-    private Vector3 GetCenter(Vector3 a, Vector3 b)
-    {
-        return (a + b) / 2;
-    }
-    //void DistanceEffect(List<ObjectInput> addedObjects, Dictionary<int, ObjectInput> surfaceObjects)
-    //{
-    //    foreach (ObjectInput addedObject in addedObjects)
-    //    {
-    //        var nearestDist = float.MaxValue;
-    //        ObjectInput nearstObj = null;
-    //        foreach (KeyValuePair<int, ObjectInput> otherObject in SurfaceInputs.Instance.surfaceObjects)
-    //        {
-    //            if (addedObject.tagValue == otherObject.Value.tagValue)
-    //            {
-    //                // dont check against self, ignore
-    //                continue;
-    //            }
 
-    //            else if (Vector3.Distance(addedObject.position, otherObject.Value.position) < nearestDist)
-    //            {
-    //                nearestDist = Vector3.Distance(addedObject.position, otherObject.Value.position);
-    //                nearstObj = otherObject.Value;
-    //            }
-    //        }
-    //        GameObject instance = Instantiate(expoldingPrefab, addedObject.position, Quaternion.identity);
-    //    }
-    //}
 
     void UpdateObjects(List<ObjectInput> updatedObjects)
     {
@@ -172,6 +117,4 @@ public class VisualEffectsController : MonoBehaviour
             }
         }
     }
-
 }
-
