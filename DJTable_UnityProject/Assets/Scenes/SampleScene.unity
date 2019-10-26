@@ -530,6 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114290271}
   - component: {fileID: 2114290270}
+  - component: {fileID: 2114290272}
   m_Layer: 0
   m_Name: VisualEffectsController
   m_TagString: Untagged
@@ -569,9 +570,6 @@ MonoBehaviour:
   - {r: 0.6698113, g: 0, b: 0, a: 0}
   dialPrefab: {fileID: 3476215782423924782, guid: a4541d3d7c01b52458d787165e74dafd,
     type: 3}
-  explosionPrefab: {fileID: 7758600710011130070, guid: 6e7ae052c6d748043acde7b7a31e0d2b,
-    type: 3}
-  line: {fileID: 7090826791965656281, guid: 22a52f3b53e671d4fbbca5cfaf554488, type: 3}
 --- !u!4 &2114290271
 Transform:
   m_ObjectHideFlags: 0
@@ -586,3 +584,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2114290272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114290269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5987011534298454b9869fbd41f8f2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expoldingPrefab: {fileID: 7758600710011130070, guid: 6e7ae052c6d748043acde7b7a31e0d2b,
+    type: 3}
