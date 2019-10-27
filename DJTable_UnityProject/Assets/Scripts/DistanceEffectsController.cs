@@ -20,29 +20,22 @@ public class DistanceEffectsController : MonoBehaviour
     {
         foreach (ObjectInput addedObject in addedObjects)
         {
-            int tagValue = addedObject.tagValue;
-
-            foreach (KeyValuePair<int, ObjectInput> otherObject in SurfaceInputs.Instance.surfaceObjects)
+            List<ObjectInput> otherObjects = new List<ObjectInput>(SurfaceInputs.Instance.surfaceObjects.Values);
+            foreach (ObjectInput otherObject in otherObjects)
             {
                 var nearestDist = 2.0;
-                ObjectInput nearestObj = null;
-                float distance = Vector3.Distance(addedObject.position, otherObject.Value.position);
+                float distance = Vector3.Distance(addedObject.position, otherObject.position);
 
-                if (addedObject.tagValue != otherObject.Value.tagValue)
+                if (addedObject.tagValue != otherObject.tagValue)
                 {
                     if (distance < nearestDist)
                     {
                         Debug.Log("Distance based effect on AddedObject");
-                        nearestDist = distance;
-                        nearestObj = otherObject.Value;
-        
-                        GameObject instance = Instantiate(expoldingPrefab, GetCenter(addedObject.position, nearestObj.position), Quaternion.identity);
-                        distanceInstances.Add(tagValue, instance);
-                       
+
+                        GameObject instance = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.position), Quaternion.identity);
+                        distanceInstances.Add(addedObject.tagValue, instance);
                     }
                 }
-                else
-                    continue;
             }
         }
     }
@@ -77,4 +70,4 @@ public class DistanceEffectsController : MonoBehaviour
     {
         return (a + b) / 2;
     }
- }
+}
