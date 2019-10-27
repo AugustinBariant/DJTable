@@ -15,6 +15,7 @@ public class SurfaceInputs : MonoBehaviour
     private static SurfaceInputs _instance;
     public static SurfaceInputs Instance { get { return _instance; } }
 
+    public bool mouseTouchInput = false;
     public bool dummyMode = false;
     [Range(0.0f, (2 * Mathf.PI) - 0.001f)]
     public float[] rotations = new float[8];
@@ -336,6 +337,12 @@ public class SurfaceInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (mouseTouchInput)
+        {
+            HandleMouseInput();
+        }
+
         // Manually limit input updates to at most 20fps
         lastUpdate += Time.deltaTime;
         if (lastUpdate < 0.05f) {
@@ -417,18 +424,47 @@ public class SurfaceInputs : MonoBehaviour
         }
     }
 
+    private void HandleMouseInput()
+    {
+        Vector2 posRelative = new Vector2((float)Input.mousePosition.x / Screen.width, (float)Input.mousePosition.y / Screen.height);
+        Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        // On mouse primary button click
+        if (Input.GetMouseButtonDown(0))
+        {
+            FingerInput finger = new FingerInput(0, position, posRelative, new Vector2(0, 0), 0f);
+            surfaceFingers.Add(0, finger);
+            OnFingerAdd(new List<FingerInput>(surfaceFingers.Values));
+        } 
+        // On release
+        else if (Input.GetMouseButtonUp(0))
+        {
+            OnFingerRemove(new List<FingerInput>(surfaceFingers.Values));
+            surfaceFingers.Remove(0);
+        }
+        // If holding mouse button down, update position
+        else if (surfaceFingers.Count > 0)
+        {
+            List<FingerInput> updated = new List<FingerInput>();
+            FingerInput finger = surfaceFingers[0];
+            finger.UpdateProps(position, posRelative, new Vector2(0, 0), 0f);
+            updated.Add(finger);
+            OnFingerUpdate(updated);
+        }
+    }
+
     void sendDummyData()
     {
         if (surfaceObjects.Count == 0)
         {
             surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), rotations[0], new Vector2(0, 0), 0f, 0f, 0f));
             surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), rotations[1], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.6f), new Vector2(0.4f, 0.6f), rotations[2], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.2f, 0.3f), new Vector2(0.2f, 0.3f), rotations[3], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.3f, 0.7f), new Vector2(0.3f, 0.7f), rotations[4], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.8f, 0.25f), new Vector2(0.8f, 0.25f), rotations[5], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.5f, 0.8f), new Vector2(0.5f, 0.8f), rotations[6], new Vector2(0, 0), 0f, 0f, 0f));
-            surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.4f, 0.9f), new Vector2(0.4f, 0.9f), rotations[7], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.6f), new Vector2(0.4f, 0.6f), rotations[2], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.2f, 0.3f), new Vector2(0.2f, 0.3f), rotations[3], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.3f, 0.7f), new Vector2(0.3f, 0.7f), rotations[4], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.8f, 0.25f), new Vector2(0.8f, 0.25f), rotations[5], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.5f, 0.8f), new Vector2(0.5f, 0.8f), rotations[6], new Vector2(0, 0), 0f, 0f, 0f));
+            // surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.4f, 0.9f), new Vector2(0.4f, 0.9f), rotations[7], new Vector2(0, 0), 0f, 0f, 0f));
 
             List<ObjectInput> added = new List<ObjectInput>(surfaceObjects.Values);
             OnObjectAdd(added);
@@ -437,30 +473,30 @@ public class SurfaceInputs : MonoBehaviour
             List<ObjectInput> updated = new List<ObjectInput>();
             for (int i = 0; i < rotations.Length; i++)
             {
-                if (rotations[i] != surfaceObjects[i].orientation)
+                if (surfaceObjects.ContainsKey(i) && rotations[i] != surfaceObjects[i].orientation)
                 {
                     surfaceObjects[i].UpdateOrientation(rotations[i]);
                     updated.Add(surfaceObjects[i]);
                 }
             }
 
-            // moving object
-            ObjectInput obj = surfaceObjects[1];
-            float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
-            float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
-            if (x >= 1.0f)
-            {
-                x = 0.0f;
-            }
-            if (y <= 0f)
-            {
-                y = 1.0f;
-            }
-            Vector2 position = ComputeWorldPosition(x, y);
-            Vector2 posRelative = new Vector2(x, y);
-            obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
+            // // moving object
+            // ObjectInput obj = surfaceObjects[1];
+            // float x = obj.posRelative.x + (Time.deltaTime * 0.04f);
+            // float y = obj.posRelative.y - (Time.deltaTime * 0.04f);
+            // if (x >= 1.0f)
+            // {
+            //     x = 0.0f;
+            // }
+            // if (y <= 0f)
+            // {
+            //     y = 1.0f;
+            // }
+            // Vector2 position = ComputeWorldPosition(x, y);
+            // Vector2 posRelative = new Vector2(x, y);
+            // obj.UpdateProps(position, posRelative, 1f, new Vector2(0, 0), 0f, 0f, 0f);
 
-            updated.Add(obj);
+            // updated.Add(obj);
             
             if (updated.Count > 0)
             {

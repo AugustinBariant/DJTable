@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c319d58c6d0a0f4886193027f31bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyMode: 0
+  mouseTouchInput: 1
+  dummyMode: 1
   rotations:
   - 0
   - 0
@@ -549,6 +550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a16565678df9498baba1074b2c94c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeSliderPrefab: {fileID: 1253185155306166807, guid: 8cef3d099519049dc8d49f062076c743,
+    type: 3}
 --- !u!4 &1444941693
 Transform:
   m_ObjectHideFlags: 0
