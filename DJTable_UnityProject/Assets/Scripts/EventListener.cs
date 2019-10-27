@@ -18,6 +18,11 @@ public class EventListener : MonoBehaviour
     public float distortionYMax = 0.5f;
     [Range(0.5f, 0.9f)]
     public float filterYMin = 0.5f;
+
+    // Individual volumes for all 8 tracks in [0,1] range
+    // Changed from VolumeControls
+    public float[] trackVolumes = new float[8]{1f,1f,1f,1f,1f,1f,1f,1f};
+
     private Dictionary<int, string> parameterNames;
 
     private Dictionary<int, int> instrumentStates;
@@ -28,6 +33,7 @@ public class EventListener : MonoBehaviour
 
     void Start()
     {
+
         SurfaceInputs.Instance.OnTouch += OnTouchReceive;
         eventDescription = FMODUnity.RuntimeManager.GetEventDescription(selectEvent);
         eventDescription.createInstance(out eventInstance);

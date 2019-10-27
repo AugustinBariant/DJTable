@@ -13,6 +13,8 @@ public class VolumeControls : MonoBehaviour
     // Object id / prefab instance pair
     private Dictionary<int, GameObject> volumeSliderInstances;
 
+    private EventListener audioEventListener;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class VolumeControls : MonoBehaviour
         SurfaceInputs.Instance.OnFingerAdd += CheckNewFingers;
         SurfaceInputs.Instance.OnFingerRemove += FreeObjectConstraints;
         SurfaceInputs.Instance.OnFingerUpdate += UpdateVolume;
+
+        audioEventListener = GameObject.Find("EventListener").GetComponent<EventListener>();
     }
 
     /// <summary>
@@ -144,6 +148,11 @@ public class VolumeControls : MonoBehaviour
                 {
                     float fill = AngleToFraction(angle);
                     SetVolumeSliderFill(volumeSliderInstances[objectId], fill);
+
+                    if (audioEventListener != null)
+                    {
+                        audioEventListener.trackVolumes[obj.tagValue] = fill;
+                    }
                 }
             }
         }
