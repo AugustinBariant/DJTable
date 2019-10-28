@@ -6,10 +6,14 @@ public class DistanceEffectsController : MonoBehaviour
 {
     public GameObject expoldingPrefab;
     private Dictionary<int, GameObject> distanceInstances;
+    private Dictionary<ObjectGroup, GameObject> effectInstances;
+
     private List<ObjectGroup> groupList;
 
     void Start()
     {
+        distanceInstances = new Dictionary<int, GameObject>();
+        effectInstances = new Dictionary<ObjectGroup, GameObject>();
 
         SurfaceInputs.Instance.OnObjectAdd += AddNewObjects;
         SurfaceInputs.Instance.OnObjectUpdate += UpdateObjects;
@@ -32,15 +36,18 @@ public class DistanceEffectsController : MonoBehaviour
                 {
                     if (distance < nearestDist)
                     {
-                        Debug.Log("Distance based effect on AddedObject");
+                        //Debug.Log("Distance based effect on AddedObject");
                         ObjectGroup currentGroup = checkGroup(addedObject, otherObject);
-
-                        Debug.Log(currentGroup);
                         GameObject instance = Instantiate(expoldingPrefab, GetCenter(currentGroup), Quaternion.identity);
+
                         //GameObject instance = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.position), Quaternion.identity);
-                        //Debug.Log("Object id:" + addedObject.id);
-                        // distanceInstances.Add(addedObject.tagValue, instance);
+                        Debug.Log("Object:" + addedObject.id + addedObject.position);
+
+                        //distanceInstances.Add(addedObject.tagValue, instance);
+                        effectInstances.Add(currentGroup, instance);
                     }
+                    else
+                        Destroy(gameObject);
                 }
             }
         }
@@ -48,22 +55,29 @@ public class DistanceEffectsController : MonoBehaviour
 
     ObjectGroup checkGroup(ObjectInput addedObject, ObjectInput otherObject)
     {
+        
+        //for each group in the group list
         foreach (ObjectGroup currentGroup in groupList)
         {
+            //for each object in the group
             foreach (ObjectInput currentObject in currentGroup.objectList)
             {
+                //if other object exists
                 if(otherObject.id == currentObject.id)
                 {
+                    //add the new object to the group
                     currentGroup.addObject(addedObject);
+
                     return currentGroup;
                 }
             }
         }
-
+        //otherwise create a new group for them
         ObjectGroup newGroup = new ObjectGroup();
         newGroup.addObject(addedObject);
         newGroup.addObject(otherObject);
         groupList.Add(newGroup);
+   
         return newGroup;
 
     }
@@ -96,26 +110,30 @@ public class DistanceEffectsController : MonoBehaviour
         }
     }
 
+
+
     private Vector3 GetCenter(ObjectGroup objectGroup)
     {
-        var bounds = Bounds(objectGroup.objectList[0].position, Vector3.zero);
+        float sumx = 0f;
+        float sumy = 0f;
+
         foreach (ObjectInput objectInput in objectGroup.objectList)
-       
-            bounds.Encapsulate(objectGroup.objectList[i].position);
-            
-       
-        return bounds.center;
-
-
-        //var sum = 0f;
-        //foreach(ObjectInput objectInput in objectGroup.objectList)
-        //{
-        //    sum += objectInput.position; 
-        //}
-        //var center = sum / objectGroup.Count;
-        //return center;
-
+        {
+            sumx += objectInput.position.x;
+            sumy += objectInput.position.y;
+        }
+        var centerx = sumx / 2;
+        var centery = sumy / 2;
+        Vector2 center = new Vector2(centerx, centery);
+        return center;
     }
+
+    //private Vector3 GetCenter(Vector3 a, Vector3 b)
+    //{
+    //    return (a + b) / 2;
+
+    //}
+
 }
 
 class ObjectGroup
