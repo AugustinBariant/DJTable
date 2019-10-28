@@ -39,6 +39,7 @@ public class DistanceEffectsController : MonoBehaviour
                         //Debug.Log("Distance based effect on AddedObject");
                         ObjectGroup currentGroup = checkGroup(addedObject, otherObject);
                         GameObject instance = Instantiate(expoldingPrefab, GetCenter(currentGroup), Quaternion.identity);
+                        Debug.Log("Distance based effect on AddedObject");
 
                         //GameObject instance = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.position), Quaternion.identity);
                         Debug.Log("Object:" + addedObject.id + addedObject.position);
@@ -122,8 +123,8 @@ public class DistanceEffectsController : MonoBehaviour
             sumx += objectInput.position.x;
             sumy += objectInput.position.y;
         }
-        var centerx = sumx / 2;
-        var centery = sumy / 2;
+        var centerx = sumx / objectGroup.objectList.Count;
+        var centery = sumy / objectGroup.objectList.Count;
         Vector2 center = new Vector2(centerx, centery);
         return center;
     }
