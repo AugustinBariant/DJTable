@@ -33,7 +33,7 @@ MonoBehaviour:
   - Platform: 1
     Value: 48000
   - Platform: 2
-    Value: 0
+    Value: 48000
   - Platform: 20
     Value: 0
   LiveUpdateSettings:
@@ -64,14 +64,14 @@ MonoBehaviour:
   - Platform: 1
     Value: 1024
   - Platform: 2
-    Value: 128
+    Value: 200
   - Platform: 20
     Value: 128
   RealChannelSettings:
   - Platform: 1
     Value: 256
   - Platform: 2
-    Value: 32
+    Value: 100
   - Platform: 20
     Value: 32
   Plugins: []

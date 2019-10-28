@@ -401,7 +401,6 @@ public class SurfaceInputs : MonoBehaviour
         {
             if (Input.GetKeyDown(key))
             {
-                Debug.Log("Pressed " + key);
                 instrumentFocus = instrumentKeys[key];
             }
         }
@@ -538,7 +537,7 @@ public class SurfaceInputs : MonoBehaviour
         }
         */
 
-        OnTouch(surfaceFingers, surfaceObjects);
+        //OnTouch(surfaceFingers, surfaceObjects);
     }
     Dictionary<KeyCode, int> InstantiateInstrumentKeys()
     {
