@@ -64,14 +64,14 @@ MonoBehaviour:
   - Platform: 1
     Value: 1024
   - Platform: 2
-    Value: 200
+    Value: 2048
   - Platform: 20
     Value: 128
   RealChannelSettings:
   - Platform: 1
     Value: 256
   - Platform: 2
-    Value: 100
+    Value: 256
   - Platform: 20
     Value: 32
   Plugins: []
