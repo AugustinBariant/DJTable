@@ -8,7 +8,7 @@ public class EventListener : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string selectEvent = "event:/Full Tracks";
+    public string selectEvent = "event:/Full tracks";
     public bool effectsOn = true;
     [Range(0.1f, 0.5f)]
     public float reverbXMax = 0.5f;
@@ -18,49 +18,85 @@ public class EventListener : MonoBehaviour
     public float distortionYMax = 0.5f;
     [Range(0.5f, 0.9f)]
     public float filterYMin = 0.5f;
-    private Dictionary<int, string> parameterNames;
 
-    private Dictionary<int, int> instrumentStates;
+    private Dictionary<int, ObjectInstrument> instrumentStates;
     private FMOD.Studio.EventInstance eventInstance;
     private FMOD.Studio.EventDescription eventDescription;
-    private bool isPlaying;
+    private int numberOfActiveObjects = 0;
 
 
     void Start()
     {
-        SurfaceInputs.Instance.OnTouch += OnTouchReceive;
+        //SurfaceInputs.Instance.OnTouch += OnTouchReceive;
+        SurfaceInputs.Instance.OnObjectAdd += OnObjectAddRedceive;
+        SurfaceInputs.Instance.OnObjectRemove += OnObjectRemoveReceive;
+        SurfaceInputs.Instance.OnObjectUpdate += OnObjectUpdateReceive;
+
         eventDescription = FMODUnity.RuntimeManager.GetEventDescription(selectEvent);
-        eventDescription.createInstance(out eventInstance);
         InstanciateDictionaries();
-        isPlaying = false;
+    }
+
+    private void OnObjectUpdateReceive(List<ObjectInput> objects)
+    {
+        foreach (ObjectInput tableObject in objects)
+        {
+            ObjectInstrument objectInstrument = instrumentStates[tableObject.tagValue];
+            UpdateTrackValue(tableObject.tagValue, tableObject);
+            UpdateAudioEffects(tableObject.tagValue, tableObject);
+        }
+    }
+
+    private void OnObjectRemoveReceive(List<ObjectInput> objects)
+    {
+        foreach (ObjectInput tableObject in objects)
+        {
+            ObjectInstrument objectInstrument = instrumentStates[tableObject.tagValue];
+            UpdateTrackValue(tableObject.tagValue, null);
+            numberOfActiveObjects -= 1;
+        }
+
+        if (numberOfActiveObjects == 0)
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    private void OnObjectAddRedceive(List<ObjectInput> objects)
+    {
+        if(numberOfActiveObjects == 0)
+        {
+            eventDescription.createInstance(out eventInstance);
+            eventInstance.start();
+        }
+        foreach(ObjectInput tableObject in objects)
+        {
+            UpdateTrackValue(tableObject.tagValue, tableObject);
+            UpdateAudioEffects(tableObject.tagValue, tableObject);
+            numberOfActiveObjects += 1;
+        }
+        
     }
 
 
     // Called to create the dictionnaries with the right values
     void InstanciateDictionaries()
     {
-        instrumentStates = new Dictionary<int, int>();
-        parameterNames = new Dictionary<int, string>();
-        parameterNames.Add(0, "Kick");
-        parameterNames.Add(1, "Snare");
-        parameterNames.Add(2, "Bass");
-        parameterNames.Add(3, "Hihat");
-        parameterNames.Add(4, "Percu");
-        parameterNames.Add(5, "Lead");
-        parameterNames.Add(6, "Strings");
-        parameterNames.Add(7, "Wind");
-        foreach (int i in parameterNames.Keys)
-        {
-            instrumentStates.Add(i, 0);
-        }
-
+        instrumentStates = new Dictionary<int, ObjectInstrument>();
+        instrumentStates.Add(0, new ObjectInstrument(0, "Kick"));
+        instrumentStates.Add(1, new ObjectInstrument(1, "Snare"));
+        instrumentStates.Add(2, new ObjectInstrument(2, "Bass"));
+        instrumentStates.Add(3, new ObjectInstrument(3, "Hihat"));
+        instrumentStates.Add(4, new ObjectInstrument(4, "Percu"));
+        instrumentStates.Add(5, new ObjectInstrument(5, "Lead"));
+        instrumentStates.Add(6, new ObjectInstrument(6, "Strings"));
+        instrumentStates.Add(7, new ObjectInstrument(7, "Wind"));
     }
     // Function called each frame when there is a touch
-    void OnTouchReceive(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
+    /*void OnTouchReceive(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
     {
         //Debug.ClearDeveloperConsole();
-        ObjectInput[] instrumentCurrentObjects = new ObjectInput[parameterNames.Count];
-        for (int i = 0; i < parameterNames.Count; i++)
+        ObjectInput[] instrumentCurrentObjects = new ObjectInput[instrumentStates.Count];
+        for (int i = 0; i < instrumentStates.Count; i++)
         {
             instrumentCurrentObjects[i] = null;
         }
@@ -72,20 +108,22 @@ public class EventListener : MonoBehaviour
             instrumentCurrentObjects[entry.Value.tagValue] = entry.Value;
 
         }
-        for (int i = 0; i < parameterNames.Count; i++)
+        for (int i = 0; i < instrumentStates.Count; i++)
         {
             //instrumentCurrentObjects[i] can be null
             UpdateTrackValue(i, instrumentCurrentObjects[i]);
-
+            
             if (effectsOn && instrumentCurrentObjects[i] != null)
             {
                 UpdateAudioEffects(i, instrumentCurrentObjects[i]);
+                Debug.Log("Audio Effect Updated");
             }
 
         }
 
 
     }
+    */
 
     private void UpdateAudioEffects(int parameterTag, ObjectInput objectInput)
     {
@@ -99,9 +137,9 @@ public class EventListener : MonoBehaviour
         float filterValue = y > filterYMin ? (y - filterYMin) / (1 - filterYMin) : 0;
 
         //Debug.Log(distortionValue);
-        eventInstance.setParameterByName("Distortion" + parameterNames[parameterTag], distortionValue);
-        
-        eventInstance.setParameterByName("Reverb" + parameterNames[parameterTag], reverbValue);
+        eventInstance.setParameterByName("Distortion" + instrumentStates[parameterTag].instrument, distortionValue);
+        eventInstance.setParameterByName("Reverb" + instrumentStates[parameterTag].instrument, reverbValue);
+        instrumentStates[parameterTag].UpdateEffects(reverbValue, flangerValue, filterValue, distortionValue);
         //eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
         //eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);
     }
@@ -121,46 +159,25 @@ public class EventListener : MonoBehaviour
     }
 
     // Update the corresponding parameter
-    private void UpdateTrackValue(int instrumentTag, ObjectInput instrumentObject)
+    private void UpdateTrackValue(int instrumentTag, ObjectInput instrumentTableObject)
     {
-        int trackValue = ComputeTrackValue(instrumentObject);
-        if (trackValue != instrumentStates[instrumentTag])
+        int trackValue = ComputeTrackValue(instrumentTableObject);
+        if (trackValue != instrumentStates[instrumentTag].trackValue)
         {
-            eventInstance.setParameterByName(parameterNames[instrumentTag], trackValue);
-            instrumentStates[instrumentTag] = trackValue;
+            eventInstance.setParameterByName(instrumentStates[instrumentTag].instrument, trackValue);
+            instrumentStates[instrumentTag].UpdateTrackValue(trackValue);
         }
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        TryStopEvent();
     }
 
-    // Called to stop event if no instrument is playing
-    void TryStopEvent()
-    {
-        if (isPlaying)
-        {
-            bool active = false;
-            foreach (int stateValue in instrumentStates.Values)
-            {
-                if (stateValue != 0)
-                {
-                    active = true;
-                    break;
-                }
-            }
-            if (!active)
-            {
-                eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                isPlaying = false;
-            }
-        }
-    }
 
     // Called to start event if the event is stopped and an instrument is playing
-    void TryStartEvent(Dictionary<int, ObjectInput> surfaceObjects)
+    /*void TryStartEvent(Dictionary<int, ObjectInput> surfaceObjects)
     {
         if (!isPlaying && surfaceObjects.Count > 0)
         {
@@ -169,4 +186,5 @@ public class EventListener : MonoBehaviour
             isPlaying = true;
         }
     }
+    */
 }
