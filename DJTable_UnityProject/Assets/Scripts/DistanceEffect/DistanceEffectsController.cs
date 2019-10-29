@@ -34,15 +34,17 @@ public class DistanceEffectsController : MonoBehaviour
 
                 if (addedObject.tagValue != otherObject.tagValue)
                 {
+                    Debug.Log("1st if-statement");
                     if (distance < nearestDist)
                     {
-                        //Debug.Log("Distance based effect on AddedObject");
+                        Debug.Log("2nd if-statement");
                         ObjectGroup currentGroup = checkGroup(addedObject, otherObject);
+                        Debug.Log("current group");
                         GameObject instance = Instantiate(expoldingPrefab, GetCenter(currentGroup), Quaternion.identity);
-                        Debug.Log("Distance based effect on AddedObject");
 
                         //GameObject instance = Instantiate(expoldingPrefab, GetCenter(addedObject.position, otherObject.position), Quaternion.identity);
                         Debug.Log("Object:" + addedObject.id + addedObject.position);
+
 
                         //distanceInstances.Add(addedObject.tagValue, instance);
                         effectInstances.Add(currentGroup, instance);
@@ -56,7 +58,6 @@ public class DistanceEffectsController : MonoBehaviour
 
     ObjectGroup checkGroup(ObjectInput addedObject, ObjectInput otherObject)
     {
-        
         //for each group in the group list
         foreach (ObjectGroup currentGroup in groupList)
         {
@@ -81,6 +82,22 @@ public class DistanceEffectsController : MonoBehaviour
    
         return newGroup;
 
+    }
+
+    private Vector2 GetCenter(ObjectGroup objectGroup)
+    {
+        var sumX = 0f;
+        var sumY = 0f;
+
+        foreach (ObjectInput objectInput in objectGroup.objectList)
+        {
+            sumX += objectInput.position.x;
+            sumY += objectInput.position.y;
+        }
+        var centerX = sumX / objectGroup.objectList.Count;
+        var centerY = sumY / objectGroup.objectList.Count;
+        Vector2 center = new Vector2(centerX, centerY);
+        return center;
     }
 
 
@@ -111,24 +128,6 @@ public class DistanceEffectsController : MonoBehaviour
         }
     }
 
-
-
-    private Vector3 GetCenter(ObjectGroup objectGroup)
-    {
-        float sumx = 0f;
-        float sumy = 0f;
-
-        foreach (ObjectInput objectInput in objectGroup.objectList)
-        {
-            sumx += objectInput.position.x;
-            sumy += objectInput.position.y;
-        }
-        var centerx = sumx / objectGroup.objectList.Count;
-        var centery = sumy / objectGroup.objectList.Count;
-        Vector2 center = new Vector2(centerx, centery);
-        return center;
-    }
-
     //private Vector3 GetCenter(Vector3 a, Vector3 b)
     //{
     //    return (a + b) / 2;
@@ -141,16 +140,25 @@ class ObjectGroup
 {
     GameObject effectInstance;
     public List<ObjectInput> objectList;
+    private Dictionary<ObjectInput, GameObject> distanceInstances;
 
     //Add an object into the list
     public void addObject(ObjectInput id)
     {
-        objectList.Add(id);
+       if(distanceInstances.TryGetValue(id, out effectInstance)){
+            objectList.Add(id);
+        }
+        //objectList.Add(id);
+
     }
     //Remove an object from the list
     public void removeObject(ObjectInput id)
     {
-        objectList.Remove(id);
+        //objectList.Remove(id);
+        if (distanceInstances.TryGetValue(id, out effectInstance))
+        {
+            objectList.Remove(id);
+        }
     }
 
 }
