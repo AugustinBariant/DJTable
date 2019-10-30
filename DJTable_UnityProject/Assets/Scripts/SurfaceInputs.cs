@@ -459,12 +459,12 @@ public class SurfaceInputs : MonoBehaviour
         {
             surfaceObjects.Add(0, new ObjectInput(0, 0, ComputeWorldPosition(0.4f, 0.3f), new Vector2(0.4f, 0.3f), rotations[0], new Vector2(0, 0), 0f, 0f, 0f));
             surfaceObjects.Add(1, new ObjectInput(1, 1, ComputeWorldPosition(0.6f, 0.25f), new Vector2(0.6f, 0.25f), rotations[1], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.6f), new Vector2(0.4f, 0.6f), rotations[2], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.2f, 0.3f), new Vector2(0.2f, 0.3f), rotations[3], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.3f, 0.7f), new Vector2(0.3f, 0.7f), rotations[4], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.8f, 0.25f), new Vector2(0.8f, 0.25f), rotations[5], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.5f, 0.8f), new Vector2(0.5f, 0.8f), rotations[6], new Vector2(0, 0), 0f, 0f, 0f));
-            // surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.4f, 0.9f), new Vector2(0.4f, 0.9f), rotations[7], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(2, new ObjectInput(2, 2, ComputeWorldPosition(0.4f, 0.6f), new Vector2(0.4f, 0.6f), rotations[2], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(3, new ObjectInput(3, 3, ComputeWorldPosition(0.2f, 0.3f), new Vector2(0.2f, 0.3f), rotations[3], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(4, new ObjectInput(4, 4, ComputeWorldPosition(0.3f, 0.7f), new Vector2(0.3f, 0.7f), rotations[4], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(5, new ObjectInput(5, 5, ComputeWorldPosition(0.8f, 0.25f), new Vector2(0.8f, 0.25f), rotations[5], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(6, new ObjectInput(6, 6, ComputeWorldPosition(0.5f, 0.8f), new Vector2(0.5f, 0.8f), rotations[6], new Vector2(0, 0), 0f, 0f, 0f));
+            surfaceObjects.Add(7, new ObjectInput(7, 7, ComputeWorldPosition(0.4f, 0.9f), new Vector2(0.4f, 0.9f), rotations[7], new Vector2(0, 0), 0f, 0f, 0f));
 
             List<ObjectInput> added = new List<ObjectInput>(surfaceObjects.Values);
             OnObjectAdd(added);

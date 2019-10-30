@@ -6,12 +6,14 @@ public class VolumeControls : MonoBehaviour
 {
 
     public GameObject volumeSliderPrefab;
+    public Color[] sliderColors = new Color[8];
 
     private Dictionary<int, int> controlledObjects;
     private Dictionary<int, int> fingersUsed;
 
     // Object id / prefab instance pair
     private Dictionary<int, GameObject> volumeSliderInstances;
+    private Dictionary<int, SpriteRenderer> fillRenderers;
 
     private EventListener audioEventListener;
 
@@ -21,6 +23,7 @@ public class VolumeControls : MonoBehaviour
         controlledObjects = new Dictionary<int, int>();
         fingersUsed = new Dictionary<int, int>();
         volumeSliderInstances = new Dictionary<int, GameObject>();
+        fillRenderers = new Dictionary<int, SpriteRenderer>();
 
         SurfaceInputs.Instance.OnObjectAdd += RenderNewVolumeSliders;
         SurfaceInputs.Instance.OnObjectUpdate += UpdateVolumeSliderPositions;
@@ -41,8 +44,18 @@ public class VolumeControls : MonoBehaviour
     {
         foreach (ObjectInput obj in addedObjects)
         {
+            Color color = sliderColors[obj.tagValue];
+
             GameObject volumeSliderInstance = Instantiate(volumeSliderPrefab, obj.position, Quaternion.identity);
+            GameObject contour = volumeSliderInstance.transform.GetChild(0).gameObject;
+            SpriteRenderer contourRenderer = contour.GetComponent<SpriteRenderer>();
+            SpriteRenderer fillRenderer = contour.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+
+            contourRenderer.color = color;
+            fillRenderer.color = color;
+
             volumeSliderInstances.Add(obj.id, volumeSliderInstance);
+            fillRenderers.Add(obj.id, fillRenderer);
         }
     }
 
@@ -75,6 +88,7 @@ public class VolumeControls : MonoBehaviour
             {
                 Destroy(instance);
                 volumeSliderInstances.Remove(obj.id);
+                fillRenderers.Remove(obj.id);
             }
         }
     }
@@ -131,6 +145,10 @@ public class VolumeControls : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the volume sliders when any finger currently controlling
+    /// some object's volume are moved
+    /// </summary>
     void UpdateVolume(List<FingerInput> updatedFingers)
     {
         foreach (FingerInput finger in updatedFingers)
@@ -152,6 +170,7 @@ public class VolumeControls : MonoBehaviour
                     if (audioEventListener != null)
                     {
                         audioEventListener.trackVolumes[obj.tagValue] = fill;
+                        fillRenderers[obj.id].color = Color.Lerp(Color.white, sliderColors[obj.tagValue], fill);
                     }
                 }
             }

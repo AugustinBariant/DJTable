@@ -313,6 +313,15 @@ MonoBehaviour:
   flangerXMin: 0.5
   distortionYMax: 0.252
   filterYMin: 0.5
+  trackVolumes:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
 --- !u!4 &705358778
 Transform:
   m_ObjectHideFlags: 0
@@ -552,6 +561,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSliderPrefab: {fileID: 1253185155306166807, guid: 8cef3d099519049dc8d49f062076c743,
     type: 3}
+  sliderColors:
+  - {r: 0.6903646, g: 0.24056602, b: 1, a: 1}
+  - {r: 0, g: 0.7058824, b: 1, a: 1}
+  - {r: 1, g: 0.990099, b: 0, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.0064935684, a: 1}
+  - {r: 1, g: 0, b: 0.8523488, a: 1}
+  - {r: 1, g: 0.59836286, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1444941693
 Transform:
   m_ObjectHideFlags: 0
