@@ -14,7 +14,6 @@ public class DistanceEffectsController : MonoBehaviour
 
     void Start()
     {
-
         SurfaceInputs.Instance.OnObjectAdd += AddNewObjects;
         SurfaceInputs.Instance.OnObjectUpdate += UpdateObjects;
         SurfaceInputs.Instance.OnObjectRemove += RemoveObjects;
@@ -38,10 +37,9 @@ public class DistanceEffectsController : MonoBehaviour
                     // recalculate and update group center point
                     Vector2 center = GetCenter(group);
                     // update position and size of the effect instance
-                    GameObject instance = Instantiate(expoldingPrefab, center, Quaternion.identity);
-
-                    //ObjectGroup objectGroup = new ObjectGroup(instance, objects, center);
-                    //groupList.Add(objectGroup);
+                    //GameObject instance;
+                    //instance.tansform.localScale = group.effectInstance;
+                    //ObjectGroup objectGroup = new ObjectGroup(group.effectInstance, group, center);
 
                     grouped = true;
                     break;
@@ -56,25 +54,21 @@ public class DistanceEffectsController : MonoBehaviour
             foreach (ObjectInput otherObject in singleObjects)
             {
                 float distance = Vector3.Distance(addedObject.position, otherObject.position);
-
-                if (addedObject.tagValue != otherObject.tagValue)
+                if (distance < nearestDist)
                 {
-                    if (distance < nearestDist)
-                    {
-                        Vector2 center = (addedObject.position + otherObject.position) / 2;
-                        GameObject instance = Instantiate(expoldingPrefab, center, Quaternion.identity);
+                    Vector2 center = (addedObject.position + otherObject.position) / 2;
+                    GameObject instance = Instantiate(expoldingPrefab, center, Quaternion.identity);
 
-                        List<ObjectInput> objects = new List<ObjectInput>();
-                        objects.Add(addedObject);
-                        objects.Add(otherObject);
-                        ObjectGroup objectGroup = new ObjectGroup(instance, objects, center);
-                        groupList.Add(objectGroup);
+                    List<ObjectInput> objects = new List<ObjectInput>();
+                    objects.Add(addedObject);
+                    objects.Add(otherObject);
+                    ObjectGroup objectGroup = new ObjectGroup(instance, objects, center);
+                    groupList.Add(objectGroup);
 
-                        singleObjects.Remove(otherObject);
+                    singleObjects.Remove(otherObject);
 
-                        grouped = true;
-                        break;
-                    }
+                    grouped = true;
+                    break;
                 }
             }
 
@@ -89,23 +83,107 @@ public class DistanceEffectsController : MonoBehaviour
 
     void UpdateObjects(List<ObjectInput> updatedObjects)
     {
+
         foreach (ObjectInput updatedObject in updatedObjects)
         {
-            //    instance.transform.localPosition = updatedObject.position;
+           //for each group that has been updated
+            foreach (ObjectGroup group in groupList)
+            {
+                if (group.objectList.Contains(updatedObject))
+                {
+                    //check the distance between the new object and the existing groups center
+                    float distance = Vector3.Distance(updatedObject.position, group.groupCenter);
+                    if (distance > nearestDist)
+                    {
+                        // Distance too big, so we remove the object from the group
+                        group.removeObject(updatedObject);
+                        if (group.objectList.Count < 2)
+                        {
+                            Destroy(group.effectInstance);
+                            groupList.Remove(group);
+                        }
 
+                        grouped = true;
+                        break;
+                    }
+                    Vector2 center = GetCenter(group);
+                    // rescale effect instance
+                    break;
+                }
+            }
+
+            if (grouped == true)
+            {
+                continue;
+            }
+
+            foreach (ObjectGroup otherGroup in groupList)
+            {
+                //check the distance between the new object and the existing groups center
+                float distance = Vector3.Distance(updatedObject.position, otherGroup.groupCenter);
+                if (distance < nearestDist)
+                {
+                    // add addedObject to group's object list
+                    otherGroup.addObject(updatedObject);
+                    // recalculate and update group center point
+                    Vector2 center = GetCenter(otherGroup);
+                    // update position and size of the effect instance
+
+                    grouped = true;
+                    break;
+                }
+            }
+
+            if (grouped == true)
+            {
+                continue;
+            }
+
+            foreach (ObjectInput otherObject in singleObjects)
+            {
+                float distance = Vector3.Distance(updatedObject.position, otherObject.position);
+                if (distance < nearestDist)
+                {
+                    Vector2 center = (updatedObject.position + otherObject.position) / 2;
+                    GameObject instance = Instantiate(expoldingPrefab, center, Quaternion.identity);
+
+                    List<ObjectInput> objects = new List<ObjectInput>();
+                    objects.Add(updatedObject);
+                    objects.Add(otherObject);
+                    ObjectGroup objectGroup = new ObjectGroup(instance, objects, center);
+                    groupList.Add(objectGroup);
+
+                    singleObjects.Remove(otherObject);
+
+                    grouped = true;
+                    break;
+                }
+            }
+
+            if (grouped == true)
+            {
+                continue;
+            }
+
+            singleObjects.Add(updatedObject);
         }
-    }
+     }
     void RemoveObjects(List<ObjectInput> removedObjects)
     {
         foreach (ObjectInput removedObject in removedObjects)
         {
-            GameObject instance;
-            //if (distanceInstances.TryGetValue(removedObject.tagValue, out instance))
-            //{
-            //    Destroy(instance);
-            //    distanceInstances.Remove(removedObject.tagValue);
-            //    Debug.Log("Distance based effect on RemovedObject");
-            //}
+            //for each group that has been updated
+            foreach (ObjectGroup group in groupList)
+            {
+                if (group.objectList.Contains(removedObject))
+                {
+                    if (group.objectList.Count < 2)
+                    {
+                        Destroy(group.effectInstance);
+                        groupList.Remove(group);
+                    }
+                }
+            }
         }
     }
 
@@ -123,44 +201,12 @@ public class DistanceEffectsController : MonoBehaviour
         var centerY = sumY / objectGroup.objectList.Count;
         Vector2 center = new Vector2(centerX, centerY);
         return center;
-    } 
-
-    //ObjectGroup checkGroup(ObjectInput addedObject, ObjectInput otherObject)
-    //{
-
-    //    //for each group in the group list
-    //    foreach (ObjectGroup currentGroup in groupList)
-    //    {
-    //        //for each object in the group
-    //        foreach (ObjectInput currentObject in currentGroup.objectList)
-    //        {
-    //            //if other object exists
-    //            if(otherObject.tagValue == currentObject.tagValue)
-    //            {
-    //                //add the new object to the group
-    //                currentGroup.addObject(addedObject);
-
-    //                return currentGroup;
-    //            }
-    //        }
-    //    }
-    //    //otherwise create a new group for them
-    //    ObjectGroup newGroup = new ObjectGroup();
-    //    newGroup.addObject(addedObject);
-    //    newGroup.addObject(otherObject);
-
-    //    groupList.Add(newGroup);
-
-    //    return newGroup;
-
-    //}
-
-
-}
+    }
+} 
 
 class ObjectGroup
 {
-    GameObject effectInstance;
+    public GameObject effectInstance;
     public List<ObjectInput> objectList;
     public Vector2 groupCenter;
     private Dictionary<ObjectInput, GameObject> distanceInstances;
