@@ -70,11 +70,12 @@ public class SurfaceInputs : MonoBehaviour
 
     private IPEndPoint remoteEndpoint;
 
-    // We are only interested in the last received packet, no need to queue them.
+    // We are only interested in the last received object/cursor packet, no need to queue them.
     // Shared between the UDP client thread and the main thread,
     // so we use a lock to avoid weird things happening when both try to 
     // access and modify it.
-    private OSCBundle lastPacket = null;
+    private OSCBundle lastObjectPacket = null;
+    private OSCBundle lastCursorPacket = null;
     private object packetLock = new object();
 
     private Camera mainCamera;
@@ -140,9 +141,26 @@ public class SurfaceInputs : MonoBehaviour
                 {
                     lock (packetLock)
                     {
+
+                        // We don't care if there are unprocessed packets already, 
+                        // we care about the latest object/cursor packet only.
+
                         OSCBundle packet = (OSCBundle)OSCPacket.Unpack(receivedBytes);
-                        // We don't care if there's an unprocessed packet already, we care about the latest only.
-                        lastPacket = packet;
+                        foreach (OSCMessage msg in packet.Values)
+                        {
+                            if (msg.Address.Equals("/tuio/2Dobj"))
+                            {
+                                // It's an object packet
+                                lastObjectPacket = packet;
+                                break;
+                            }
+                            else if (msg.Address.Equals("/tuio/2Dcur"))
+                            {
+                                // It's a cursor packet
+                                lastCursorPacket = packet;
+                                break;
+                            }
+                        }
                     }
                 }
 
@@ -359,33 +377,38 @@ public class SurfaceInputs : MonoBehaviour
             ProcessRemovalTimers();
 
             // If there's an unprocessed packet waiting, lock it and process
-            if (lastPacket != null)
+            if (lastObjectPacket != null || lastCursorPacket != null)
             {
                 lock (packetLock)
                 {
                     lastAddedObjects.Clear();
-                    //lastRemovedObjects.Clear();
+                    // lastRemovedObjects.Clear();
                     lastUpdatedObjects.Clear();
 
                     lastAddedFingers.Clear();
                     lastRemovedFingers.Clear();
                     lastUpdatedFingers.Clear();
 
-                    foreach (OSCMessage msg in lastPacket.Values)
+                    if (lastObjectPacket != null)
                     {
-                        if (msg.Address.Equals("/tuio/2Dobj"))
+                        foreach (OSCMessage msg in lastObjectPacket.Values)
                         {
                             ProcessObjectMessage(msg);
                         }
-                        else if (msg.Address.Equals("/tuio/2Dcur"))
+                        lastObjectPacket = null;
+                    }
+
+                    if (lastCursorPacket != null)
+                    {
+                        foreach (OSCMessage msg in lastCursorPacket.Values)
                         {
                             ProcessCursorMessage(msg);
                         }
-                        // there's also /tuio/2Dblb
-                        // but we don't really need it
-
+                        lastCursorPacket = null;
                     }
-                    lastPacket = null;
+
+                    // there's also /tuio/2Dblb
+                    // but we don't really need it
                 }
 
                 // Publish the events for added, removed and updated objects
@@ -395,7 +418,7 @@ public class SurfaceInputs : MonoBehaviour
 
                 OnFingerAdd(lastAddedFingers);
                 OnFingerRemove(lastRemovedFingers);
-                //OnFingerUpdate(lastUpdatedFingers);
+                OnFingerUpdate(lastUpdatedFingers);
 
                 lastRemovedObjects.Clear();
                 
