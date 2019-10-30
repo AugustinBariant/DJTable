@@ -51,8 +51,15 @@ public class VolumeControls : MonoBehaviour
             SpriteRenderer contourRenderer = contour.GetComponent<SpriteRenderer>();
             SpriteRenderer fillRenderer = contour.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
+            int sortingLayerID = SortingLayer.NameToID("Obj" + obj.tagValue);
+
             contourRenderer.color = color;
             fillRenderer.color = color;
+            fillRenderer.sortingLayerID = sortingLayerID;
+
+            SpriteMask fillMask = volumeSliderInstance.transform.GetChild(1).gameObject.GetComponent<SpriteMask>();
+            fillMask.isCustomRangeActive = true;
+            fillMask.frontSortingLayerID = sortingLayerID;
 
             volumeSliderInstances.Add(obj.id, volumeSliderInstance);
             fillRenderers.Add(obj.id, fillRenderer);
