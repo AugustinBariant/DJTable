@@ -41,6 +41,8 @@ public class DistanceEffectsController : MonoBehaviour
                     group.groupCenter = center;
                     //group.effectInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
+                    Debug.Log("Adding to existing group");
+
                     grouped = true;
                     break;
                 }
@@ -70,6 +72,7 @@ public class DistanceEffectsController : MonoBehaviour
 
                     grouped = true;
                     break;
+                    Debug.Log("Adding to a single object");
                 }
             }
 
@@ -109,6 +112,7 @@ public class DistanceEffectsController : MonoBehaviour
                     }
                     Vector2 center = GetCenter(group);
                     group.groupCenter = center;
+                    Debug.Log("Adding to single -updated");
                     // rescale effect instance
                     //group.effectInstance.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
 
@@ -133,6 +137,7 @@ public class DistanceEffectsController : MonoBehaviour
                     Vector2 center = GetCenter(otherGroup);
                     // update position and size of the effect instance
                     otherGroup.groupCenter = center;
+                    Debug.Log("updating to other group -updated");
 
                     grouped = true;
                     break;
@@ -149,6 +154,7 @@ public class DistanceEffectsController : MonoBehaviour
                 float distance = Vector3.Distance(updatedObject.position, otherObject.position);
                 if (distance < nearestDist)
                 {
+                   
                     Vector2 center = (updatedObject.position + otherObject.position) / 2;
                     GameObject instance = Instantiate(expoldingPrefab, center, Quaternion.identity);
 
@@ -159,6 +165,7 @@ public class DistanceEffectsController : MonoBehaviour
                     groupList.Add(objectGroup);
 
                     singleObjects.Remove(otherObject);
+                    Debug.Log("updating to single -updated");
 
                     grouped = true;
                     break;
