@@ -12,6 +12,7 @@ public class ObjectInstrument
     private float flangerValue;
     private float filterValue;
     private float distortionValue;
+    private float volume;
 
     public ObjectInstrument(int id, string instrument)
     {
@@ -22,6 +23,7 @@ public class ObjectInstrument
         this.flangerValue = 0;
         this.filterValue = 0;
         this.distortionValue = 0;
+        this.volume = 1;
 
     }
     public ObjectInstrument(int id, string instrument, int trackValue, float reverbValue, float flangerValue, float filterValue, float distortionValue)
@@ -33,7 +35,12 @@ public class ObjectInstrument
         this.flangerValue = flangerValue;
         this.filterValue = filterValue;
         this.distortionValue = distortionValue;
+        this.volume = 1;
 
+    }
+    public void UpdateVolume(float volume)
+    {
+        this.volume = volume;
     }
 
     public void UpdateTrackValue(int trackValue)
