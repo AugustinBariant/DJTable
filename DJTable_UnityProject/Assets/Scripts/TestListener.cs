@@ -7,7 +7,7 @@ public class TestListener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SurfaceInputs.Instance.OnTouch += OnTouchReceive;
+        // SurfaceInputs.Instance.OnTouch += OnTouchReceive;
     }
 
     void OnTouchReceive(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects) {

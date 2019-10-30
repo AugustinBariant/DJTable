@@ -158,7 +158,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  dummyMode: 1
+  dummyMode: 0
+  mouseTouchInput: 0
 --- !u!4 &432943770
 Transform:
   m_ObjectHideFlags: 0

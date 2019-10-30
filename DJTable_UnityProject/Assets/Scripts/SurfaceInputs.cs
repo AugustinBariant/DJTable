@@ -43,17 +43,6 @@ public class SurfaceInputs : MonoBehaviour
         }
     }
 
-    /**
-     * Deprecated
-     * remove this when no longer used.
-     * If the whole dicts of objects/fingers needed, use SurfaceInputs.Instance.surfaceObjects
-     * or SurfaceInputs.Instance.surfaceFingers respectively
-     */
-    public delegate void TouchReceiveHandler(
-        Dictionary<int, FingerInput> surfaceFingers,
-        Dictionary<int, ObjectInput> surfaceObjects);
-    public event TouchReceiveHandler OnTouch;
-
     // The class publishes events when some object changes happen on the surface
     public delegate void ObjectChangeHandler(List<ObjectInput> objects);
     public event ObjectChangeHandler OnObjectAdd;
@@ -398,8 +387,6 @@ public class SurfaceInputs : MonoBehaviour
                     }
                     lastPacket = null;
                 }
-                // Deprecated, remove when event no longer used
-                OnTouch(surfaceFingers, surfaceObjects);
 
                 // Publish the events for added, removed and updated objects
                 OnObjectAdd(lastAddedObjects);
@@ -417,8 +404,6 @@ public class SurfaceInputs : MonoBehaviour
             else if (lastRemovedObjects.Count > 0) {
                 OnObjectRemove(lastRemovedObjects);
                 lastRemovedObjects.Clear();
-                
-                OnTouch(surfaceFingers, surfaceObjects); // temp
             }
         }
     }
@@ -606,7 +591,6 @@ public class SurfaceInputs : MonoBehaviour
         }
         */
 
-        //OnTouch(surfaceFingers, surfaceObjects);
     }
     Dictionary<KeyCode, int> InstantiateInstrumentKeys()
     {
