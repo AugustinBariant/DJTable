@@ -19,6 +19,7 @@ public class DistanceEffectsController : MonoBehaviour
         SurfaceInputs.Instance.OnObjectRemove += RemoveObjects;
 
         singleObjects = new List<ObjectInput>(SurfaceInputs.Instance.surfaceObjects.Values);
+        groupList = new List<ObjectGroup>();
     }
 
     void AddNewObjects(List<ObjectInput> addedObjects)
@@ -49,6 +50,7 @@ public class DistanceEffectsController : MonoBehaviour
             {
                 continue;
             }
+
             //Instantiate an effect on a group of 2 single objects
             foreach (ObjectInput otherObject in singleObjects)
             {
@@ -223,8 +225,10 @@ public class DistanceEffectsController : MonoBehaviour
 class ObjectGroup
 {
     public GameObject effectInstance;
-    public List<ObjectInput> objectList;
+
     public Vector2 groupCenter;
+
+    public List<ObjectInput> objectList;
     private Dictionary<ObjectInput, GameObject> distanceInstances;
 
     //Constructor
