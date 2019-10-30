@@ -194,24 +194,18 @@ public class DistanceEffectsController : MonoBehaviour
             {
                 if (group.objectList.Contains(removedObject))
                 {
+                    group.removeObject(removedObject);
                     if (group.objectList.Count < 2)
                     {
                         Debug.Log("My friend is removed");
                         Destroy(group.effectInstance);
                         foreach (ObjectInput obj in group.objectList)
                         {
+                            group.removeObject(obj);
                             singleObjects.Add(obj);
                         }
                         groupList.Remove(group);
                         grouped = false;
-                    }
-                    else
-                    {
-                        group.removeObject(removedObject);
-                        // recalculate and update group center point
-                        Vector2 center = GetCenter(group);
-                        // update position and size of the effect instance
-                        group.groupCenter = center;
                     }
                 }
             }
