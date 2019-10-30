@@ -5,7 +5,7 @@
 			<value>VolumeKick</value>
 		</property>
 		<relationship name="folder">
-			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+			<destination>{495fbf3d-8195-4122-89da-33fb2f65c8a2}</destination>
 		</relationship>
 		<relationship name="parameter">
 			<destination>{c045f159-0305-4a68-a0af-30435111b3f9}</destination>
