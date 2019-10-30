@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{3a0403d9-d92f-4803-91f4-335d649b26f8}">
+		<property name="name">
+			<value>VolumeHihat</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f43bd57c-09c0-4ac9-baeb-ea6199cc2704}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f43bd57c-09c0-4ac9-baeb-ea6199cc2704}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

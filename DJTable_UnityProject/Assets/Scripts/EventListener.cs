@@ -177,9 +177,19 @@ public class EventListener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateVolume();
     }
 
-
+    private void UpdateVolume()
+    {
+        foreach(ObjectInstrument objectInstrument in instrumentStates.Values)
+        {
+            //line to change, put the right volume here
+            float volume = 1;
+            objectInstrument.UpdateVolume(volume);
+            eventInstance.setParameterByName("Volume" + objectInstrument.instrument , volume);
+        }
+    }
     // Called to start event if the event is stopped and an instrument is playing
     /*void TryStartEvent(Dictionary<int, ObjectInput> surfaceObjects)
     {

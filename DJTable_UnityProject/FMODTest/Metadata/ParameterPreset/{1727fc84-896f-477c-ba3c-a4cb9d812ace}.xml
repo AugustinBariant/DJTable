@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{1727fc84-896f-477c-ba3c-a4cb9d812ace}">
+		<property name="name">
+			<value>VolumeSnare</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{307f4081-723a-4ca6-95a9-ca7fd9d02a5c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{307f4081-723a-4ca6-95a9-ca7fd9d02a5c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{1031ca61-975b-473d-8bba-44aad1f0ca25}">
+		<property name="name">
+			<value>VolumeKick</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c045f159-0305-4a68-a0af-30435111b3f9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c045f159-0305-4a68-a0af-30435111b3f9}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
