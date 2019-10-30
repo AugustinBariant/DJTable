@@ -22,6 +22,7 @@ public class EventListener : MonoBehaviour
     // Individual volumes for all 8 tracks in [0,1] range
     // Changed from VolumeControls
     public float[] trackVolumes = new float[8]{1f,1f,1f,1f,1f,1f,1f,1f};
+    private float[] prevTrackVolumes = new float[8] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f };
 
     private Dictionary<int, ObjectInstrument> instrumentStates;
     private FMOD.Studio.EventInstance eventInstance;
@@ -74,6 +75,7 @@ public class EventListener : MonoBehaviour
         }
         foreach(ObjectInput tableObject in objects)
         {
+            prevTrackVolumes[tableObject.tagValue] = 0f;
             UpdateTrackValue(tableObject.tagValue, tableObject);
             UpdateAudioEffects(tableObject.tagValue, tableObject);
             numberOfActiveObjects += 1;
@@ -182,12 +184,16 @@ public class EventListener : MonoBehaviour
 
     private void UpdateVolume()
     {
-        foreach(ObjectInstrument objectInstrument in instrumentStates.Values)
+        for (int i = 0; i < trackVolumes.Length; i++)
         {
-            //line to change, put the right volume here
-            float volume = 1;
-            objectInstrument.UpdateVolume(volume);
-            eventInstance.setParameterByName("Volume" + objectInstrument.instrument , volume);
+            if (trackVolumes[i] != prevTrackVolumes[i])
+            {
+                Debug.Log("Updating track " + i);
+                ObjectInstrument objectInstrument = instrumentStates[i];
+                objectInstrument.UpdateVolume(trackVolumes[i]);
+                eventInstance.setParameterByName("Volume" + objectInstrument.instrument, trackVolumes[i]);
+                prevTrackVolumes[i] = trackVolumes[i];
+            }
         }
     }
     // Called to start event if the event is stopped and an instrument is playing
