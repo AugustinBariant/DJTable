@@ -139,9 +139,10 @@ public class EventListener : MonoBehaviour
         //Debug.Log(distortionValue);
         eventInstance.setParameterByName("Distortion" + instrumentStates[parameterTag].instrument, distortionValue);
         eventInstance.setParameterByName("Reverb" + instrumentStates[parameterTag].instrument, reverbValue);
+        
+        eventInstance.setParameterByName("Filter" + instrumentStates[parameterTag].instrument, filterValue);
+        eventInstance.setParameterByName("Flanger" + instrumentStates[parameterTag].instrument, flangerValue);
         instrumentStates[parameterTag].UpdateEffects(reverbValue, flangerValue, filterValue, distortionValue);
-        //eventInstance.setParameterByName("Filter" + parameterNames[parameterTag], filterValue);
-        //eventInstance.setParameterByName("Flanger" + parameterNames[parameterTag], flangerValue);
     }
 
     // This method compute the value of the track played of a specific instrument according to its position, to its rotation etc...
