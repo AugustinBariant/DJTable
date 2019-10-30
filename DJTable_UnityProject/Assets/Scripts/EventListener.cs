@@ -181,7 +181,9 @@ public class EventListener : MonoBehaviour
         foreach(ObjectInstrument objectInstrument in instrumentStates.Values)
         {
             //line to change, put the right volume here
-            objectInstrument.UpdateVolume(1);
+            float volume = 1;
+            objectInstrument.UpdateVolume(volume);
+            eventInstance.setParameterByName("Volume" + objectInstrument.instrument , volume);
         }
     }
     // Called to start event if the event is stopped and an instrument is playing
