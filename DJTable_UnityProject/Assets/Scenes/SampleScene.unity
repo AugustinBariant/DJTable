@@ -634,6 +634,8 @@ MonoBehaviour:
   - {r: 0.6698113, g: 0, b: 0, a: 0}
   dialPrefab: {fileID: 3476215782423924782, guid: a4541d3d7c01b52458d787165e74dafd,
     type: 3}
+  dialFullPrefab: {fileID: 176082630425096553, guid: 48487c4c189fdf44ebd0ace551e86547,
+    type: 3}
 --- !u!4 &2114290271
 Transform:
   m_ObjectHideFlags: 0

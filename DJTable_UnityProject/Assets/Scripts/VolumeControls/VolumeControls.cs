@@ -33,7 +33,36 @@ public class VolumeControls : MonoBehaviour
         SurfaceInputs.Instance.OnFingerRemove += FreeObjectConstraints;
         SurfaceInputs.Instance.OnFingerUpdate += UpdateVolume;
 
+        DistanceEffectsController.Instance.OnGroupingChange += HandleGroupingChanges;
+
         audioEventListener = GameObject.Find("EventListener").GetComponent<EventListener>();
+    }
+
+    void RenderSlider(ObjectInput obj)
+    {
+        Color color = sliderColors[obj.tagValue];
+
+        GameObject volumeSliderInstance = Instantiate(volumeSliderPrefab, obj.position, Quaternion.identity);
+        GameObject contour = volumeSliderInstance.transform.GetChild(0).gameObject;
+        SpriteRenderer contourRenderer = contour.GetComponent<SpriteRenderer>();
+        SpriteRenderer fillRenderer = contour.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+
+        int sortingLayerID = SortingLayer.NameToID("Obj" + obj.tagValue);
+
+        contourRenderer.color = color;
+        fillRenderer.color = color;
+        fillRenderer.sortingLayerID = sortingLayerID;
+        fillRenderer.sortingOrder = (obj.tagValue * 2) + 1;
+
+        SpriteMask fillMask = volumeSliderInstance.transform.GetChild(1).gameObject.GetComponent<SpriteMask>();
+        fillMask.isCustomRangeActive = true;
+        fillMask.frontSortingLayerID = sortingLayerID;
+        fillMask.frontSortingOrder = (obj.tagValue * 2) + 1;
+        fillMask.backSortingLayerID = sortingLayerID;
+        fillMask.backSortingOrder = obj.tagValue * 2;
+
+        volumeSliderInstances.Add(obj.id, volumeSliderInstance);
+        fillRenderers.Add(obj.id, fillRenderer);
     }
 
     /// <summary>
@@ -44,29 +73,13 @@ public class VolumeControls : MonoBehaviour
     {
         foreach (ObjectInput obj in addedObjects)
         {
-            Color color = sliderColors[obj.tagValue];
+            // Don't render for grouped objects
+            if (DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == true)
+            {
+                continue;
+            }
 
-            GameObject volumeSliderInstance = Instantiate(volumeSliderPrefab, obj.position, Quaternion.identity);
-            GameObject contour = volumeSliderInstance.transform.GetChild(0).gameObject;
-            SpriteRenderer contourRenderer = contour.GetComponent<SpriteRenderer>();
-            SpriteRenderer fillRenderer = contour.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
-
-            int sortingLayerID = SortingLayer.NameToID("Obj" + obj.tagValue);
-
-            contourRenderer.color = color;
-            fillRenderer.color = color;
-            fillRenderer.sortingLayerID = sortingLayerID;
-            fillRenderer.sortingOrder = (obj.tagValue * 2) + 1;
-
-            SpriteMask fillMask = volumeSliderInstance.transform.GetChild(1).gameObject.GetComponent<SpriteMask>();
-            fillMask.isCustomRangeActive = true;
-            fillMask.frontSortingLayerID = sortingLayerID;
-            fillMask.frontSortingOrder = (obj.tagValue * 2) + 1;
-            fillMask.backSortingLayerID = sortingLayerID;
-            fillMask.backSortingOrder = obj.tagValue * 2;
-
-            volumeSliderInstances.Add(obj.id, volumeSliderInstance);
-            fillRenderers.Add(obj.id, fillRenderer);
+            RenderSlider(obj);
         }
     }
 
@@ -101,6 +114,27 @@ public class VolumeControls : MonoBehaviour
                 volumeSliderInstances.Remove(obj.id);
                 fillRenderers.Remove(obj.id);
             }
+        }
+    }
+
+    /// <summary>
+    ///  Respond to grouping changes for objects. Destroy/show the volume sliders accordingly.
+    /// </summary>
+    void HandleGroupingChanges(List<ObjectInput> changedObjects)
+    {
+        foreach (ObjectInput obj in changedObjects)
+        {
+            GameObject instance;
+            if (volumeSliderInstances.TryGetValue(obj.id, out instance) && DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == true) {
+                Destroy(instance);
+                volumeSliderInstances.Remove(obj.id);
+                fillRenderers.Remove(obj.id);
+            }
+            else if (DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == false)
+            {
+                RenderSlider(obj);
+            }
+         
         }
     }
 

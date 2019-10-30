@@ -10,6 +10,7 @@ public class VisualEffectsController : MonoBehaviour
 
     public Color[] dialColors = new Color[8];
     public GameObject dialPrefab;
+    public GameObject dialFullPrefab;
 
     private Dictionary<int, GameObject> objectPrefabs;
     private Dictionary<int, GameObject> effectInstances;
@@ -35,6 +36,40 @@ public class VisualEffectsController : MonoBehaviour
         SurfaceInputs.Instance.OnObjectAdd += AddNewObjects;
         SurfaceInputs.Instance.OnObjectUpdate += UpdateObjects;
         SurfaceInputs.Instance.OnObjectRemove += RemoveObjects;
+
+        DistanceEffectsController.Instance.OnGroupingChange += HandleGroupingChanges;
+    }
+
+    void InstantiateDialForObject(ObjectInput obj)
+    {
+        int tagValue = obj.tagValue;
+        GameObject instance;
+        if (DistanceEffectsController.Instance.objectsGrouped[tagValue] == true)
+        {
+            instance = Instantiate(dialFullPrefab, obj.position, Quaternion.identity);
+        }
+        else
+        {
+            instance = Instantiate(dialPrefab, obj.position, Quaternion.identity);
+
+            Transform pointerTransform = instance.transform.GetChild(0);
+            pointerTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * obj.orientation);
+
+            Transform indicatorTransform = instance.transform.GetChild(1);
+            indicatorTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * halfPI * (int)(obj.orientation / halfPI));
+        }
+
+        ParticleSystem[] particles = instance.GetComponentsInChildren<ParticleSystem>();
+
+        Color color = dialColors[tagValue];
+        color.a = 0.36f;
+
+        foreach (ParticleSystem p in particles)
+        {
+            ParticleSystem.MainModule main = p.main;
+            main.startColor = color;
+        }
+        dialInstances.Add(tagValue, instance);
     }
 
     void AddNewObjects(List<ObjectInput> addedObjects)
@@ -52,25 +87,7 @@ public class VisualEffectsController : MonoBehaviour
 
             if (!dialInstances.ContainsKey(tagValue))
             {
-                GameObject instance = Instantiate(dialPrefab, addedObject.position, Quaternion.identity);
-                ParticleSystem[] particles = instance.GetComponentsInChildren<ParticleSystem>();
-
-                Color color = dialColors[tagValue];
-                color.a = 0.36f;
-
-                foreach (ParticleSystem p in particles)
-                {
-                    ParticleSystem.MainModule main = p.main;
-                    main.startColor = color;
-                }
-
-                Transform pointerTransform = instance.transform.GetChild(0);
-                pointerTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * addedObject.orientation);
-
-                Transform indicatorTransform = instance.transform.GetChild(1);
-                indicatorTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * halfPI * (int)(addedObject.orientation / halfPI));
-
-                dialInstances.Add(tagValue, instance);
+                InstantiateDialForObject(addedObject);
             }
         }
     }
@@ -90,11 +107,15 @@ public class VisualEffectsController : MonoBehaviour
             if (dialInstances.TryGetValue(updatedObject.tagValue, out instance))
             {
                 instance.transform.localPosition = updatedObject.position;
-                Transform pointerTransform = instance.transform.GetChild(0);
-                pointerTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * updatedObject.orientation);
 
-                Transform indicatorTransform = instance.transform.GetChild(1);
-                indicatorTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * halfPI * (int)(updatedObject.orientation / halfPI));
+                if (DistanceEffectsController.Instance.objectsGrouped[updatedObject.tagValue] == false)
+                {
+                    Transform pointerTransform = instance.transform.GetChild(0);
+                    pointerTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * updatedObject.orientation);
+
+                    Transform indicatorTransform = instance.transform.GetChild(1);
+                    indicatorTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * halfPI * (int)(updatedObject.orientation / halfPI));
+                }
             }
         }
     }
@@ -117,4 +138,19 @@ public class VisualEffectsController : MonoBehaviour
             }
         }
     }
+
+    void HandleGroupingChanges(List<ObjectInput> changedObjects)
+    {
+        foreach (ObjectInput obj in changedObjects)
+        {
+            GameObject instance;
+            if (dialInstances.TryGetValue(obj.tagValue, out instance))
+            {
+                Destroy(instance);
+                dialInstances.Remove(obj.tagValue);
+            }
+            InstantiateDialForObject(obj);
+        }
+    }
+
 }

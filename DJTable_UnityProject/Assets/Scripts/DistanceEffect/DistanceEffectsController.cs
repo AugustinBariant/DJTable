@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class DistanceEffectsController : MonoBehaviour
 {
+    private static DistanceEffectsController _instance;
+    public static DistanceEffectsController Instance { get { return _instance; } }
+
     public GameObject expoldingPrefab;
 
     private List<ObjectInput> singleObjects;
     private List<ObjectGroup> groupList;
+
+    // Bool flags for fast checks to see if an object is grouped
+    public bool[] objectsGrouped { get; private set; }
+
+    // Event used to notify other controllers that some objects have become (un)grouped
+    public delegate void GroupingStatusHandler(List<ObjectInput> objects);
+    public event GroupingStatusHandler OnGroupingChange;
+
     const float SINGLE_DIST = 3f;
     const float GROUP_DIST = 1.5f;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     void Start()
     {
@@ -19,11 +42,14 @@ public class DistanceEffectsController : MonoBehaviour
 
         singleObjects = new List<ObjectInput>(SurfaceInputs.Instance.surfaceObjects.Values);
         groupList = new List<ObjectGroup>();
+        objectsGrouped = new bool[8] { false, false, false, false, false, false, false, false };
 
     }
 
     void AddNewObjects(List<ObjectInput> addedObjects)
     {
+        List<ObjectInput> changedObjects = new List<ObjectInput>();
+
         foreach (ObjectInput addedObject in addedObjects)
         {
             bool grouped = false; 
@@ -42,6 +68,9 @@ public class DistanceEffectsController : MonoBehaviour
                     // update position and size of the effect instance
                     group.groupCenter = center;
                     grouped = true;
+
+                    objectsGrouped[addedObject.tagValue] = true;
+                    changedObjects.Add(addedObject);
                     break;
                 }
             }
@@ -68,6 +97,11 @@ public class DistanceEffectsController : MonoBehaviour
 
                     singleObjects.Remove(otherObject);
 
+                    objectsGrouped[addedObject.tagValue] = true;
+                    objectsGrouped[otherObject.tagValue] = true;
+                    changedObjects.Add(addedObject);
+                    changedObjects.Add(otherObject);
+
                     grouped = true;
                     break;
                 }
@@ -80,10 +114,16 @@ public class DistanceEffectsController : MonoBehaviour
             //add to the single object list if none of the statement matches
             singleObjects.Add(addedObject);
         }
+
+        if (OnGroupingChange != null && changedObjects.Count > 0)
+        {
+            OnGroupingChange(changedObjects);
+        }
     }
 
     void UpdateObjects(List<ObjectInput> updatedObjects)
     {
+        List<ObjectInput> changedObjects = new List<ObjectInput>();
 
         foreach (ObjectInput updatedObject in updatedObjects)
         {
@@ -100,12 +140,17 @@ public class DistanceEffectsController : MonoBehaviour
                     {
                         // Distance too big, so we remove the object from the group
                         group.removeObject(updatedObject);
+                        objectsGrouped[updatedObject.tagValue] = false;
+                        changedObjects.Add(updatedObject);
+
                         if (group.objectList.Count < 2)
                         {
                             DestroyEffectInstance(group.effectInstance);
                             foreach (ObjectInput obj in group.objectList)
                             {
                                 singleObjects.Add(obj);
+                                objectsGrouped[obj.tagValue] = false;
+                                changedObjects.Add(obj);
                             }
                             groupList.Remove(group);
                             grouped = false;
@@ -140,6 +185,8 @@ public class DistanceEffectsController : MonoBehaviour
                     otherGroup.effectInstance.transform.position = center;
 
                     grouped = true;
+                    changedObjects.Add(updatedObject);
+                    objectsGrouped[updatedObject.tagValue] = true;
                     singleObjects.Remove(updatedObject);
                     break;
                 }
@@ -171,6 +218,11 @@ public class DistanceEffectsController : MonoBehaviour
                     singleObjects.Remove(otherObject);
                     singleObjects.Remove(updatedObject);
 
+                    changedObjects.Add(updatedObject);
+                    changedObjects.Add(otherObject);
+                    objectsGrouped[updatedObject.tagValue] = true;
+                    objectsGrouped[otherObject.tagValue] = true;
+
                     grouped = true;
                     break;
                 }
@@ -186,7 +238,13 @@ public class DistanceEffectsController : MonoBehaviour
                 singleObjects.Add(updatedObject);
             }
         }
-     }
+
+        if (OnGroupingChange != null && changedObjects.Count > 0)
+        {
+            OnGroupingChange(changedObjects);
+        }
+    }
+
     void RemoveObjects(List<ObjectInput> removedObjects)
     {
         foreach (ObjectInput removedObject in removedObjects)
@@ -203,6 +261,7 @@ public class DistanceEffectsController : MonoBehaviour
                         {
                             group.removeObject(obj);
                             singleObjects.Add(obj);
+                            objectsGrouped[obj.tagValue] = false;
                         }
                         groupList.Remove(group);
                     }
@@ -212,6 +271,7 @@ public class DistanceEffectsController : MonoBehaviour
                     group.effectInstance.transform.position = center;
                 }
             }
+            objectsGrouped[removedObject.tagValue] = false;
             singleObjects.Remove(removedObject);
         }
     }
@@ -278,7 +338,6 @@ class ObjectGroup
     public Vector2 groupCenter;
 
     public List<ObjectInput> objectList;
-    private Dictionary<ObjectInput, GameObject> distanceInstances;
 
     //Constructor
     public ObjectGroup(GameObject effectInstance, List<ObjectInput> objectList, Vector2 center)
