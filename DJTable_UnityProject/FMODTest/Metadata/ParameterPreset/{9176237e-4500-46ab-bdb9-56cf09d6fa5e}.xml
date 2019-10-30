@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{9176237e-4500-46ab-bdb9-56cf09d6fa5e}">
+		<property name="name">
+			<value>VolumePercu</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6068db85-2234-4c6d-bc24-acf5bca2b849}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7f197535-d2c1-4067-9c44-53949e4ca444}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7f197535-d2c1-4067-9c44-53949e4ca444}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
