@@ -361,6 +361,11 @@ public class SurfaceInputs : MonoBehaviour
             HandleMouseInput();
         }
 
+        if (dummyMode)
+        {
+            sendDummyData();
+        }
+
         // Manually limit input updates to at most 20fps
         lastUpdate += Time.deltaTime;
         if (lastUpdate < 0.05f) {
@@ -368,11 +373,7 @@ public class SurfaceInputs : MonoBehaviour
         }
         lastUpdate = 0;
 
-        if (dummyMode)
-        {
-            sendDummyData();
-        }
-        else
+        if (!dummyMode)
         {
             ProcessRemovalTimers();
 
