@@ -37,9 +37,8 @@ public class DistanceEffectsController : MonoBehaviour
                     // recalculate and update group center point
                     Vector2 center = GetCenter(group);
                     // update position and size of the effect instance
-                    //GameObject instance;
-                    //instance.tansform.localScale = group.effectInstance;
-                    //ObjectGroup objectGroup = new ObjectGroup(group.effectInstance, group, center);
+                    group.groupCenter = center;
+                    //group.effectInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
                     grouped = true;
                     break;
@@ -107,7 +106,10 @@ public class DistanceEffectsController : MonoBehaviour
                         break;
                     }
                     Vector2 center = GetCenter(group);
+                    group.groupCenter = center;
                     // rescale effect instance
+                    //group.effectInstance.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+
                     break;
                 }
             }
@@ -128,6 +130,7 @@ public class DistanceEffectsController : MonoBehaviour
                     // recalculate and update group center point
                     Vector2 center = GetCenter(otherGroup);
                     // update position and size of the effect instance
+                    otherGroup.groupCenter = center;
 
                     grouped = true;
                     break;
@@ -182,6 +185,15 @@ public class DistanceEffectsController : MonoBehaviour
                         Destroy(group.effectInstance);
                         groupList.Remove(group);
                     }
+                    else
+                    {
+                        group.removeObject(removedObject);
+                        // recalculate and update group center point
+                        Vector2 center = GetCenter(group);
+                        // update position and size of the effect instance
+                        group.groupCenter = center;
+                       // group.effectInstance.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                    }
                 }
             }
         }
@@ -202,6 +214,10 @@ public class DistanceEffectsController : MonoBehaviour
         Vector2 center = new Vector2(centerX, centerY);
         return center;
     }
+    //private Vector2 Scale(List<ObjectGroup> groups)
+    //{
+    //    foreach(ObjectGroup )
+    //}
 } 
 
 class ObjectGroup
@@ -223,12 +239,10 @@ class ObjectGroup
     public void addObject(ObjectInput id)
     {
         objectList.Add(id);
-
     }
     //Remove an object from the list
     public void removeObject(ObjectInput id)
     {
         objectList.Remove(id);
     }
-
 }
