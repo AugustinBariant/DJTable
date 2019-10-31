@@ -83,6 +83,11 @@ public class DistanceEffectsController : MonoBehaviour
             //Instantiate an effect on a group of 2 single objects
             foreach (ObjectInput otherObject in singleObjects)
             {
+                if (addedObject.id == otherObject.id)
+                {
+                    continue;
+                }
+
                 float distance = Vector2.Distance(addedObject.position, otherObject.position);
                 if (distance < SINGLE_DIST)
                 {

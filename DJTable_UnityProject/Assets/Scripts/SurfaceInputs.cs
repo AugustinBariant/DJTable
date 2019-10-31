@@ -87,7 +87,7 @@ public class SurfaceInputs : MonoBehaviour
         surfaceFingers = new Dictionary<int, FingerInput>();
         surfaceObjects = new Dictionary<int, ObjectInput>();
 
-        removalTimes = new Dictionary<int, float>();
+        // removalTimes = new Dictionary<int, float>();
 
         lastAddedObjects = new List<ObjectInput>();
         lastRemovedObjects = new List<ObjectInput>();
@@ -273,11 +273,16 @@ public class SurfaceInputs : MonoBehaviour
                     List<int> ids = new List<int>(surfaceObjects.Keys);
                     foreach (int id in ids)
                     {
-                        if (!msg.Values.Contains(id) && !removalTimes.ContainsKey(id))
+                        // if (!msg.Values.Contains(id) && !removalTimes.ContainsKey(id))
+                        // {
+                        //     removalTimes.Add(id, Time.time);
+                        //     // lastRemovedObjects.Add(surfaceObjects[id]);
+                        //     // surfaceObjects.Remove(id);
+                        // }
+                        if (!msg.Values.Contains(id))
                         {
-                            removalTimes.Add(id, Time.time);
-                            // lastRemovedObjects.Add(surfaceObjects[id]);
-                            // surfaceObjects.Remove(id);
+                            lastRemovedObjects.Add(surfaceObjects[id]);
+                            surfaceObjects.Remove(id);
                         }
                     }
                     break;
@@ -317,9 +322,9 @@ public class SurfaceInputs : MonoBehaviour
                             lastUpdatedObjects.Add(surfaceObject);
                         }
 
-                        if (removalTimes.ContainsKey(id)) {
-                            removalTimes.Remove(id);
-                        }
+                        // if (removalTimes.ContainsKey(id)) {
+                        //     removalTimes.Remove(id);
+                        // }
                     }
                     else
                     {
@@ -375,7 +380,7 @@ public class SurfaceInputs : MonoBehaviour
 
         if (!dummyMode)
         {
-            ProcessRemovalTimers();
+            // ProcessRemovalTimers();
 
             // If there's an unprocessed packet waiting, lock it and process
             if (lastObjectPacket != null || lastCursorPacket != null)
@@ -383,7 +388,7 @@ public class SurfaceInputs : MonoBehaviour
                 lock (packetLock)
                 {
                     lastAddedObjects.Clear();
-                    // lastRemovedObjects.Clear();
+                    lastRemovedObjects.Clear();
                     lastUpdatedObjects.Clear();
 
                     lastAddedFingers.Clear();
@@ -421,7 +426,7 @@ public class SurfaceInputs : MonoBehaviour
                 OnFingerRemove(lastRemovedFingers);
                 OnFingerUpdate(lastUpdatedFingers);
 
-                lastRemovedObjects.Clear();
+                // lastRemovedObjects.Clear();
                 
                 // LogState();
             }
