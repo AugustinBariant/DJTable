@@ -130,12 +130,12 @@ public class EventListener : MonoBehaviour
         instrumentStates = new Dictionary<int, ObjectInstrument>();
         instrumentStates.Add(0, new ObjectInstrument(0, "Kick"));
         instrumentStates.Add(1, new ObjectInstrument(1, "Snare"));
-        instrumentStates.Add(2, new ObjectInstrument(2, "Bass"));
-        instrumentStates.Add(3, new ObjectInstrument(3, "Hihat"));
-        instrumentStates.Add(4, new ObjectInstrument(4, "Percu"));
-        instrumentStates.Add(5, new ObjectInstrument(5, "Lead"));
-        instrumentStates.Add(6, new ObjectInstrument(6, "Strings"));
-        instrumentStates.Add(7, new ObjectInstrument(7, "Wind"));
+        instrumentStates.Add(4, new ObjectInstrument(4, "Bass"));
+        instrumentStates.Add(3, new ObjectInstrument(3, "Percu"));
+        instrumentStates.Add(2, new ObjectInstrument(2, "Hihat"));
+        instrumentStates.Add(7, new ObjectInstrument(7, "Lead"));
+        instrumentStates.Add(5, new ObjectInstrument(5, "Strings"));
+        instrumentStates.Add(6, new ObjectInstrument(6, "Wind"));
     }
     // Function called each frame when there is a touch
     /*void OnTouchReceive(Dictionary<int, FingerInput> surfaceFingers, Dictionary<int, ObjectInput> surfaceObjects)
