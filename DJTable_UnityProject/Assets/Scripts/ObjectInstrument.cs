@@ -9,12 +9,12 @@ public class ObjectInstrument
     // track 0 is inactive
     public int trackValue { get; private set; }
     // isTriggered is true if the object is close to another object. In that case track 5 is active.
-    public bool isTriggered; 
+    public bool isTriggered { get; private set; } 
     private float reverbValue;
     private float flangerValue;
     private float filterValue;
     private float distortionValue;
-    private float volume;
+    public float volume { get; private set; }
 
     public ObjectInstrument(int id, string instrument)
     {
@@ -47,7 +47,7 @@ public class ObjectInstrument
         this.isTriggered = true;
     }
 
-    public void unTrigger()
+    public void UnTrigger()
     {
         this.isTriggered = false;
     }

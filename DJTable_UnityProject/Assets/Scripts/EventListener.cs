@@ -33,9 +33,10 @@ public class EventListener : MonoBehaviour
     void Start()
     {
         //SurfaceInputs.Instance.OnTouch += OnTouchReceive;
-        SurfaceInputs.Instance.OnObjectAdd += OnObjectAddRedceive;
+        SurfaceInputs.Instance.OnObjectAdd += OnObjectAddReceive;
         SurfaceInputs.Instance.OnObjectRemove += OnObjectRemoveReceive;
         SurfaceInputs.Instance.OnObjectUpdate += OnObjectUpdateReceive;
+        DistanceEffectsController.Instance.OnGroupingChange += HandleGroupingChanges;
 
         eventDescription = FMODUnity.RuntimeManager.GetEventDescription(selectEvent);
         InstanciateDictionaries();
@@ -46,7 +47,10 @@ public class EventListener : MonoBehaviour
         foreach (ObjectInput tableObject in objects)
         {
             ObjectInstrument objectInstrument = instrumentStates[tableObject.tagValue];
-            UpdateTrackValue(tableObject.tagValue, tableObject);
+            if (!objectInstrument.isTriggered)
+            {
+                UpdateTrackValue(tableObject.tagValue, tableObject);
+            }
             UpdateAudioEffects(tableObject.tagValue, tableObject);
         }
     }
@@ -66,8 +70,9 @@ public class EventListener : MonoBehaviour
         }
     }
 
-    private void OnObjectAddRedceive(List<ObjectInput> objects)
+    private void OnObjectAddReceive(List<ObjectInput> objects)
     {
+
         if(numberOfActiveObjects == 0)
         {
             eventDescription.createInstance(out eventInstance);
@@ -76,16 +81,51 @@ public class EventListener : MonoBehaviour
         foreach(ObjectInput tableObject in objects)
         {
             prevTrackVolumes[tableObject.tagValue] = 0f;
-            UpdateTrackValue(tableObject.tagValue, tableObject);
+            Debug.Log(instrumentStates[tableObject.tagValue].isTriggered);
+            if (!instrumentStates[tableObject.tagValue].isTriggered)
+            {
+                UpdateTrackValue(tableObject.tagValue, tableObject);
+            }
             UpdateAudioEffects(tableObject.tagValue, tableObject);
             numberOfActiveObjects += 1;
         }
         
     }
 
+ 
 
-    // Called to create the dictionnaries with the right values
-    void InstanciateDictionaries()
+    void HandleGroupingChanges(List<ObjectInput> changedObjects)
+    {
+        foreach(ObjectInput changedObject in changedObjects)
+        {
+            ObjectInstrument objectInstrument = instrumentStates[changedObject.tagValue];
+            if (DistanceEffectsController.Instance.objectsGrouped[objectInstrument.id] == true)
+            {
+                if (!objectInstrument.isTriggered)
+                {
+                    objectInstrument.Trigger();
+                    eventInstance.setParameterByName("Volume" + objectInstrument.instrument, 1);
+                    eventInstance.setParameterByName(objectInstrument.instrument, 5);
+                    // if this instrument is changed, we should try to change all other instruments
+
+                }
+            }
+            else
+            {
+                if (objectInstrument.isTriggered)
+                {
+                    objectInstrument.UnTrigger();
+                    eventInstance.setParameterByName("Volume" + objectInstrument.instrument, objectInstrument.volume);
+                    eventInstance.setParameterByName(objectInstrument.instrument, objectInstrument.trackValue);
+                }
+            }
+        }
+    }
+
+
+
+     // Called to create the dictionnaries with the right values
+     void InstanciateDictionaries()
     {
         instrumentStates = new Dictionary<int, ObjectInstrument>();
         instrumentStates.Add(0, new ObjectInstrument(0, "Kick"));
@@ -173,6 +213,8 @@ public class EventListener : MonoBehaviour
         {
             eventInstance.setParameterByName(instrumentStates[instrumentTag].instrument, trackValue);
             instrumentStates[instrumentTag].UpdateTrackValue(trackValue);
+            // This following line is only for the object creation. As the check whether instr.isTriggered is not done, we untrigger it here in case it spawns near another fiducial
+            instrumentStates[instrumentTag].UnTrigger();
         }
     }
 
