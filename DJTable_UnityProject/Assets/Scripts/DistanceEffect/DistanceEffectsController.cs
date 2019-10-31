@@ -19,8 +19,8 @@ public class DistanceEffectsController : MonoBehaviour
     public delegate void GroupingStatusHandler(List<ObjectInput> objects);
     public event GroupingStatusHandler OnGroupingChange;
 
-    const float SINGLE_DIST = 3f;
-    const float GROUP_DIST = 1.5f;
+    const float SINGLE_DIST = 2f;
+    const float GROUP_DIST = 1f;
 
     private void Awake()
     {
