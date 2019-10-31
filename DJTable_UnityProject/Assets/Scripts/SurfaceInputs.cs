@@ -23,6 +23,9 @@ public class SurfaceInputs : MonoBehaviour
     public Dictionary<int, FingerInput> surfaceFingers { get; private set; }
     public Dictionary<int, ObjectInput> surfaceObjects { get; private set; }
 
+    // tagValue to current ID mapping
+    public Dictionary<int, int> objectInstances { get; private set; } 
+
     //All this variables are for the dummy mode. In that case, one can control the object with numbers "1" to "8" on the keyboard.
     public bool dummyMode = false;
     public bool mouseTouchInput = false;
@@ -86,6 +89,8 @@ public class SurfaceInputs : MonoBehaviour
     {
         surfaceFingers = new Dictionary<int, FingerInput>();
         surfaceObjects = new Dictionary<int, ObjectInput>();
+
+        objectInstances = new Dictionary<int, int>();
 
         // removalTimes = new Dictionary<int, float>();
 
@@ -281,6 +286,8 @@ public class SurfaceInputs : MonoBehaviour
                         // }
                         if (!msg.Values.Contains(id))
                         {
+                            Debug.Log("REMOVING OBJECT " + surfaceObjects[id].tagValue);
+                            objectInstances.Remove(surfaceObjects[id].tagValue);
                             lastRemovedObjects.Add(surfaceObjects[id]);
                             surfaceObjects.Remove(id);
                         }
@@ -332,6 +339,14 @@ public class SurfaceInputs : MonoBehaviour
                         surfaceObject = new ObjectInput(id, tagValue, position, posRelative, orientation, velocity, acc, angularVel, angularAcc);
                         surfaceObjects.Add(id, surfaceObject);
                         lastAddedObjects.Add(surfaceObject);
+
+                        int existingId;
+                        if (objectInstances.TryGetValue(tagValue, out existingId))
+                        {
+                            surfaceObjects.Remove(existingId);
+                            objectInstances.Remove(tagValue);
+                        }
+                        objectInstances.Add(tagValue, id);
                     }
                     break;
                 }
@@ -372,11 +387,11 @@ public class SurfaceInputs : MonoBehaviour
         }
 
         // Manually limit input updates to at most 20fps
-        lastUpdate += Time.deltaTime;
-        if (lastUpdate < 0.05f) {
-            return;
-        }
-        lastUpdate = 0;
+        //lastUpdate += Time.deltaTime;
+        //if (lastUpdate < 0.05f) {
+        //    return;
+        //}
+        //lastUpdate = 0;
 
         if (!dummyMode)
         {

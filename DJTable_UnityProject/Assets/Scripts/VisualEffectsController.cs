@@ -16,6 +16,8 @@ public class VisualEffectsController : MonoBehaviour
     private Dictionary<int, GameObject> effectInstances;
     private Dictionary<int, GameObject> dialInstances;
 
+    private float lastUpdate = 0;
+
     private const float halfPI = Mathf.PI / 2f;
 
     // Start is called before the first frame update
@@ -150,6 +152,25 @@ public class VisualEffectsController : MonoBehaviour
                 dialInstances.Remove(obj.tagValue);
             }
             InstantiateDialForObject(obj);
+        }
+    }
+
+    void Update()
+    {
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate < 0.1f)
+        {
+            return;
+        }
+        lastUpdate = 0;
+        foreach (KeyValuePair<int, GameObject> entry in dialInstances)
+        {
+            if (!SurfaceInputs.Instance.objectInstances.ContainsKey(entry.Key))
+            {
+                Debug.Log("CLEANUP: REMOVED TRACK DIAL");
+                Destroy(entry.Value);
+                dialInstances.Remove(entry.Key);
+            }
         }
     }
 

@@ -11,11 +11,13 @@ public class VolumeControls : MonoBehaviour
     private Dictionary<int, int> controlledObjects;
     private Dictionary<int, int> fingersUsed;
 
-    // Object id / prefab instance pair
+    // Object tag / prefab instance pair
     private Dictionary<int, GameObject> volumeSliderInstances;
     private Dictionary<int, SpriteRenderer> fillRenderers;
 
     private EventListener audioEventListener;
+
+    private float lastUpdate = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -62,8 +64,8 @@ public class VolumeControls : MonoBehaviour
         fillMask.backSortingOrder = obj.tagValue * 2;
 
         SetVolumeSliderFill(volumeSliderInstance, audioEventListener.trackVolumes[obj.tagValue]);
-        volumeSliderInstances.Add(obj.id, volumeSliderInstance);
-        fillRenderers.Add(obj.id, fillRenderer);
+        volumeSliderInstances.Add(obj.tagValue, volumeSliderInstance);
+        fillRenderers.Add(obj.tagValue, fillRenderer);
     }
 
     /// <summary>
@@ -93,7 +95,7 @@ public class VolumeControls : MonoBehaviour
         foreach (ObjectInput obj in updatedObjects)
         {
             GameObject instance;
-            if (volumeSliderInstances.TryGetValue(obj.id, out instance))
+            if (volumeSliderInstances.TryGetValue(obj.tagValue, out instance))
             {
                 instance.transform.position = obj.position;
             }
@@ -108,12 +110,14 @@ public class VolumeControls : MonoBehaviour
     {
         foreach (ObjectInput obj in removedObjects)
         {
+            Debug.Log("FINDING VOLUME SLIDER INSTANCE FOR OBJECT " + obj.tagValue);
             GameObject instance;
-            if (volumeSliderInstances.TryGetValue(obj.id, out instance))
+            if (volumeSliderInstances.TryGetValue(obj.tagValue, out instance))
             {
+                Debug.Log("REMOVING INSTANCE FOR " + obj.tagValue);
                 Destroy(instance);
-                volumeSliderInstances.Remove(obj.id);
-                fillRenderers.Remove(obj.id);
+                volumeSliderInstances.Remove(obj.tagValue);
+                fillRenderers.Remove(obj.tagValue);
             }
         }
     }
@@ -126,10 +130,10 @@ public class VolumeControls : MonoBehaviour
         foreach (ObjectInput obj in changedObjects)
         {
             GameObject instance;
-            if (volumeSliderInstances.TryGetValue(obj.id, out instance) && DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == true) {
+            if (volumeSliderInstances.TryGetValue(obj.tagValue, out instance) && DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == true) {
                 Destroy(instance);
-                volumeSliderInstances.Remove(obj.id);
-                fillRenderers.Remove(obj.id);
+                volumeSliderInstances.Remove(obj.tagValue);
+                fillRenderers.Remove(obj.tagValue);
             }
             else if (DistanceEffectsController.Instance.objectsGrouped[obj.tagValue] == false)
             {
@@ -152,7 +156,7 @@ public class VolumeControls : MonoBehaviour
         {
             foreach (ObjectInput obj in objects)
             {
-                if (controlledObjects.ContainsKey(obj.id))
+                if (controlledObjects.ContainsKey(obj.tagValue))
                 {   
                     // If this object's volume is already being manipulated
                     // by some finger, skip it (one finger at a time please!)
@@ -167,8 +171,8 @@ public class VolumeControls : MonoBehaviour
                 if ((angle > 90 || angle < -90) && distance > 1.1 && distance < 1.75) {
                     // In the volume control activation zone
                     // Save state that this object is being manipulated by the newly added finger
-                    controlledObjects.Add(obj.id, finger.id);
-                    fingersUsed.Add(finger.id, obj.id);
+                    controlledObjects.Add(obj.tagValue, finger.id);
+                    fingersUsed.Add(finger.id, obj.tagValue);
                 }
             }
         }
@@ -182,10 +186,10 @@ public class VolumeControls : MonoBehaviour
     {
         foreach (FingerInput finger in removedFingers)
         {
-            int objectId;
-            if (fingersUsed.TryGetValue(finger.id, out objectId))
+            int objectTag;
+            if (fingersUsed.TryGetValue(finger.id, out objectTag))
             {
-                controlledObjects.Remove(objectId);
+                controlledObjects.Remove(objectTag);
                 fingersUsed.Remove(finger.id);
             }
         }
@@ -199,26 +203,31 @@ public class VolumeControls : MonoBehaviour
     {
         foreach (FingerInput finger in updatedFingers)
         {
-            int objectId;
-            if (fingersUsed.TryGetValue(finger.id, out objectId))
+            int objectTag;
+            if (fingersUsed.TryGetValue(finger.id, out objectTag))
             {
-                ObjectInput obj = SurfaceInputs.Instance.surfaceObjects[objectId];
-                
-                Vector2 diff = finger.position - obj.position;
-                float distance = diff.magnitude;
-                float angle = Vector2.SignedAngle(Vector2.right, diff); // deg: -180 to +180
-
-                if ((angle > 90 || angle < -90) && distance > 0.7 && distance < 2.5)
+                int objectId;
+                if (SurfaceInputs.Instance.objectInstances.TryGetValue(objectTag, out objectId))
                 {
-                    float fill = AngleToFraction(angle);
-                    SetVolumeSliderFill(volumeSliderInstances[objectId], fill);
+                    ObjectInput obj = SurfaceInputs.Instance.surfaceObjects[objectId];
 
-                    if (audioEventListener != null)
+                    Vector2 diff = finger.position - obj.position;
+                    float distance = diff.magnitude;
+                    float angle = Vector2.SignedAngle(Vector2.right, diff); // deg: -180 to +180
+
+                    if ((angle > 90 || angle < -90) && distance > 0.7 && distance < 2.5)
                     {
-                        audioEventListener.trackVolumes[obj.tagValue] = fill;
-                        fillRenderers[obj.id].color = Color.Lerp(Color.white, sliderColors[obj.tagValue], fill);
+                        float fill = AngleToFraction(angle);
+                        SetVolumeSliderFill(volumeSliderInstances[obj.tagValue], fill);
+
+                        if (audioEventListener != null)
+                        {
+                            audioEventListener.trackVolumes[obj.tagValue] = fill;
+                            fillRenderers[obj.tagValue].color = Color.Lerp(Color.white, sliderColors[obj.tagValue], fill);
+                        }
                     }
                 }
+
             }
         }
     }
@@ -239,6 +248,21 @@ public class VolumeControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lastUpdate += Time.deltaTime;
+        if (lastUpdate < 0.1f) {
+            return;
+        }
+        lastUpdate = 0;
+        foreach (KeyValuePair<int, GameObject> entry in volumeSliderInstances)
+        {
+            if (!SurfaceInputs.Instance.objectInstances.ContainsKey(entry.Key))
+            {
+                Debug.Log("CLEANUP: REMOVED VOLUME SLIDER");
+                Destroy(entry.Value);
+                volumeSliderInstances.Remove(entry.Key);
+                fillRenderers.Remove(entry.Key);
+            }
+        }
     }
 
 
