@@ -157,20 +157,42 @@ public class VisualEffectsController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            foreach (GameObject obj in effectInstances.Values)
+            {
+                Destroy(obj);
+            }
+            foreach (GameObject obj in dialInstances.Values)
+            {
+                Destroy(obj);
+            }
+            effectInstances.Clear();
+            dialInstances.Clear();
+            return;
+        }
+
         lastUpdate += Time.deltaTime;
         if (lastUpdate < 0.1f)
         {
             return;
         }
         lastUpdate = 0;
+
+        List<int> toRemove = new List<int>();
         foreach (KeyValuePair<int, GameObject> entry in dialInstances)
         {
             if (!SurfaceInputs.Instance.objectInstances.ContainsKey(entry.Key))
             {
-                Debug.Log("CLEANUP: REMOVED TRACK DIAL");
                 Destroy(entry.Value);
-                dialInstances.Remove(entry.Key);
+                toRemove.Add(entry.Key);
             }
+        }
+
+        foreach (int key in toRemove)
+        {
+            Debug.Log("CLEANUP: REMOVED TRACK DIAL");
+            dialInstances.Remove(key);
         }
     }
 

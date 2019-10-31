@@ -248,20 +248,42 @@ public class VolumeControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            foreach (GameObject obj in volumeSliderInstances.Values)
+            {
+                Destroy(obj);
+            }
+
+            volumeSliderInstances.Clear();
+            fillRenderers.Clear();
+            fingersUsed.Clear();
+            controlledObjects.Clear();
+            return;
+        }
+
         lastUpdate += Time.deltaTime;
         if (lastUpdate < 0.1f) {
             return;
         }
         lastUpdate = 0;
+
+        List<int> toRemove = new List<int>();
         foreach (KeyValuePair<int, GameObject> entry in volumeSliderInstances)
         {
             if (!SurfaceInputs.Instance.objectInstances.ContainsKey(entry.Key))
             {
-                Debug.Log("CLEANUP: REMOVED VOLUME SLIDER");
                 Destroy(entry.Value);
-                volumeSliderInstances.Remove(entry.Key);
-                fillRenderers.Remove(entry.Key);
+                toRemove.Add(entry.Key);
             }
+        }
+
+        foreach (int key in toRemove)
+        {
+            Debug.Log("CLEANUP: REMOVED VOLUME SLIDER");
+            volumeSliderInstances.Remove(key);
+            fillRenderers.Remove(key);
+            controlledObjects.Remove(key);
         }
     }
 

@@ -393,9 +393,25 @@ public class SurfaceInputs : MonoBehaviour
         //}
         //lastUpdate = 0;
 
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            lastRemovedObjects = new List<ObjectInput>(surfaceObjects.Values);
+            lastRemovedFingers = new List<FingerInput>(surfaceFingers.Values);
+
+            surfaceObjects.Clear();
+            surfaceFingers.Clear();
+            objectInstances.Clear();
+
+            OnObjectRemove(lastRemovedObjects);
+            OnFingerRemove(lastRemovedFingers);
+            return;
+        }
+
         if (!dummyMode)
         {
             // ProcessRemovalTimers();
+
+            
 
             // If there's an unprocessed packet waiting, lock it and process
             if (lastObjectPacket != null || lastCursorPacket != null)
@@ -518,6 +534,7 @@ public class SurfaceInputs : MonoBehaviour
                     {
                         lastRemovedObjects.Add(objectInput1);
                         surfaceObjects.Remove(objectInput1.id);
+                        objectInstances.Remove(instrumentFocus);
                         OnObjectRemove(lastRemovedObjects);
                         deleted = true;
                         break;
@@ -527,6 +544,7 @@ public class SurfaceInputs : MonoBehaviour
                 {
                     ObjectInput objectInput1 = new ObjectInput(instrumentFocus, instrumentFocus, ComputeWorldPosition(0.5f, 0.5f), new Vector2(0.5f, 0.5f), 0, new Vector2(0, 0), 0f, 0f, 0f);
                     surfaceObjects.Add(instrumentFocus, objectInput1);
+                    objectInstances.Add(instrumentFocus, instrumentFocus);
                     lastAddedObjects.Add(objectInput1);
                     OnObjectAdd(lastAddedObjects);
                 }
