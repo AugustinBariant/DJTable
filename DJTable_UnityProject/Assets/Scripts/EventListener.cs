@@ -138,7 +138,7 @@ public class EventListener : MonoBehaviour
         float y = objectInput.posRelative.y;
 
         float reverbValue = x < reverbXMax ? (reverbXMax - x) / reverbXMax : 0;
-        float flangerValue = x > flangerXMin ? x / flangerXMin : 0;
+        float flangerValue = x > flangerXMin ? (x-flangerXMin) / flangerXMin : 0;
         float distortionValue = y < distortionYMax ? (distortionYMax - y) / distortionYMax : 0;
         float filterValue = y > filterYMin ? (y - filterYMin) / (1 - filterYMin) : 0;
 
