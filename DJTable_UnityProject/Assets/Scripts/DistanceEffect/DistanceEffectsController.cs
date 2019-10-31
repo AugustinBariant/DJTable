@@ -247,6 +247,8 @@ public class DistanceEffectsController : MonoBehaviour
 
     void RemoveObjects(List<ObjectInput> removedObjects)
     {
+        List<ObjectInput> changedObjects = new List<ObjectInput>();
+        
         foreach (ObjectInput removedObject in removedObjects)
         {
             foreach (ObjectGroup group in groupList)
@@ -259,20 +261,27 @@ public class DistanceEffectsController : MonoBehaviour
                         DestroyEffectInstance(group.effectInstance);
                         foreach (ObjectInput obj in group.objectList)
                         {
-                            group.removeObject(obj);
                             singleObjects.Add(obj);
                             objectsGrouped[obj.tagValue] = false;
+                            changedObjects.Add(obj);
                         }
                         groupList.Remove(group);
+                        break;
                     }
 
                     Vector2 center = GetCenter(group);
                     group.groupCenter = center;
                     group.effectInstance.transform.position = center;
+                    break;
                 }
             }
             objectsGrouped[removedObject.tagValue] = false;
             singleObjects.Remove(removedObject);
+        }
+
+        if (OnGroupingChange != null && changedObjects.Count > 0)
+        {
+            OnGroupingChange(changedObjects);
         }
     }
 
