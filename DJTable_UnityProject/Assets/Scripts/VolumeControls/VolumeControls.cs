@@ -61,6 +61,7 @@ public class VolumeControls : MonoBehaviour
         fillMask.backSortingLayerID = sortingLayerID;
         fillMask.backSortingOrder = obj.tagValue * 2;
 
+        SetVolumeSliderFill(volumeSliderInstance, audioEventListener.trackVolumes[obj.tagValue]);
         volumeSliderInstances.Add(obj.id, volumeSliderInstance);
         fillRenderers.Add(obj.id, fillRenderer);
     }

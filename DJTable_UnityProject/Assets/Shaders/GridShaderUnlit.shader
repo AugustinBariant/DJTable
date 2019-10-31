@@ -93,8 +93,20 @@
 
 				float xFrac = frac(i.worldPos.x / _LineGap);
 				float yFrac = frac(i.worldPos.y / _LineGap);
+
+                fixed4 baseColor = fixed4(0, 0.5, 0.5, 1);
+
+                float leftMix = clamp((4.0 - i.worldPos.x) / 4.0, 0.0, 1.0);
+                float rightMix = clamp((14.0 - i.worldPos.x) / -14.0, 0.0, 1.0);
+
+                baseColor = (leftMix * fixed4(0, 0.5, 0.7, 1)) + (rightMix * fixed4(0.8, 0.8, 0, 1)) + ((1.f - (leftMix + rightMix)) * baseColor);
+
+                float topMix = clamp((6.0 - i.worldPos.y) / -6.0, 0.0, 1.0);
+                float bottomMix = clamp((2.0 - i.worldPos.y) / 2.0, 0.0, 1.0);
+                baseColor = (topMix * fixed4(0.9, 0.25, 0.25, 1)) + (bottomMix * fixed4(1,1,1,1)) + ((1.f - (topMix + bottomMix)) * baseColor);
+
 				if (xFrac < 0.05f || yFrac < 0.05f) {
-					c = ((1.f - extrudeProportion) * fixed4(0, 0.5, 0.5, 1)) + (extrudeProportion * fixed4(1, 0, 0.82, 1));
+					c = ((1.f - extrudeProportion) * baseColor) + (extrudeProportion * fixed4(1, 0, 0.82, 1));
 				}
 				else {
 					c = fixed4(0, 0, 0, 0) + (0.1 * extrudeProportion * fixed4(1, 0, 0.82, 1));
