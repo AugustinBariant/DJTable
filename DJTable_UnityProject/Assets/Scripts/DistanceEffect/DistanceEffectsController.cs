@@ -246,6 +246,7 @@ public class DistanceEffectsController : MonoBehaviour
 
         if (OnGroupingChange != null && changedObjects.Count > 0)
         {
+            //Debug.Log("GROUPING CHANGED FOR " + changedObjects.Count + " OBJECTS");
             OnGroupingChange(changedObjects);
         }
     }
@@ -260,7 +261,9 @@ public class DistanceEffectsController : MonoBehaviour
             {
                 if (group.objectList.Contains(removedObject))
                 {
+                    changedObjects.Add(removedObject);
                     group.removeObject(removedObject);
+
                     if (group.objectList.Count < 2)
                     {
                         DestroyEffectInstance(group.effectInstance);
@@ -286,6 +289,7 @@ public class DistanceEffectsController : MonoBehaviour
 
         if (OnGroupingChange != null && changedObjects.Count > 0)
         {
+            //Debug.Log("GROUPING CHANGED FOR " + changedObjects.Count + " OBJECTS");
             OnGroupingChange(changedObjects);
         }
     }
