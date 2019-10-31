@@ -46,11 +46,7 @@ public class EventListener : MonoBehaviour
     {
         foreach (ObjectInput tableObject in objects)
         {
-            ObjectInstrument objectInstrument = instrumentStates[tableObject.tagValue];
-            if (!objectInstrument.isTriggered)
-            {
-                UpdateTrackValue(tableObject.tagValue, tableObject);
-            }
+            UpdateTrackValue(tableObject.tagValue, tableObject);
             UpdateAudioEffects(tableObject.tagValue, tableObject);
         }
     }
@@ -81,11 +77,7 @@ public class EventListener : MonoBehaviour
         foreach(ObjectInput tableObject in objects)
         {
             prevTrackVolumes[tableObject.tagValue] = 0f;
-            Debug.Log(instrumentStates[tableObject.tagValue].isTriggered);
-            if (!instrumentStates[tableObject.tagValue].isTriggered)
-            {
-                UpdateTrackValue(tableObject.tagValue, tableObject);
-            }
+            UpdateTrackValue(tableObject.tagValue, tableObject);
             UpdateAudioEffects(tableObject.tagValue, tableObject);
             numberOfActiveObjects += 1;
         }
@@ -209,12 +201,20 @@ public class EventListener : MonoBehaviour
     private void UpdateTrackValue(int instrumentTag, ObjectInput instrumentTableObject)
     {
         int trackValue = ComputeTrackValue(instrumentTableObject);
-        if (trackValue != instrumentStates[instrumentTag].trackValue)
+        if (trackValue == 0)
         {
             eventInstance.setParameterByName(instrumentStates[instrumentTag].instrument, trackValue);
             instrumentStates[instrumentTag].UpdateTrackValue(trackValue);
             // This following line is only for the object creation. As the check whether instr.isTriggered is not done, we untrigger it here in case it spawns near another fiducial
-            instrumentStates[instrumentTag].UnTrigger();
+        }
+        if (trackValue != instrumentStates[instrumentTag].trackValue)
+        {
+            if (!instrumentStates[instrumentTag].isTriggered)
+            {
+                eventInstance.setParameterByName(instrumentStates[instrumentTag].instrument, trackValue);
+            }
+            instrumentStates[instrumentTag].UpdateTrackValue(trackValue);
+            // This following line is only for the object creation. As the check whether instr.isTriggered is not done, we untrigger it here in case it spawns near another fiducial
         }
     }
 
