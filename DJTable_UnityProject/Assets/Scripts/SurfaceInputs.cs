@@ -303,6 +303,11 @@ public class SurfaceInputs : MonoBehaviour
                     int id = (int)msg.Values[1];
                     int tagValue = (int)msg.Values[2];
 
+                    if (tagValue < 0 || tagValue > 7)
+                    {
+                        return; // out of bounds
+                    }
+
                     float x = (float)msg.Values[3];
                     float y = 1f - (float)msg.Values[4]; // y axis faces the opposite direction in Unity compared to what the Surface feeds
 
