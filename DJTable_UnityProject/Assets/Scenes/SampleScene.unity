@@ -310,9 +310,9 @@ MonoBehaviour:
   selectEvent: event:/Full tracks
   effectsOn: 1
   reverbXMax: 0.25
-  flangerXMin: 0.69
-  distortionYMax: 0.252
-  filterYMin: 0.5
+  flangerXMin: 0.75
+  distortionYMax: 0.25
+  filterYMin: 0.75
   raiseVolumeWhenTriggered: 0
   trackVolumes:
   - 1
