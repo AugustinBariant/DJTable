@@ -411,8 +411,6 @@ public class SurfaceInputs : MonoBehaviour
         {
             // ProcessRemovalTimers();
 
-            
-
             // If there's an unprocessed packet waiting, lock it and process
             if (lastObjectPacket != null || lastCursorPacket != null)
             {

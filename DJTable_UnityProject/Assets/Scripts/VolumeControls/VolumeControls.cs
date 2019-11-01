@@ -64,6 +64,14 @@ public class VolumeControls : MonoBehaviour
         fillMask.backSortingOrder = obj.tagValue * 2;
 
         SetVolumeSliderFill(volumeSliderInstance, audioEventListener.trackVolumes[obj.tagValue]);
+
+        GameObject existingInstance;
+        if (volumeSliderInstances.TryGetValue(obj.tagValue, out existingInstance))
+        {
+            Destroy(existingInstance);
+            volumeSliderInstances.Remove(obj.tagValue);
+        }
+
         volumeSliderInstances.Add(obj.tagValue, volumeSliderInstance);
         fillRenderers.Add(obj.tagValue, fillRenderer);
     }
@@ -292,6 +300,12 @@ public class VolumeControls : MonoBehaviour
             fillRenderers.Remove(key);
             controlledObjects.Remove(key);
         }
+
+        // GameObject[] sliders = GameObject.FindGameObjectsWithTag("VolumeSliders");
+        // if (sliders.Length > SurfaceInputs.Instance.objectInstances.Count)
+        // {
+
+        // }
     }
 
 
