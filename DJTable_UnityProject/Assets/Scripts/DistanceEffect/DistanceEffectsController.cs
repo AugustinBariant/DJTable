@@ -294,6 +294,23 @@ public class DistanceEffectsController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            foreach (ObjectGroup group in groupList)
+            {
+                Destroy(group.effectInstance);
+            }
+
+            singleObjects.Clear();
+            groupList.Clear();
+            objectsGrouped = new bool[8] { false, false, false, false, false, false, false, false };
+
+            return;
+        }
+    }
+
     private Vector2 GetCenter(ObjectGroup objectGroup)
     {
         float maxX = -99999f;
