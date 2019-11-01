@@ -169,6 +169,18 @@ public class VisualEffectsController : MonoBehaviour
             }
             effectInstances.Clear();
             dialInstances.Clear();
+
+            GameObject[] killList = GameObject.FindGameObjectsWithTag("ParticleEffects");
+            foreach (GameObject mofo in killList)
+            {
+                Destroy(mofo);
+            }
+            killList = GameObject.FindGameObjectsWithTag("TrackDials");
+            foreach (GameObject mofo in killList)
+            {
+                Destroy(mofo);
+            }
+
             return;
         }
 

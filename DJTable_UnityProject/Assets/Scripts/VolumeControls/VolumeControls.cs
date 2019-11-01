@@ -259,6 +259,13 @@ public class VolumeControls : MonoBehaviour
             fillRenderers.Clear();
             fingersUsed.Clear();
             controlledObjects.Clear();
+
+            GameObject[] killList = GameObject.FindGameObjectsWithTag("VolumeSliders");
+            foreach (GameObject mofo in killList)
+            {
+                Destroy(mofo);
+            }
+
             return;
         }
 

@@ -313,6 +313,7 @@ MonoBehaviour:
   flangerXMin: 0.69
   distortionYMax: 0.252
   filterYMin: 0.5
+  raiseVolumeWhenTriggered: 0
   trackVolumes:
   - 1
   - 1

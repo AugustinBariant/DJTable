@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3476215782423924783}
   m_Layer: 0
   m_Name: TrackDial
-  m_TagString: Untagged
+  m_TagString: TrackDials
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
