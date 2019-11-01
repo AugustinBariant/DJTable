@@ -18,6 +18,7 @@ public class EventListener : MonoBehaviour
     public float distortionYMax = 0.5f;
     [Range(0.5f, 0.9f)]
     public float filterYMin = 0.5f;
+    public bool raiseVolumeWhenTriggered = false;
 
     // Individual volumes for all 8 tracks in [0,1] range
     // Changed from VolumeControls
@@ -96,7 +97,7 @@ public class EventListener : MonoBehaviour
                 if (!objectInstrument.isTriggered)
                 {
                     objectInstrument.Trigger();
-                    eventInstance.setParameterByName("Volume" + objectInstrument.instrument, 1);
+                    eventInstance.setParameterByName("Volume" + objectInstrument.instrument, 1f+ (raiseVolumeWhenTriggered?0.5f:0f));
                     eventInstance.setParameterByName(objectInstrument.instrument, 5);
                     // if this instrument is changed, we should try to change all other instruments
 
